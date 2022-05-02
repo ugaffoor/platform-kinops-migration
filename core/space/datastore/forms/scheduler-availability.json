@@ -1,0 +1,319 @@
+{
+  "attributes": [
+    {
+      "name": "Datastore Hidden",
+      "values": [
+        "True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+
+  ],
+  "customHeadContent": null,
+  "description": "",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Day]",
+      "parts": [
+        "values[Day]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[End Time]",
+      "parts": [
+        "values[End Time]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Scheduler Id]",
+      "parts": [
+        "values[Scheduler Id]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Scheduler Id],values[Day],values[Start Time],values[End Time]",
+      "parts": [
+        "values[Scheduler Id]",
+        "values[Day]",
+        "values[Start Time]",
+        "values[End Time]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Slots]",
+      "parts": [
+        "values[Slots]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Start Time]",
+      "parts": [
+        "values[Start Time]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "Scheduler Availability",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Scheduler Id",
+          "label": "Scheduler Id",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": false,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Day",
+          "label": "Day of the Week",
+          "key": "f2",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "dropdown",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Sunday",
+              "value": "0"
+            },
+            {
+              "label": "Monday",
+              "value": "1"
+            },
+            {
+              "label": "Tuesday",
+              "value": "2"
+            },
+            {
+              "label": "Wednesday",
+              "value": "3"
+            },
+            {
+              "label": "Thursday",
+              "value": "4"
+            },
+            {
+              "label": "Friday",
+              "value": "5"
+            },
+            {
+              "label": "Saturday",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Start Time",
+          "label": "Start Time",
+          "key": "f3",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "time"
+        },
+        {
+          "type": "field",
+          "name": "End Time",
+          "label": "End Time",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+            {
+              "content": "!values('Start Time') || !values('End Time') || values('End Time') > values('Start Time') || (values('End Time') == values('Start Time') && values('End Time') == \"00:00\")",
+              "message": "End Time must be after Start Time."
+            }
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "time"
+        },
+        {
+          "type": "field",
+          "name": "Slots",
+          "label": "Simultaneous Slots",
+          "key": "f5",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": {
+            "regex": "^\\d+$",
+            "message": "Simultaneous Slots value must be an integer."
+          },
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "button",
+          "label": "Save",
+          "name": "Save",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+
+      ],
+      "name": "Scheduler Availability",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Scheduler Admins - Scheduler Managers"
+    },
+    {
+      "endpoint": "Modification",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Scheduler Admins - Scheduler Managers"
+    }
+  ],
+  "slug": "scheduler-availability",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Scheduler Id')} ${values('Day')} ${values('Slots')}"
+}

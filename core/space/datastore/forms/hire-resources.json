@@ -1,0 +1,413 @@
+{
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+
+  ],
+  "customHeadContent": null,
+  "description": "People that can be requested for Hire by schools.\nThis list is intended for headquarter management, and can be requested from a school.",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Information]",
+      "parts": [
+        "values[Information]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Name]",
+      "parts": [
+        "values[Name]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Notification Emails]",
+      "parts": [
+        "values[Notification Emails]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Photo URL]",
+      "parts": [
+        "values[Photo URL]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Resource Type]",
+      "parts": [
+        "values[Resource Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Resume]",
+      "parts": [
+        "values[Resume]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status]",
+      "parts": [
+        "values[Status]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "Hire Resources",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Status",
+          "label": "Status",
+          "key": "f7",
+          "defaultValue": "Active",
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Active",
+              "value": "Active"
+            },
+            {
+              "label": "Inactive",
+              "value": "Inactive"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Resource Type",
+          "label": "Resource Type",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Instructor",
+              "value": "Instructor"
+            },
+            {
+              "label": "Program Director",
+              "value": "Program Director"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Name",
+          "label": "Name",
+          "key": "f2",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Information",
+          "label": "Information",
+          "key": "f3",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 4
+        },
+        {
+          "type": "field",
+          "name": "Photo",
+          "label": "Photo",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+            {
+              "name": "Clear Photo URL",
+              "type": "Change",
+              "action": "Set Fields",
+              "mappings": [
+                {
+                  "field": "Photo URL",
+                  "value": "",
+                  "visible": null
+                }
+              ]
+            }
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "file",
+          "renderType": "attachment",
+          "allowMultiple": false
+        },
+        {
+          "type": "field",
+          "name": "Photo URL",
+          "label": "Photo URL",
+          "key": "f6",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "Resume Editor",
+          "text": "<div id=\"resume\"/> ",
+          "visible": true,
+          "renderAttributes": {
+          }
+        },
+        {
+          "type": "field",
+          "name": "Resume",
+          "label": "Resume",
+          "key": "f5",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 20
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Notification",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Notification Emails",
+              "label": "Notification Emails",
+              "key": "f8",
+              "defaultValue": "support.oceania@graciebarra.com; marcelo.rezende@graciebarra.com",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 2
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Editors",
+          "type": "Load",
+          "action": "Custom",
+          "code": "bundle.config.widgets.quillEditor({\n  element: K(\"form\").find(\"#resume\")[0],\n  editorContent: K(\"field[Resume]\").value(),\n  label: \"Resume\",\n  elementName: \"Resume\",\n});\n"
+        }
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Authenticated Users"
+    }
+  ],
+  "slug": "hire-resources",
+  "status": "New",
+  "submissionLabelExpression": "${values('Resource Type')} - ${values('Name')}"
+}

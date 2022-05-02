@@ -1,0 +1,86 @@
+{
+  "activeMappingName": "SMS Templates",
+  "attributes": [
+    {
+      "name": "Category"
+    },
+    {
+      "name": "id"
+    },
+    {
+      "name": "SMS Content"
+    },
+    {
+      "name": "Template Name"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Category",
+          "structureField": "${fields('values[Category]')}"
+        },
+        {
+          "name": "Template Name",
+          "structureField": "${fields('values[Template Name]')}"
+        },
+        {
+          "name": "SMS Content",
+          "structureField": "${fields('values[SMS Content]')}"
+        },
+        {
+          "name": "id",
+          "structureField": "${fields('id')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "SMS Templates",
+      "qualifications": [
+        {
+          "name": "SMS Templates",
+          "query": "formSlug=sms-templates&limit=1000"
+        },
+        {
+          "name": "Get SMS Template",
+          "query": "id=${parameters('ID')}"
+        },
+        {
+          "name": "Get SMS Template by Name",
+          "query": "formSlug=sms-templates&limit=1&index=values[Template Name]&q=values[Template Name]=\"${parameters(\"name\")}\""
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "SMS Templates",
+  "qualifications": [
+    {
+      "name": "Get SMS Template",
+      "parameters": [
+        {
+          "name": "ID"
+        }
+      ],
+      "resultType": "Single"
+    },
+    {
+      "name": "Get SMS Template by Name",
+      "parameters": [
+        {
+          "name": "name"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "SMS Templates",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

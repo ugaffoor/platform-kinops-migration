@@ -1,0 +1,8 @@
+{
+  "event": "Updated",
+  "filter": "form('slug') === \"scheduler\" && ( values('Name') !== valuesPrevious('Name') || values('Id') !== valuesPrevious('Id') )",
+  "name": "Scheduler Updated - Name Change",
+  "type": "Datastore Submission",
+  "url": "/app/api/v1/run-tree/Kinetic%20Request%20CE/Datastore%20Submissions%20%3E%20scheduler/Updated-NameChange",
+  "attributes": null
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "allowsMultiple": false,
+    "description": "The company identifier for the Billing Service used by School",
+    "name": "Billing Company"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Holds a list of preconfigured eDDR templates",
+    "name": "Billing eDDR Templates"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "URL for eDDR, member sign up",
+    "name": "Billing eDDR URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "",
+    "name": "Icon"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Status values that represented Closed, Not Interested type leads that should not be Automated against",
+    "name": "Ignore Lead Status Values"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Status values that represented Closed, Not Interested type leads that should not be Automated against",
+    "name": "Ignore Member Status Values"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Billing WS URL for Members billing",
+    "name": "Kinetic Billing Server URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Email server for processing GB Members email watching and Calendar events",
+    "name": "Kinetic Email Server URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Messaging server URL to send and receive SMS to and from members",
+    "name": "Kinetic Messaging Server URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Values to track the source of a Lead.",
+    "name": "Lead Source Values"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Customised status values",
+    "name": "Lead Status Values"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Customised status values",
+    "name": "Member Status Values"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "true/false - Specifies whether or not SMS service is enabled for the account",
+    "name": "SMS Enabled"
+  }
+]

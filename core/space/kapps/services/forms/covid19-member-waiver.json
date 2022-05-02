@@ -1,0 +1,256 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Cancel Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Cloning Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Comment Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Submitted - True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Members",
+      "name": "Load Member",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${identity('username')}",
+          "name": "username"
+        }
+      ],
+      "qualification": "Get Member by Username",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+    {
+      "category": {
+        "slug": "class-bookings"
+      }
+    }
+  ],
+  "customHeadContent": "<style>\n  \n.waiverButtons {\n    margin: 20px;\n}\n.waiverButtons button {\n\t\tbackground-color: #4d5059;\n    color: white;\n  \tborder-radius: 5px;\n}\n.previewSection h1 {\n    float: left;\n}  \n@media (min-width: 750px) {\n\t.howitworks {\n    width: 50% !important;\n  }\n}\n.howitworks {\n    width: 100%;\n    float: left;\n    clear: left;\n}\n@media (min-width: 750px) {\n\t.reviewdetails {\n    width: 50% !important;\n  }\n}\n.reviewdetails {\n    width: 100%;\n    float: left;\n}\n.howitworks p {\n    margin: 0;\n\t \tline-height: 1.5rem !important; \n}  \n.reviewdetails table {\n    background-color: #e5e4e4;\n    border-radius: 5px;\n}  \n/* Tables\n================================== */\n.Rtable {\n  display: flex;\n  flex-wrap: wrap;\n  margin: 2px 2px 2px 2px;\n  padding: 2px;\n}\n.Rtable-cell {\n  box-sizing: border-box;\n  flex-grow: 1;\n  width: 100%;  // Default to full width\n  padding: 0.8em 1.2em;\n  overflow: hidden; // Or flex might break\n  list-style: none;\n  border: solid @bw white;\n  background: fade(slategrey,20%);\n  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }\n}\n\n/* Table column sizing\n================================== */\n.Rtable--7cols > .Rtable-cell { \n  width: 14.2%; \n}  \n\t.dayButtons a {\t\n  \tcolor:#ffffff !important;\n  }\n  .dayButton {\n  \tbox-shadow:inset 0px 1px 3px 0px #a6adac;\n  \tbackground:linear-gradient(to bottom, #6e6e6e 5%, #686a70 100%);\n  \tbackground-color:#6e6e6e;\n  \tborder-radius:5px;\n  \tborder:1px solid #4d5059;\n  \tdisplay:inline-block;\n  \tcursor:pointer;\n  \tcolor:#ffffff;\n  \tfont-family:Arial;\n  \tfont-size:15px;\n  \tfont-weight:bold;\n  \ttext-decoration:none;\n  \ttext-shadow:0px -1px 0px #505756;\n\t\twidth: 100%;    \n  }\n  .dayButton:hover {\n  \tbackground:linear-gradient(to bottom, #686a70 5%, #6e6e6e 100%);\n  \tbackground-color:#686a70;\n  }\n  .dayButton:active, .dayButton.active {\n      position: relative;\n      background: linear-gradient(to bottom, #aeafb4 5%, #ece9e9 100%);\n      background-color: #adafb2;\n  }\n  .hide {\n    display: none;\n    \n  }\n  #dayClasses {\n      max-width: 400px;\n      margin: auto;\n  }  \n  #dayClasses .classDiv {\n    border-style: solid;\n    border-radius: 5px;\n    border-color: #e3e0e0;\n    padding: 10px;\n    margin-bottom: 2px;\n  }  \n  #dayClasses .GB2, #dayClasses .GB3 { \n\t\tcolor: white;     \n  }\n  .classDiv .dates {\n    float: left;\n  }\n  .classDiv .remaining {\n    padding: 2px;\n    background-color: white;\n    float: right;\n    border-radius: 4px;\n  }\n  .classDiv .programDiv {\n      clear: left;\n  }  \n  .classDiv .titleDiv {\n    clear: left;\n  }\n  .classDiv .lastline {\n    clear: left;\n    height: 26px;\n  }\n  .classDiv .lastline .studentsDiv {\n    float: left;\n  }\n  .classDiv .lastline .booknow {\n    float: right;\n    box-shadow: inset 0px 1px 3px 0px #a6adac;\n    background: linear-gradient(to bottom, #6e6e6e 5%, #686a70 100%);\n    background-color: #6e6e6e;\n    border-radius: 5px;\n    border: 1px solid #4d5059;\n    color: white;\n  }\n  .booknow:hover {\n    box-shadow: inset 0px 1px 3px 0px #a6adac !important;\n    background: linear-gradient(to bottom, #d4d2d2 5%, #a7a8a9 100%) !important;\n    background-color: #9f9d9d !important;\n    border: 1px solid #cacbcc !important;\n  }\n  .GB2 .remaining, .GB3 .remaining {\n    color: black;\n  }  \n  .spinner {\n    border: 16px solid #f3f3f3; /* Light grey */\n    border-top: 16px solid #3498db; /* Blue */\n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    animation: spin 2s linear infinite;\n    margin: auto;\n  }\n\n  @keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n  }\n\n  .anotherClass, #completeBooking button {\n    box-shadow: inset 0px 1px 3px 0px #a6adac;\n    background: linear-gradient(to bottom, #6e6e6e 5%, #686a70 100%);\n    background-color: #6e6e6e;\n    border-radius: 5px;\n    border: 1px solid #4d5059;\n    color: white;  \n    line-height: unset;\n  }\n  .anotherClass:hover, #completeBooking button:hover {\n    box-shadow: inset 0px 1px 3px 0px #a6adac !important;\n    background: linear-gradient(to bottom, #d4d2d2 5%, #a7a8a9 100%) !important;\n    background-color: #9f9d9d !important;\n    border: 1px solid #cacbcc !important;\n  }\n  #cancellationClassLink {\n      color: blue;\n  }  \n</style>\n<script>\n\tvar memberGUID;\n\t\n  function showWaiver(){\n  \tK('section[Waiver Agreed]').hide();\n  \tK('section[Waiver Section]').show();\n  }\n  function agreeTerms(){\n    var url=\"/app/api/v1/submissions/\"+memberGUID;\n    var data={\n  \t\t\t\"values\": {\"Covid19 Waiver\":\"Agreed\"}\n\t\t\t};\n    K('section[Waiver Section]').hide();\n    $(\"#initialise\").show();\n    $.ajax({\n      type: \"PUT\",\n      url: url,\n      data: JSON.stringify(data),\n      dataType: \"json\",\n      success: function() {\n\t\t    $(\"#initialise\").hide();\n    \t\tK('section[Waiver Agreed]').show();\n      },\n      contentType: \"application/json\",\n      accepts: {\n        mycustomtype: 'application/json'\n      },\n    });    \n  }\n  function noAgreeTerms(){\n    var url=\"/app/api/v1/submissions/\"+memberGUID;\n    var data={\n  \t\t\t\"values\": {\"Covid19 Waiver\":\"NOT Agreed\"}\n\t\t\t};\n    K('section[Waiver Section]').hide();\n    $(\"#initialise\").show();\n    $.ajax({\n      type: \"PUT\",\n      url: url,\n      data: JSON.stringify(data),\n      dataType: \"json\",\n      success: function() {\n\t\t    $(\"#initialise\").hide();\n    \t\tK('section[Waiver Reject]').show();\n      },\n      contentType: \"application/json\",\n      accepts: {\n        mycustomtype: 'application/json'\n      },\n    });    \n\t}\n</script>",
+  "description": "",
+  "name": "Covid19 Member Waiver",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "Loading",
+          "text": "<div id=\"initialise\" class=\"spinner\"></div>\n",
+          "visible": true,
+          "renderAttributes": {
+          }
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Waiver Section",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Waiver",
+              "text": "<h4>Release and Waiver of Liability and Indemnity Agreement</h4>\n<br> \n<p>In consideration of being permitted to participate in any way in the Martial Arts Program either being by way of an online virtual platform or as indicated below and/or being permitted to enter for any purpose any restricted area (here in defined as any area where in admittance to the general public is prohibited), the parent(s) and/or legal guardian(s) of the minor participant named below agree:\n</p>\n<ol>\n  <li>\nThe parent(s) and/or legal guardian(s) will instruct the minor participant that prior to participating in the below martial arts activity or event, he or she should inspect the facilities and equipment to be used, and if he or she believes anything is unsafe, the participant should immediately advise the officials of such condition and refuse to participate. I understand and agreed that, if at any time, I feel anything to be UNSAFE, I will immediately take all precautions to avoid the unsafe area and REFUSE TO PARTICIPATE further.\n  </li>\n  <li>\nI/WE fully understand and acknowledge that:\n(a) There are risks and dangers associated with participation in martial arts events and activities which could result in bodily injury partial and/or total disability, paralysis and death.\n(b) The social and economic losses and/or damages, which could result from these risks and dangers described above, could be severe.\n(c) These risks and dangers may be caused by the action, inaction or negligence of the participant or the action, inaction or negligence of others, including, but not limited to, the Releasees named below.\n(d) There may be other risks not known to us or are not reasonably foreseeable at this time.\n  </li>\n  <li>\nI/WE accept and assume such risks and responsibility for the losses and/or damages following such injury, disability, paralysis or death, however caused and whether caused in whole or in part by the negligence of the Releasees named below including that at this time some human contact in the same location carries with it certain inherent risks that cannot be eliminated regardless of the care taken to avoid COVID-19 transmission. I understand and appreciate these and other risks are inherent in the activity I am participating in. I hereby assert that my participation is voluntary and that I knowingly assume all such risks and while aware of these risks I have elected to be present at the facility or to undertake online virtual training and participate in such training.\n  </li>\n  <li>\n    I/WE HEREBY RELEASE, WAIVE, DISCHARGE AND COVENANT NOT TO SUE <span id=\"legalName\"></span> and GB Oceania Association Pty Ltd, the martial arts facility used by the participant, including its owners, managers, promoters, lessees of premises used to conduct the martial arts event or program, premises and event inspectors, underwriters, consultants and others who give recommendations, directions, or instructions to engage in risk evaluation or loss control activities regarding the martial arts facility or events held at such facility and any online virtual training undertaken and each of them, their directors, officers, agents, employees, all for the purposes herein referred to as “Releasee”...FROM ALL LIABILITY TO THE UNDERSIGNED, my/our personal representatives, assigns, executors, heirs and next to kin FOR ANY AND ALL CLAIMS, DEMANDS, LOSSES OR DAMAGES AND ANY CLAIMS OR DEMANDS THEREFORE ON ACCOUNT OF ANY INJURY, INCLUDING BUT NOT LIMITED TO THE DEATH OF THE PARTICIPANT OR DAMAGE TO PROPERTY, ARISING OUT OF OR RELATING TO THE EVENT(S) CAUSED OR ALLEGED TO BE CAUSED IN WHOLE OR IN PART BY THE NEGLIGENCE OF THE RELEASEE OR OTHERWISE including all potential claims related to or resulting in personal injury or illnesses (including death) and property loss arising from any COVID-19 transmission that results from the undersigned being present at the facility and/or participating in the training online or otherwise.\n  </li>\n  <li>\nI/WE HEREBY acknowledge that THE ACTIVITIES OF THE EVENT(S) ARE VERY DANGEROUS and involve the risk of serious injury and/or death and/or property damage. Each of THE UNDERSIGNED also expressly acknowledges that INJURIES RECEIVED MAY BE COMPOUNDED OR INCREASED BY NEGLIGENT RESCUE OPERATIONS OR PROCEDURES OF THE RELEASEES. I attest that I have not tested positive for COVID-19 or if I have previously tested positive for COVID-19 I have been cleared by a medical professional that I no longer carry COVID-19. Additionally, I do not have any symptoms consistent with COVID-19 and I have not had any recent contact with anyone who has COVID-19.\n  </li>\n  <li>\nI/We also agree to indemnity and hold harmless Gracie Barra and any of its affiliates, its directors, officers, employees and agents from any and all claims, actions, suits, costs, expenses, damages and liabilities including attorney fees resulting from any COVID-19 transmission that occurs from being present at the facility or training outside the facility using the virtual platforms and participating in the training.\n  </li>\n  <li>\nEACH OF THE UNDERSIGNED further expressly agrees that the foregoing release, waiver, and indemnity agreement is intended to be as broad and inclusive as is permitted by the law of the Province or State in which the event is conducted and that if any portion is held invalid, it is agreed that the balance shall, notwithstanding continue in full legal force and effect.\n  </li>\n  <li>\nOn behalf of the participant and individually, the undersigned partner(s) and/or legal guardian(s) for the minor participant executes this Waiver and Release. If, despite this release, the participant makes a claim against any of the Releasees, the parent(s) and/or legal guardian(s) will reimburse the Releasee for any money which they have paid to the participant, or on his behalf, and hold them harmless.\n  </li>\n</ol> \n<strong>I HAVE READ THIS RELEASE AND WAIVER OF LIABILITY, ASSUMPTION OF RISK AND INDEMNITY AGREEMENT, FULLY UNDERSTAND ITS TERMS, UNDERSTAND THAT I HAVE GIVEN UP SUBSTANTIAL RIGHTS BY SIGNING IT, AND HAVE SIGNED IT FREELY AND VOLUNTARILY WITHOUT ANY INDUCEMENT, ASSURANCE, OR GUARANTEE BEING MADE TO ME AND INTEND MY SIGNATURE TO BE COMPLETE AND UNCONDITIONAL RELEASE OF ALL LIABILITY TO THE GREATEST EXTENT ALLOWED BY LAW.</strong>\n<br>\n<div class=\"waiverButtons\">\n  <button class=\"agree\" onclick=\"agreeTerms()\">\n    I Acknowledge and Accept the terms\n  </button>\n  <button class=\"notagree\" onclick=\"noAgreeTerms()\">\n    I DO NOT Acknowledge and Accept the terms\n  </button>\n</div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Waiver Reject",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Reject Info",
+              "text": "<h4>You cannot attend a class, since you have chosen to not Accept the Terms and Conditions.</h4>\n\n<p><a href=\"javascript:showWaiver()\">Click here to view the Terms and Conditions.</a></p>\n",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Waiver Agreed",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Agreed Info",
+              "text": "<h4>Thank you for accepting the Terms and Conditions.</h4>\n\n<p><a href=\"javascript:showWaiver()\">Click here to view the Terms and Conditions.</a></p>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Hidden Fields",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Member ID",
+              "label": "Member ID",
+              "key": "f7",
+              "defaultValue": "",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Member GUID",
+              "label": "Member GUID",
+              "key": "f8",
+              "defaultValue": "",
+              "defaultResourceName": "",
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Member Name",
+              "label": "Member Name",
+              "key": "f9",
+              "defaultValue": "",
+              "defaultResourceName": "",
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Complete Booking",
+          "name": "Submit Button",
+          "visible": false,
+          "enabled": false,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Form",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('bridgedResource[Load Member]').load({\n  success: function(bridgedData) {\n    memberGUID=bridgedData.id;\n\t\tK('field[Member ID]').value(bridgedData['Member ID']);\n\t\tK('field[Member GUID]').value(bridgedData['id']);\n\t\tK('field[Member Name]').value(bridgedData['First Name']+' '+bridgedData['Last Name']);\n    debugger;\n    if (bridgedData['Covid19 Waiver']===undefined || bridgedData['Covid19 Waiver']===\"\" || bridgedData['Covid19 Waiver']===\"NOT Agreed\") {\n      $(\"#initialise\").hide();\n      debugger;\n      $(\"#legalName\").text(K('space').attributes('School Legal Name'));\n      K('section[Waiver Section]').show();      \n    } else {\n      $(\"#initialise\").hide();\n      K('section[Waiver Agreed]').show();            \n    }\n  }\n});\n"
+        }
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Authenticated Users"
+    }
+  ],
+  "slug": "covid19-member-waiver",
+  "status": "Active",
+  "submissionLabelExpression": "",
+  "type": "Service"
+}

@@ -1,0 +1,176 @@
+[
+  {
+    "message": "Must be an administrator.",
+    "name": "Admins",
+    "rule": "/* \n * Space admins are allowed access regardless of the the result of security \n * policies.  Returning 'false' denies anyone but a space access. \n */\nfalse",
+    "type": "Kapp"
+  },
+  {
+    "message": "If Allow Cash Payments is configured",
+    "name": "Allow Cash Payments Program Managers",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  //space.attributes[\"Billing Company\"].includes(\"PaySmart\")\n  return (space('attributes')[\"Allow Cash Payments\"]!==null && space('attributes')[\"Allow Cash Payments\"].indexOf(\"true\")!=-1 && hasIntersection(identity('teams'), ['Role::Program Managers']));\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Must be a member of the assigned team or the assigned individual.",
+    "name": "Assigned Team - Assigned Individual",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  return (\n    // Assigned Team\n    hasIntersection(values('Assigned Team'), identity('teams'))\n    // Assigned Individual\n    || hasIntersection(values('Assigned Individual'), identity('username'))\n    // Last updater (this is necessary so that a user can see that they successfully\n    // re-assigned a submission)\n    || submission('updatedBy') == identity('username')\n  );\n})()\n",
+    "type": "Submission"
+  },
+  {
+    "message": "Must be a member of the assigned team, the assigned individual, or explicitly added as an observer.",
+    "name": "Assigned Team - Assigned Individual - Observers",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  return (\n    // Assigned Team\n    hasIntersection(values('Assigned Team'), identity('teams'))\n    // Assigned Individual\n    || hasIntersection(values('Assigned Individual'), identity('username'))\n    // Observers\n    || hasIntersection(values('Observing Individuals', []), identity('username'))\n    || hasIntersection(values('Observing Teams', []), identity('teams'))\n    // Last updater (this is necessary so that a user can see that they successfully\n    // re-assigned a submission)\n    || submission('updatedBy') == identity('username')\n  );\n})()\n",
+    "type": "Submission"
+  },
+  {
+    "message": "Must be authenticated.",
+    "name": "Authenticated Users",
+    "rule": "identity('authenticated')",
+    "type": "Kapp"
+  },
+  {
+    "message": "Bombara authenticated users",
+    "name": "Bombara Authenticated Users",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  //space.attributes[\"Billing Company\"].includes(\"PaySmart\")\n  return (space('attributes')[\"Billing Company\"].indexOf(\"Bombara\") != -1  && identity('authenticated'));\n})()",
+    "type": "Kapp"
+  },
+  {
+    "message": "Bombara is used and user is a Program Manager",
+    "name": "Bombara Program Managers",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  //space.attributes[\"Billing Company\"].includes(\"PaySmart\")\n  return (space('attributes')[\"Billing Company\"].includes(\"Bombara\") && hasIntersection(identity('teams'), ['Role::Program Managers']));\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Must be assigned the contractor role.",
+    "name": "Contractors",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n  \n  // Contractors\n  return hasIntersection(identity('teams'), ['Role::Contractor']);\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Must be assigned the contractor or vendor role.",
+    "name": "Contractors - Vendors",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Contractors or Vendors\n  return hasIntersection(identity('teams'), ['Role::Contractor', 'Role::Vendor']);\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Must be assigned the data admin role.",
+    "name": "Data Admins",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Data Admins\n  return hasIntersection(identity('teams'), ['Role::Data Admin']);\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Must be assigned the employee role.",
+    "name": "Employees",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees\n  return hasIntersection(identity('teams'), ['Role::Employee']);\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Must be assigned the employee or contractor role.",
+    "name": "Employees - Contractors",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  return hasIntersection(identity('teams'), ['Role::Employee', 'Role::Contractor']);\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Everyone is allowed access.",
+    "name": "Everyone",
+    "rule": "true",
+    "type": "Kapp"
+  },
+  {
+    "message": "Must be assigned the form developer role.",
+    "name": "Form Developers",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Form Developers\n  return hasIntersection(identity('teams'), ['Role::Form Developer']);\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Must be the kapp owner or form owner.",
+    "name": "Form Owners - Kapp Owners",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  return (\n    // Form Owners\n    hasIntersection(form('attribute:Owning Team'), identity('teams'))\n    // Kapp Owners\n    || hasIntersection(kapp('attribute:Owning Team'), identity('teams'))\n  );\n})()\n",
+    "type": "Form"
+  },
+  {
+    "message": "Must be a kapp owner.",
+    "name": "Kapp Owners",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Kapp Owners\n  return hasIntersection(kapp('attribute:Owning Team'), identity('teams'));\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "No Billing is used and user is a Program Manager",
+    "name": "NoBilling Program Managers",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  //space.attributes[\"Billing Company\"].includes(\"PaySmart\")\n  return (space('attributes')[\"Billing Company\"].indexOf(\"No Billing\") != -1 && hasIntersection(identity('teams'), ['Role::Program Managers']));\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Payline authenticated users",
+    "name": "Payline Authenticated Users",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  //space.attributes[\"Billing Company\"].includes(\"PaySmart\")\n  return (space('attributes')[\"Billing Company\"].indexOf(\"Payline\") != -1  && identity('authenticated'));\n})()",
+    "type": "Kapp"
+  },
+  {
+    "message": "Payline is used and user is a Program Manager",
+    "name": "Payline Program Managers",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  //space.attributes[\"Billing Company\"].includes(\"PaySmart\")\n  return (space('attributes')[\"Billing Company\"].includes(\"Payline\") && hasIntersection(identity('teams'), ['Role::Program Managers']));\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "PaySmart Authenticated users",
+    "name": "PaySmart Authenticated Users",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  //space.attributes[\"Billing Company\"].includes(\"PaySmart\")\n  return (space('attribute:Billing Company')===\"PaySmart\" && identity('authenticated'));\n})()",
+    "type": "Kapp"
+  },
+  {
+    "message": "PaySmart is used and user is a Program Manager",
+    "name": "Paysmart Program Managers",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  //space.attributes[\"Billing Company\"].includes(\"PaySmart\")\n  return (space('attributes')[\"Billing Company\"].includes(\"PaySmart\") && hasIntersection(identity('teams'), ['Role::Program Managers']));\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "PaySmart ",
+    "name": "PaySmart Public and Program Manager",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  return (space('attributes')[\"Billing Company\"].indexOf(\"PaySmart\") != -1  && (!identity('authenticated') || hasIntersection(identity('teams'), ['Role::Program Managers'])));\n})()",
+    "type": "Kapp"
+  },
+  {
+    "message": "Gracie Barra Program Managers. User who have access to GBMembers",
+    "name": "Program Managers",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  return hasIntersection(identity('teams'), ['Role::Program Managers']);\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Program Managers and Coaches",
+    "name": "Program Managers and Coaches",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  return (hasIntersection(identity('teams'), ['Role::Program Managers','Role::Coach']));\n})()",
+    "type": "Kapp"
+  },
+  {
+    "message": "Provides access to a Non Authenticated user or an Employee, Coach or Program Manager",
+    "name": "Public or Staff",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  return (!identity('authenticated') || hasIntersection(identity('teams'), ['Role::Program Managers','Role::Coach']));\n})()",
+    "type": "Form"
+  },
+  {
+    "message": "Must be the user that created the submission or the person the submission was created for.",
+    "name": "Requester",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  return (\n    // Requester\n    (submission('anonymous') && submission('sessionToken') == identity('sessionToken'))\n    || (!submission('anonymous') && submission('createdBy') == identity('username'))\n    || hasIntersection(values('Requested By', []), identity('username'))\n    || hasIntersection(values('Requested For', []), identity('username'))\n  );\n})()",
+    "type": "Submission"
+  },
+  {
+    "message": "Must be the requester, form owner, or explicitly added as an observer.",
+    "name": "Requester - Form Owners - Observers",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  return (\n    // Submitter\n    (submission('anonymous') && submission('sessionToken') == identity('sessionToken'))\n    || (!submission('anonymous') && submission('createdBy') == identity('username'))\n    || hasIntersection(values('Requested By', []), identity('username'))\n    || hasIntersection(values('Requested For', []), identity('username'))\n    // Form Owners\n    || hasIntersection(form('attribute:Owning Team'), identity('teams'))\n    // Observers\n    || hasIntersection(values('Observing Individuals', []), identity('username'))\n    || hasIntersection(values('Observing Teams', []), identity('teams'))\n  );\n})()\n",
+    "type": "Submission"
+  },
+  {
+    "message": "Must be assigned the submission support role.",
+    "name": "Submission Support",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Submission Support\n  return hasIntersection(identity('teams'), ['Role::Submission Support']);\n})()\n",
+    "type": "Kapp"
+  },
+  {
+    "message": "Must be assigned the vendor role.",
+    "name": "Vendors",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Vendors\n  return hasIntersection(identity('teams'), ['Role::Vendor']);\n})()\n",
+    "type": "Kapp"
+  }
+]

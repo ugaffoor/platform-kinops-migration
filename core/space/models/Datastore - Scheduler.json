@@ -1,0 +1,97 @@
+{
+  "activeMappingName": "Datastore - Scheduler",
+  "attributes": [
+    {
+      "name": "Description"
+    },
+    {
+      "name": "Location"
+    },
+    {
+      "name": "Name"
+    },
+    {
+      "name": "Reservation Timeout"
+    },
+    {
+      "name": "Scheduler Id"
+    },
+    {
+      "name": "Status"
+    },
+    {
+      "name": "Submission Id"
+    },
+    {
+      "name": "Time Interval"
+    },
+    {
+      "name": "Type"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Submission Id",
+          "structureField": "${fields('Id')}"
+        },
+        {
+          "name": "Name",
+          "structureField": "${fields('values[Name]')}"
+        },
+        {
+          "name": "Status",
+          "structureField": "${fields('values[Status]')}"
+        },
+        {
+          "name": "Description",
+          "structureField": "${fields('values[Description]')}"
+        },
+        {
+          "name": "Location",
+          "structureField": "${fields('values[Location]')}"
+        },
+        {
+          "name": "Type",
+          "structureField": "${fields('values[Type]')}"
+        },
+        {
+          "name": "Time Interval",
+          "structureField": "${fields('values[Time Interval]')}"
+        },
+        {
+          "name": "Reservation Timeout",
+          "structureField": "${fields('values[Reservation Timeout]')}"
+        },
+        {
+          "name": "Scheduler Id",
+          "structureField": "${fields('values[Id]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Datastore - Scheduler",
+      "qualifications": [
+        {
+          "name": "Active by Type",
+          "query": "formSlug=scheduler&limit=1000&index=values[Status],values[Type]&q=values[Status]=\"Active\" AND values[Type]=\"${parameters('Type')}\""
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "Datastore - Scheduler",
+  "qualifications": [
+    {
+      "name": "Active by Type",
+      "parameters": [
+        {
+          "name": "Type"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

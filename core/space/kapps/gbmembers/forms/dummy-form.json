@@ -1,0 +1,59 @@
+{
+  "anonymous": false,
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+
+  ],
+  "categorizations": [
+
+  ],
+  "customHeadContent": null,
+  "description": "Used for translations",
+  "name": "Dummy Form",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": false,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Program Managers"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Authenticated Users"
+    }
+  ],
+  "slug": "dummy-form",
+  "status": "New",
+  "submissionLabelExpression": "",
+  "type": ""
+}

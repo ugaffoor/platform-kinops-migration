@@ -1,0 +1,1370 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Icon",
+      "values": [
+        "fa-file-text-o"
+      ]
+    }
+  ],
+  "bridgedResources": [
+
+  ],
+  "categorizations": [
+
+  ],
+  "customHeadContent": null,
+  "description": "Template used for creating new forms.",
+  "name": "Kitchen Sink Form",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Section Header",
+          "title": "Outer Section Title",
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Attachments",
+              "title": "Attachments SubSection Title",
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Attachment Not Required",
+                  "label": "Attachment Not Required",
+                  "key": "f913",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "file",
+                  "renderType": "attachment",
+                  "allowMultiple": false
+                },
+                {
+                  "type": "field",
+                  "name": "Attachment Required",
+                  "label": "Attachment Required",
+                  "key": "f914",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "file",
+                  "renderType": "attachment",
+                  "allowMultiple": false
+                },
+                {
+                  "type": "field",
+                  "name": "Attachment Multiple",
+                  "label": "Attachment Multiple",
+                  "key": "f924",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "file",
+                  "renderType": "attachment",
+                  "allowMultiple": true
+                },
+                {
+                  "type": "field",
+                  "name": "Attachment Uneditable",
+                  "label": "Attachment Uneditable",
+                  "key": "f915",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": false,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "file",
+                  "renderType": "attachment",
+                  "allowMultiple": false
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Checkbox",
+              "title": "Checkbox SubSection Title",
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Checkbox Not Required",
+                  "label": "Checkbox Not Required",
+                  "key": "f918",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "json",
+                  "renderType": "checkbox",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Option A",
+                      "value": "Option A"
+                    },
+                    {
+                      "label": "Option B",
+                      "value": "Option B"
+                    },
+                    {
+                      "label": "Option C",
+                      "value": "Option C"
+                    }
+                  ]
+                },
+                {
+                  "type": "field",
+                  "name": "Checkbox Required",
+                  "label": "Checkbox Required",
+                  "key": "f919",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "json",
+                  "renderType": "checkbox",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Option A",
+                      "value": "Option A"
+                    },
+                    {
+                      "label": "Option B",
+                      "value": "Option B"
+                    },
+                    {
+                      "label": "Option C",
+                      "value": "Option C"
+                    }
+                  ]
+                },
+                {
+                  "type": "field",
+                  "name": "Checkbox Uneditable",
+                  "label": "Checkbox Uneditable",
+                  "key": "f920",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": false,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "json",
+                  "renderType": "checkbox",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Option A",
+                      "value": "Option A"
+                    },
+                    {
+                      "label": "Option B",
+                      "value": "Option B"
+                    },
+                    {
+                      "label": "Option C",
+                      "value": "Option C"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Date",
+              "title": "Date SubSection Title",
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Date Not Required",
+                  "label": "Date Not Required",
+                  "key": "f921",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "date"
+                },
+                {
+                  "type": "field",
+                  "name": "Date Required",
+                  "label": "Date Required",
+                  "key": "f922",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "date"
+                },
+                {
+                  "type": "field",
+                  "name": "Date Uneditable",
+                  "label": "Date Uneditable",
+                  "key": "f923",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": false,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "date"
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "DateTime",
+              "title": "DateTime SubSection Title",
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "DateTime Not Required",
+                  "label": "DateTime Not Required",
+                  "key": "f925",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "datetime"
+                },
+                {
+                  "type": "field",
+                  "name": "DateTime Required",
+                  "label": "DateTime Not Required",
+                  "key": "f926",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "datetime"
+                },
+                {
+                  "type": "field",
+                  "name": "DateTime Uneditable",
+                  "label": "DateTime Not Required",
+                  "key": "f927",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": false,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "datetime"
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Dropdown",
+              "title": "Dropdown SubSection Title",
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Dropdown Not Required",
+                  "label": "Dropdown Not Required",
+                  "key": "f928",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "dropdown",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Option A",
+                      "value": "Option A"
+                    },
+                    {
+                      "label": "Option B",
+                      "value": "Option B"
+                    },
+                    {
+                      "label": "Option C",
+                      "value": "Option C"
+                    }
+                  ]
+                },
+                {
+                  "type": "field",
+                  "name": "Dropdown Required",
+                  "label": "Dropdown Required",
+                  "key": "f929",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "dropdown",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Option A",
+                      "value": "Option A"
+                    },
+                    {
+                      "label": "Option B",
+                      "value": "Option B"
+                    },
+                    {
+                      "label": "Option C",
+                      "value": "Option C"
+                    }
+                  ]
+                },
+                {
+                  "type": "field",
+                  "name": "Dropdown Uneditable",
+                  "label": "Dropdown Required",
+                  "key": "f930",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": false,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "dropdown",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Option A",
+                      "value": "Option A"
+                    },
+                    {
+                      "label": "Option B",
+                      "value": "Option B"
+                    },
+                    {
+                      "label": "Option C",
+                      "value": "Option C"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Radio",
+              "title": "Radio SubSection Title",
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Radio Not Required",
+                  "label": "Radio Not Required",
+                  "key": "f931",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "radio",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Option A",
+                      "value": "Option A"
+                    },
+                    {
+                      "label": "Option B",
+                      "value": "Option B"
+                    },
+                    {
+                      "label": "Option C",
+                      "value": "Option C"
+                    }
+                  ]
+                },
+                {
+                  "type": "field",
+                  "name": "Radio Required",
+                  "label": "Radio Required",
+                  "key": "f932",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "radio",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Option A",
+                      "value": "Option A"
+                    },
+                    {
+                      "label": "Option B",
+                      "value": "Option B"
+                    },
+                    {
+                      "label": "Option C",
+                      "value": "Option C"
+                    }
+                  ]
+                },
+                {
+                  "type": "field",
+                  "name": "Radio Uneditable",
+                  "label": "Radio Uneditable",
+                  "key": "f936",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": false,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "radio",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Option A",
+                      "value": "Option A"
+                    },
+                    {
+                      "label": "Option B",
+                      "value": "Option B"
+                    },
+                    {
+                      "label": "Option C",
+                      "value": "Option C"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Text",
+              "title": "Text SubSection Title",
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Text 1 Line Not Required",
+                  "label": "Text 1 Line Not Required",
+                  "key": "f1",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Text 1 Line Required",
+                  "label": "Text 1 Line Required",
+                  "key": "f910",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Text 1 Line Not Uneditable",
+                  "label": "Text 1 Line Not Uneditable",
+                  "key": "f916",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Text Multi Line Required",
+                  "label": "Text Multi Line Required",
+                  "key": "f911",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 3
+                },
+                {
+                  "type": "field",
+                  "name": "Text Multi Line Not Required",
+                  "label": "Text Multi Line Not Required",
+                  "key": "f912",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 3
+                },
+                {
+                  "type": "field",
+                  "name": "Text Multi Line Uneditable",
+                  "label": "Text Multi Line Uneditable",
+                  "key": "f917",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 3
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Time",
+              "title": "Time SubSection Title",
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Time Not Required",
+                  "label": "Time Not Required",
+                  "key": "f933",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "time"
+                },
+                {
+                  "type": "field",
+                  "name": "Time Required",
+                  "label": "Time Required",
+                  "key": "f934",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": true,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "time"
+                },
+                {
+                  "type": "field",
+                  "name": "Time Uneditable",
+                  "label": "Time Uneditable",
+                  "key": "f935",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": false,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "time"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Column Left",
+          "title": "Column Left",
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+            "class": "col-sm-6"
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Text Left",
+              "text": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Column Right",
+          "title": "Column Right",
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+            "class": "col-sm-6"
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Text Right",
+              "text": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Buttons",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+            "class": "text-right"
+          },
+          "elements": [
+            {
+              "type": "button",
+              "label": "Previous",
+              "name": "Previous",
+              "visible": true,
+              "enabled": true,
+              "renderType": "previous-page",
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "button",
+              "label": "Custom",
+              "name": "Custom",
+              "visible": true,
+              "enabled": true,
+              "renderType": "custom",
+              "renderAttributes": {
+              },
+              "events": [
+
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Save",
+              "name": "Save",
+              "visible": true,
+              "enabled": true,
+              "renderType": "save",
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "button",
+              "label": "Submit",
+              "name": "Submit",
+              "visible": true,
+              "enabled": true,
+              "renderType": "submit-page",
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Hidden System Questions Do Not Delete",
+          "title": "Hidden System Questions Do Not Delete",
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Requested For",
+              "label": "Requested For",
+              "key": "f908",
+              "defaultValue": "${identity('username')}",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested For Display Name",
+              "label": "Requested For Display Name",
+              "key": "f909",
+              "defaultValue": "${identity('displayName')}",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested By",
+              "label": "Requested By",
+              "key": "f906",
+              "defaultValue": "${identity('username')}",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested By Display Name",
+              "label": "Requested By Display Name",
+              "key": "f907",
+              "defaultValue": "${identity('displayName')}",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Discussion Id",
+              "label": "Discussion Id",
+              "key": "f902",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Observing Teams",
+              "label": "Observing Teams",
+              "key": "f904",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Observing Individuals",
+              "label": "Observing Individuals",
+              "key": "f905",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Status",
+              "label": "Status",
+              "key": "f901",
+              "defaultValue": "Draft",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Assigned Team",
+              "label": "Assigned Team",
+              "key": "f937",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "time"
+            },
+            {
+              "type": "field",
+              "name": "Assigned Individual",
+              "label": "Assigned Individual",
+              "key": "f938",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Scheduled Date",
+              "label": "Scheduled Date",
+              "key": "f939",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "datetime"
+            }
+          ]
+        }
+      ],
+      "events": [
+
+      ],
+      "name": "Page 1",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+
+  ],
+  "slug": "kitchen-sink-form",
+  "status": "Active",
+  "submissionLabelExpression": "${form('name')}",
+  "type": "Template"
+}

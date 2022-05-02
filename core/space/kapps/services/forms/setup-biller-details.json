@@ -1,0 +1,1218 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Cancel Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Cloning Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Comment Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Submitted - True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Members",
+      "name": "Get Billing Members",
+      "order": [
+
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Get Billing Members",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Get Family Member",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Family Member')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Member",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Get Member",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Members')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Member",
+      "status": "Active"
+    },
+    {
+      "model": "Program Fees",
+      "name": "Get Program",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Programs')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "By ID",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Members",
+      "order": [
+
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Get Active and Frozen Members",
+      "status": "Active"
+    },
+    {
+      "model": "Program Fees",
+      "name": "Program Fees",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Payment Frequency')}",
+          "name": "Frequency"
+        }
+      ],
+      "qualification": "By Frequency",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+    {
+      "category": {
+        "slug": "billing-registration"
+      }
+    }
+  ],
+  "customHeadContent": "<style>\n  .hidden{\n   display:none; \n  }\n</style>\n<script>\nvar discounts;\nfunction completeTableChange(){\n  K('field[Family Member]').value(\"\");\n  K('field[Programs]').value(\"\");\n  K('field[tableMemberID]').value(\"\");\n  K('field[tableMemberName]').value(\"\");\n  K('field[tableProgram]').value(\"\");\n  K('field[tableFee]').value(\"\");\n  \n  // Sort table\n  viewerConfig.response.sort(function(a, b){return b.cost - a.cost});\n  // Let calculate the discounts\n  viewerConfig.response.forEach(function(item, index){\n    if (index<=discounts.length-1){\n      item.discount=discounts[index].discount;\n      item.fee=((new Number(item.cost))*discounts[index].cost).toFixed(2);\n    } else if (index>discounts.length-1 && discounts.length>0){\n      item.discount=discounts[discounts.length-1].discount;\n      item.fee=((new Number(item.cost))*discounts[discounts.length-1].cost).toFixed(2);\n    } else {\n    item.discount=\"0%\";\n    item.fee=((new Number(item.cost))).toFixed(2);\n    }\n  });\n  \n  // Set payment value\n  var total=0;\n  viewerConfig.response.forEach(function(item, index){\n\t\ttotal=total+(new Number((new Number(item.fee)).toFixed(2)));\n  });\n  K('field[Payment Total]').value(total);\n\n  global.viewerConfig.renderer.type($('#memberTableDiv'),global.viewerConfig);\n\n  $('#member-table tbody tr').on( 'click', function () {\n    if ( $(this).hasClass('selected') ) {\n      $(this).removeClass('selected');\n    }\n    else {\n      $('#member-table').DataTable().$('tr.selected').removeClass('selected');\n      $(this).addClass('selected');\n    }\n  } );  \n  \n}  \n  \nfunction memberProgramAdded(memberID, feeProgram) {\n  found=false;\n\n  viewerConfig.response.forEach(function(item){\n      if (item.id===memberID && item.feeProgram===feeProgram) {\n        found=true;\n      }\n  });  \n  return found;\n}\n</script>",
+  "description": "Paysmart Use to configure an existing Billing Member to assign programs and fees.",
+  "name": "Paysmart Setup Biller Details",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Select Member",
+          "title": "Select Member",
+          "visible": "!form('review')",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Members",
+              "label": "Members",
+              "key": "f38",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "A member must be selected",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Members",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('bridgedResource[Get Member]').load({\n  attributes: ['Member ID', 'First Name', 'Last Name'],\n  values: {'ID' : 'Allen'},\n  success: function(bridgedData) {\n    K('field[Member ID]').value(bridgedData['Member ID']);\n    K('field[Billing Customer Id]').value(bridgedData['Billing Customer Id']);\n    K('field[Student First Name]').value(bridgedData['First Name']);\n    K('field[Student Last Name]').value(bridgedData['Last Name']);\n    K('section[Student Information]').show();\n\n    $.ajax({\n      method: \"POST\",\n      url: K('space').attributes(\"Kinetic Billing Server URL\")+\"/billingInfo\",\n      data: JSON.stringify({ \n        customerId: bridgedData['Billing Customer Id'],\n        space: K('space').slug(),\n        billingService: K('space').attributes(\"Billing Company\"),\n      }),\n      headers: {\n        'Accept': 'application/json, text/plain, */*',\n        'Content-Type': 'application/json;charset=UTF-8'\n    \t}\n    })\n      .done(function( data ) {\n        if (data.data===null) {\n          K('field[Date Affective]').value(\"\");\n          K('field[Billing Period]').value(\"\");\n        } else {\n          K('field[Date Affective]').value(moment(data.data['nextBillingDate'],'DD-MM-YYYY').format('YYYY-MM-DD'));\n          K('field[Billing Period]').value(data.data['paymentPeriod']);\n          \n          bundle.config.widgets.xdsoftDatepickerRemove({\n              element: K(\"form\").find(\"#dateaffective\")[0]\n          });          \n          bundle.config.widgets.xdsoftDatepickerRemove({\n              element: K(\"form\").find(\"#datepaymentsresume\")[0]\n          });          \n          period=7;\n          if (data.data['paymentPeriod']===\"Fortnightly\"){\n            period=14;\n          }\n          debugger;\n         allowDates=[];\n          for (i=0;i<22;i++){\n            if (moment(data.data['nextBillingDate'], \"DD-MM-YYYY\").add(period*i,\"days\").isAfter(moment())) {\n \t\t\t\t\t\t  allowDates[allowDates.length]=moment(data.data['nextBillingDate'], \"DD-MM-YYYY\").add(period*i,\"days\").format(\"DD-MM-YYYY\");\n            }\n\t\t\t\t\t}\n          bundle.config.widgets.xdsoftDatepicker({\n              element: K(\"form\").find(\"#dateaffective\")[0],\n              timepicker: false,\n              displayDateFormat: \"DD/MM/YYYY\",\n              options: {\n                allowDates: allowDates,\n                formatDate:\"d-m-Y\",\n                validateOnBlur:false\n              },\n              onSelectDate:function(ct,$i){\n                K('field[Date Affective]').value(ct.dateFormat('YYYY-MM-DD'));\n              }                \n          });          \n          bundle.config.widgets.xdsoftDatepicker({\n              element: K(\"form\").find(\"#datepaymentsresume\")[0],\n              timepicker: false,\n              displayDateFormat: \"DD/MM/YYYY\",\n              options: {\n                allowDates: allowDates,\n                formatDate:\"d-m-Y\",\n                validateOnBlur:false\n              },\n              onSelectDate:function(ct,$i){\n                K('field[Date Payments Resume]').value(ct.dateFormat('YYYY-MM-DD'));\n              }                \n          });          \n        }\n      });    \n  }\n});",
+                  "bridgedResourceName": null,
+                  "runIf": "values('Members')!==\"\""
+                },
+                {
+                  "name": "Clear Member Details",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('field[Member ID]').value(\"\");\nK('field[Billing Customer Id]').value(\"\");\nK('field[Student First Name]').value(\"\");\nK('field[Student Last Name]').value(\"\");\nK('section[Student Information]').hide();\nK('section[Program Information]').hide();\nK('section[Terms]').hide();\n\nK('section[Member Select Space]').show();    \n",
+                  "runIf": "values('Members')===null"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Get Billing Members",
+              "choicesRunIf": null,
+              "choices": {
+                "label": "${resources('Get Billing Members:First Name')} ${resources('Get Billing Members:Last Name')}",
+                "value": "${resources('Get Billing Members:id')}"
+              }
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Members Select",
+              "text": "<div id=\"selectMemberMenu\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Student Information",
+          "title": "Student Information",
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Member ID",
+              "label": "Member ID",
+              "key": "f39",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student First Name",
+              "label": "Student's First Name",
+              "key": "f28",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('Student First Name')} ${values('Student Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student Last Name",
+              "label": "Student's Last Name",
+              "key": "f29",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('Student First Name')} ${values('Student Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested For",
+              "label": "Requested For",
+              "key": "f64",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Billing Customer Id",
+              "label": "Billing Customer Id",
+              "key": "f55",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Billing Period",
+              "label": "Billing Period",
+              "key": "f60",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Family Members",
+              "title": "Family Members",
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Include Family Members",
+                  "label": "Include Family Members",
+                  "key": "f44",
+                  "defaultValue": "",
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "radio",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Yes",
+                      "value": "Yes"
+                    },
+                    {
+                      "label": "No",
+                      "value": "No"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Program Information",
+          "title": "Program Information",
+          "visible": "values('Include Family Members')!==null",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Payment Frequency",
+              "label": "Payment Frequency",
+              "key": "f40",
+              "defaultValue": "Fortnightly",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "radio",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Weekly",
+                  "value": "Weekly"
+                },
+                {
+                  "label": "Fortnightly",
+                  "value": "Fortnightly"
+                },
+                {
+                  "label": "Monthly",
+                  "value": "Monthly"
+                },
+                {
+                  "label": "Quarterly",
+                  "value": "Quarterly"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Family Member",
+              "label": "Family Member",
+              "key": "f48",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Family Member",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "tableMemberName",
+                      "value": "${resources('Get Family Member:First Name')} ${resources('Get Family Member:Last Name')}",
+                      "visible": true
+                    },
+                    {
+                      "field": "tableMemberID",
+                      "value": "${resources('Get Family Member:id')}",
+                      "visible": true
+                    }
+                  ],
+                  "bridgedResourceName": "Get Family Member"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Members",
+              "choicesRunIf": null,
+              "choices": {
+                "label": "${resources('Members:First Name')} ${resources('Members:Last Name')}",
+                "value": "${resources('Members:id')}"
+              }
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Family Member Select",
+              "text": "<div id=\"selectFamilyMemberMenu\"></div>",
+              "visible": "values('Include Family Members')===\"Yes\" && !form('review')",
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "tableMemberID",
+              "label": "tableMemberID",
+              "key": "f50",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "tableMemberName",
+              "label": "tableMemberName",
+              "key": "f49",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Programs",
+              "label": "Programs",
+              "key": "f45",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Payment Frequency')!==null && !form('review')",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Program",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "tableProgram",
+                      "value": "${resources('Get Program:Program')} - ${resources('Get Program:Info')}",
+                      "visible": true
+                    },
+                    {
+                      "field": "tableFee",
+                      "value": "${resources('Get Program:Fee')}",
+                      "visible": true
+                    },
+                    {
+                      "field": "tableFeeProgram",
+                      "value": "${resources('Get Program:Program')}",
+                      "visible": true
+                    }
+                  ],
+                  "bridgedResourceName": "Get Program"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Program Fees",
+              "choicesRunIf": "",
+              "choices": {
+                "label": "${resources('Program Fees:Program')} - ${resources('Program Fees:Info')}",
+                "value": "${resources('Program Fees:id')}"
+              }
+            },
+            {
+              "type": "field",
+              "name": "tableProgram",
+              "label": "tableProgram",
+              "key": "f47",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "tableFeeProgram",
+              "label": "tableFeeProgram",
+              "key": "f53",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "tableFee",
+              "label": "tableFee",
+              "key": "f46",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Fee as Individual",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Payment Total",
+                      "value": "${values('tableFee')}",
+                      "visible": null
+                    }
+                  ],
+                  "runIf": "values('Include Family Members')===\"No\""
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Add buttons",
+              "title": null,
+              "visible": "values('Include Family Members')!==null",
+              "omitWhenHidden": true,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "button",
+                  "label": "Add My Program",
+                  "name": "Add Current Member",
+                  "visible": true,
+                  "enabled": true,
+                  "renderType": "custom",
+                  "renderAttributes": {
+                  },
+                  "events": [
+                    {
+                      "name": "Set Current Member",
+                      "type": "Click",
+                      "action": "Custom",
+                      "code": "K('field[tableMemberID]').value(K('field[Members]').value());\nK('field[tableMemberName]').value(K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value());\nDataViewer.renderFieldValues($('#memberTableDiv'), global.viewerConfig);\ncompleteTableChange();",
+                      "runIf": "values('tableProgram')!=null && values('tableFee')!=null && !memberProgramAdded(K('field[Members]').value(),K('field[tableFeeProgram]').value())"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "label": "Add Family Member Program",
+                  "name": "Add Family Member Program",
+                  "visible": "values('Include Family Members')===\"Yes\"",
+                  "enabled": true,
+                  "renderType": "custom",
+                  "renderAttributes": {
+                  },
+                  "events": [
+                    {
+                      "name": "Add Family Member",
+                      "type": "Click",
+                      "action": "Custom",
+                      "code": "DataViewer.renderFieldValues($('#memberTableDiv'), global.viewerConfig);\ncompleteTableChange();\n",
+                      "runIf": "values('tableProgram')!=null && values('tableFee')!=null && !memberProgramAdded(K('field[tableMemberID]').value(),K('field[tableFeeProgram]').value())"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "label": "Delete Selected Program",
+                  "name": "Delete Selected Program",
+                  "visible": true,
+                  "enabled": true,
+                  "renderType": "custom",
+                  "renderAttributes": {
+                  },
+                  "events": [
+                    {
+                      "name": "Delete Selected Member",
+                      "type": "Click",
+                      "action": "Custom",
+                      "code": "viewerConfig.response.splice([$('#member-table').DataTable().row('.selected').index()],1);\ncompleteTableChange();",
+                      "runIf": "$('#member-table tbody tr.selected').length>0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Members Table",
+              "text": "<div id='memberTableDiv'></div>",
+              "visible": "values('Include Family Members')!==null",
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "membersJSON",
+              "label": "membersJSON",
+              "key": "f52",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "feesJSON",
+              "label": "feesJSON",
+              "key": "f51",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Payment Total",
+              "label": "Payment Total",
+              "key": "f54",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Update Information",
+              "text": "If you want to also apply this update to PaySmart, please select the <b>Update PaySmart</b> option.",
+              "visible": true,
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "Update as a PaySmart variation",
+              "label": "",
+              "key": "f56",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Update Paysmart",
+                  "value": "Update Paysmart"
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Update Paysmart details",
+              "title": null,
+              "visible": "values('Update as a PaySmart variation')==\"Update Paysmart\"",
+              "omitWhenHidden": true,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "content",
+                  "renderType": "html",
+                  "name": "Date Affective HTML",
+                  "text": "<div class=\"form-group required\" linkedField=\"Date Affective\">  \n  <label class=\"field-label\" for=\"dateaffective\">Date Affective</label>\n  <div id=\"dateaffective\"></div>\n</div>",
+                  "visible": "!form('review') ",
+                  "renderAttributes": {
+                  }
+                },
+                {
+                  "type": "field",
+                  "name": "Date Affective",
+                  "label": "Date Affective",
+                  "key": "f57",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "form('review')",
+                  "enabled": true,
+                  "required": "values('Update as a PaySmart variation')==\"Update Paysmart\"",
+                  "requiredMessage": null,
+                  "omitWhenHidden": false,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "date"
+                },
+                {
+                  "type": "field",
+                  "name": "Resume Date Option",
+                  "label": "Resume Date Option",
+                  "key": "f61",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "!form('review') ",
+                  "enabled": true,
+                  "required": "values('Update as a PaySmart variation')==\"Update Paysmart\"",
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "radio",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Until Further Notice",
+                      "value": "Until Further Notice"
+                    },
+                    {
+                      "label": "Resume Date",
+                      "value": "Resume Date"
+                    }
+                  ]
+                },
+                {
+                  "type": "content",
+                  "renderType": "html",
+                  "name": "Date Payments Resume HTML",
+                  "text": "<div class=\"form-group required\" linkedField=\"Date Payments Resume\">  \n  <label class=\"field-label\" for=\"datepaymentsresume\">Date Payments Resume</label>\n  <div id=\"datepaymentsresume\"></div>\n</div>",
+                  "visible": "!form('review') && values('Resume Date Option')==\"Resume Date\"",
+                  "renderAttributes": {
+                  }
+                },
+                {
+                  "type": "field",
+                  "name": "Date Payments Resume",
+                  "label": "Date Payments Resume",
+                  "key": "f59",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "form('review') ",
+                  "enabled": "values('Resume Date Option')===\"Resume Date\"",
+                  "required": "values('Resume Date Option')===\"Resume Date\"",
+                  "requiredMessage": null,
+                  "omitWhenHidden": false,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "date"
+                },
+                {
+                  "type": "field",
+                  "name": "Make Permanent",
+                  "label": "",
+                  "key": "f62",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "values('Resume Date Option')===\"Until Further Notice\"",
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "json",
+                  "renderType": "checkbox",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Make Permanent",
+                      "value": "Make Permanent"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Signature",
+              "title": null,
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Encoded Person Signature",
+                  "label": "Encoded Person Signature",
+                  "key": "f63",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": false,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": false,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "content",
+                  "renderType": "html",
+                  "name": "Person Signature",
+                  "text": "<label class=\"field-label\">Person Signature</label><div id=\"person-signature-canvas\"/>",
+                  "visible": true,
+                  "renderAttributes": {
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Member Select Space",
+          "title": null,
+          "visible": "values('Include Family Members')===null",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Member Select Space",
+              "text": "<div style=\"height:300px\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Members Select",
+          "type": "Load",
+          "action": "Custom",
+          "code": "discounts=(K('space').attributes('Member Discounts')!==undefined ? JSON.parse(K('space').attributes('Member Discounts')) : []);  \n\nbundle.config.widgets.selectMenu({\n  element: K(\"form\").find(\"#selectMemberMenu\")[0],\n\toptions: K('field[Members]').options(),\n  onChange: function(option) {\n\t  K('field[Members]').value(option.value);\n    setTimeout(function(){\n    \t$(K(\"form\").find(\"#selectMemberMenu .css-1492t68\")).html(option.label);\n    },100);\n\t},\n  value: K('field[Members]').value(),\n});\n\nbundle.config.widgets.selectMenu({\n  element: K(\"form\").find(\"#selectFamilyMemberMenu\")[0],\n\toptions: K('field[Family Member]').options(),\n  onChange: function(option) {\n\t  K('field[Family Member]').value(option.value);\n    setTimeout(function(){\n\t    $(K(\"form\").find(\"#selectFamilyMemberMenu .css-1492t68\")).html(option.label);\n    },100);\n\t},\n  value: K('field[Family Member]').value(),\n});\n",
+          "runIf": "!form('review')"
+        },
+        {
+          "name": "Handle Errors",
+          "type": "Submit",
+          "action": "Custom",
+          "code": "if (!jQuery.isEmptyObject(K('form').validate())){\n  setTimeout(function(){\n  if ($(\".has-error\").length>0){\n    $(\".has-error\").each(function(i,l) { \n      if ($(l).attr(\"data-element-name\").indexOf(\"Signature\")!==-1) {\n        sigCanElName=$(l).attr(\"data-element-name\").replace(\"Encoded \",\"\");\n        $(K('content['+sigCanElName+']').element()).addClass(\"has-error\");\n      }\n    })  \n    $('.main-container').animate({\n      scrollTop: 0\n    },500);\n  }\n  },100);\n}"
+        },
+        {
+          "name": "Load Previous set page",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('section[Student Information]').show();\nK('section[Program Information]').show();\n\nK('section[Member Select Space]').hide();    \n",
+          "runIf": "values('Members')!==null"
+        },
+        {
+          "name": "Set Payment Frequencies",
+          "type": "Load",
+          "action": "Custom",
+          "code": "options=[];\nvar freqValue=K('field[Payment Frequency]').value();\nK('space').attributes('Payment Frequencies').split(\",\").forEach(function(value) {\n\toptions[options.length]={'label':value,'value':value};\n});\nK('field[Payment Frequency]').options(options);\nsetTimeout(function() { K('field[Payment Frequency]').value(freqValue); }, 100, freqValue);\n\nif (form('review')) K('field[Payment Frequency]').disable();",
+          "runIf": ""
+        },
+        {
+          "name": "Load Members Table",
+          "type": "Load",
+          "action": "Custom",
+          "code": "global.viewerConfig ={\n  resultsContainer:\n  '<table cellspacing=\"0\", border=\"0\", class=\"table table-striped table-bordered table-condensed dataTable\">',\n  data: [\n  {\n  title: 'MemberID',\n  name: 'id',\n  setField: 'tableMemberID',\n  class: 'hidden'\n  },\n  {\n  title: 'Name',\n  name: 'Name',\n  setField: 'tableMemberName'\n  },\n  {\n  title: 'Fee Program',\n  name: 'feeProgram',\n  setField: 'tableFeeProgram',\n  class: 'hidden'\n  },\n  {\n  title: 'Program',\n  name: 'program',\n  setField: 'tableProgram'\n  },\n  {\n  title: 'Fee',\n  name: 'fee',\n  setField: 'tableFee'\n  },\n  {\n  title: 'Cost',\n  name: 'cost',\n  class: 'hidden',\n  setField: 'tableFee'\n  },\n\t{\n  title: 'Discount',\n  name: 'discount',\n  setField: 'tableDiscount'\n  },\n],\n  resultsContainerId: 'member-table',\n  before: function(configObj) {\n\n  },\n  error: function(configObj) {},\n  complete: function(configObj) {\n\n  },\n  removeOnClick: false,\n  renderer: {\n  type: DataViewer.Renderers.DataTables, // Passing a function here allows for better customization\n  options: {\n  // Options for Render\n  processSingleResult: false,\n  // DataTable OPTIONS; Passing options here make it clear that they are being passed to data tables\n  // responsive: OPTIONAL Default for \"BridgeDataTable\" is true but can be over written.\n  responsive: false,\n  dom: 'tip',\n  orderFixed: [[4, 'desc']], /* Fee */\n  paging: false,\n  scrollY: '60vh',\n  scrollCollapse: true,\n  select: {\n  \tstyle: 'single',\n\t\tselector: 'td:first-child'\n\t},\n  createdRow: function createdRow(row, data, dataIndex) {\n\n  },\n\tdeferRender: true,\n}\n}\n};\nviewerConfig.response = (K('field[feesJSON]').value()===null ? [] : JSON.parse(K('field[feesJSON]').value()));\nDataViewer.renderResults($('#memberTableDiv'), viewerConfig);\n\n"
+        },
+        {
+          "name": "Set JSON",
+          "type": "Submit",
+          "action": "Custom",
+          "code": "K('field[feesJSON]').value(JSON.stringify(viewerConfig.response));\n\nmembers=new Array();\nviewerConfig.response.forEach(function(item){\n  members.push(item.id);\n});\nK('field[membersJSON]').value(JSON.stringify(members));\n\n"
+        },
+        {
+          "name": "Load Signatures",
+          "type": "Load",
+          "action": "Custom",
+          "code": "bundle.config.widgets.signatureCanvas({\n  element: K(\"form\").find(\"#person-signature-canvas\")[0],\n  initialValue: K(\"field[Encoded Person Signature]\").value(),\n  onChange: function(value) {\n\t  K(\"field[Encoded Person Signature]\").value(value);\n\t},\n  height: 250,\n  width: 500,\n  disable: form('review'),\n  ref: function(el) {\n    window.personSignaturePad = el;\n  },\n});\n"
+        }
+      ],
+      "name": "Instalment Information",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Paysmart Program Managers"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Program Managers"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Program Managers"
+    }
+  ],
+  "slug": "setup-biller-details",
+  "status": "Active",
+  "submissionLabelExpression": "${values('First Name')} ${values('Last Name')} Start : ${values('Billing Start Date')}",
+  "type": "Service"
+}

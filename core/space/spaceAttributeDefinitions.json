@@ -1,0 +1,357 @@
+[
+  {
+    "allowsMultiple": false,
+    "description": "Australian Business Number",
+    "name": "ABN"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Australian Company Number",
+    "name": "ACN"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of this spaces Admin Kapp (typically admin)",
+    "name": "Admin Kapp Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of the Admin Kapp form that is used for managing system alerts (typically 'alerts').",
+    "name": "Alerts Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Enable Cash Payment capture",
+    "name": "Allow Cash Payments"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "The Queue kapp form which approvals should be created in (Overridden by Kapp and Form Attributes)",
+    "name": "Approval Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "",
+    "name": "Australia School States"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "gbmembers-gbshop, us-gbmembers-gbshop",
+    "name": "AWS GBShop Bucket"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "gbmembers-photos, us-gbmembers-photos",
+    "name": "AWS Photos Bucket"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Region name for AWS file storage",
+    "name": "AWS Region"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "The company identifier for the Billing Service used by School",
+    "name": "Billing Company"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "A value for Calendar time slots, such as 15, 10, 5 etc",
+    "name": "Calendar Time Slots"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of this spaces Catalog Kapp (typically catalog)",
+    "name": "Catalog Kapp Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used by users to request their manager be changed.",
+    "name": "Change Manager Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "Company Logo"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Cooling period such as,\n5 days\nOR\n8 hours",
+    "name": "Cooling Period"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Set to TRUE if school needs to track Covid Checks.",
+    "name": "Covid Check Required"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Currency value for Billing POS (AUD, USD ....)",
+    "name": "Currency"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Allows Space Administrators to set a default Kapp that will display for Users in their Space. This can be overridden by a User Profile Attribute.",
+    "name": "Default Kapp Display"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "If set to true, users won't be able to request their own accounts. Only system administrators will be able to grant them access.",
+    "name": "Disable Self Sign Up"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "The Discussion Id related to this space",
+    "name": "Discussion Id"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Url of this spaces response server",
+    "name": "Discussion Server Url"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used for collecting feedback about the kinops portal.",
+    "name": "Feedback Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Name of the Space Bundle which allows for sharing of headers and footers",
+    "name": "Footer Bundle Path"
+  },
+  {
+    "allowsMultiple": true,
+    "description": null,
+    "name": "Form Workflow"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Name of the Space Bundle which allows for sharing of headers and footers",
+    "name": "Header Bundle Path"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used by users to get help within the kinops portal.",
+    "name": "Help Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Any users whose usernames match this regular expression, will not be shown in the Kapp.",
+    "name": "Hidden Users Regex"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used by Admins to mass invite others to kinops",
+    "name": "Invite Others Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Billing WS URL for Members billing",
+    "name": "Kinetic Billing Server URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Name of the Space Bundle which allows for sharing of libraries between bundles.",
+    "name": "Libraries Bundle Path"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Discounts for family members",
+    "name": "Member Discounts"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Family Price for the Online program for issues like Lockdowns (Covid).\nEnter a dollar amount such as, 40",
+    "name": "Online Week Family Price"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Individual Price for the Online program for issues like Lockdowns (Covid).\nEnter a dollar amount such as, 25",
+    "name": "Online Week Individual Price"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Weekly,Fortnightly,Monthly,Quarterly",
+    "name": "Payment Frequencies"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Specify the Phone Number format for the school country.\nAU ####-###-###\nUS ###-###-####",
+    "name": "PhoneNumber Format"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Accepted cards ['visa', 'mastercard', 'discover', 'amex', 'jcb', 'dinersclub', 'maestro', 'laser', 'unionpay', 'elo', 'hipercard']",
+    "name": "POS Accepted Cards"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Percentage sales tax value to be applied on top of sub-total",
+    "name": "POS Sales Tax"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Surcharge, Sales Tax, GST, VAT etc..",
+    "name": "POS Sales Tax Label"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Default to \"TOTAL\", but can be set as \"Total (GST Included)\"",
+    "name": "POS Sales Total Label"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "URL for processing POS credit card",
+    "name": "POS Service URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "System name for process POS transactions",
+    "name": "POS System"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Specify the Postcode format for the school country.\nAU ####\nUS ######",
+    "name": "Postcode Format"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "A URL to open the schools Private Policy (a document or web page)",
+    "name": "Privacy Policy"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of this spaces Queue Kapp (typically queue)",
+    "name": "Queue Kapp Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used for requesting an alert be displayed in the kinops portal.",
+    "name": "Request Alert Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "School Address"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "School Email"
+  },
+  {
+    "allowsMultiple": true,
+    "description": "Additional school email addresses that can be applied to Email campaigns",
+    "name": "School Email Alias"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "From Alias name for school",
+    "name": "School From Alias"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Legal name used for Billing terms",
+    "name": "School Legal Name"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "School Name"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "State for school",
+    "name": "School State"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "States for country the school is based in",
+    "name": "School States"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "School Telephone"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Full timetable website URL",
+    "name": "School Timetable URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "",
+    "name": "School Website"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Number of days until service is expected to be fulfilled - Overridden by Form / Kapp Attribute",
+    "name": "Service Days Due"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slugs needed to appears in the Services Report",
+    "name": "Services Slugs"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Use a shared workflow engine (true/false)?",
+    "name": "Shared Workflow Engine"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "",
+    "name": "Square Device ID"
+  },
+  {
+    "allowsMultiple": true,
+    "description": "Defines which workflow type should be executed for each type of action. All values should be prefixed with an action (Submitted, Created, Updated, Deleted) Workflow type options are (True, False, or a custom process name) This attribute can be overridden by a kapp or form's attribute Ex (Submitted - False | Submitted - True | Submitted - My Custom Process)",
+    "name": "Submission Workflow"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used to request a new service be added to the catalog.",
+    "name": "Suggest a Service Form Slug"
+  },
+  {
+    "allowsMultiple": true,
+    "description": "Email Address of the System Administrator who should receive emails about system issues",
+    "name": "System Administrator Email"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Username of user to assign tasks to if not defined in a form or kapp.",
+    "name": "Task Assignee Individual"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Team to assign tasks to if not defined in a form or kapp.",
+    "name": "Task Assignee Team"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "The Queue kapp form to use when creating a task item (Overridden by Kapp and Form Attributes)",
+    "name": "Task Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of the space the task engine is routed",
+    "name": "Task Server Space Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Name of the source for this space in the workflow engine",
+    "name": "Task Source Name"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of this spaces Tech Bar Kapp (typically tech-bar)",
+    "name": "Tech Bar Kapp Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Url of the request web server that this space exists",
+    "name": "Web Server Url"
+  }
+]

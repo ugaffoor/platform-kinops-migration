@@ -1,0 +1,48 @@
+{
+  "activeMappingName": "Terms and Conditions",
+  "attributes": [
+    {
+      "name": "Terms Information"
+    },
+    {
+      "name": "Type"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Type",
+          "structureField": "${fields('values[Type]')}"
+        },
+        {
+          "name": "Terms Information",
+          "structureField": "${fields('values[Terms Information]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Terms and Conditions",
+      "qualifications": [
+        {
+          "name": "Paysmart Member Registration",
+          "query": "formSlug=terms-and-conditions&limit=1&index=values[Status],values[Type]&q=values[Status]=\"Active\" AND values[Type]=\"${parameters('Type')}\""
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "Terms and Conditions",
+  "qualifications": [
+    {
+      "name": "Paysmart Member Registration",
+      "parameters": [
+        {
+          "name": "Type"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

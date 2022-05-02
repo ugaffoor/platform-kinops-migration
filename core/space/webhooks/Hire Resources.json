@@ -1,0 +1,8 @@
+{
+  "event": "Saved",
+  "filter": "form('name')==\"Hire Resources\"",
+  "name": "Hire Resources",
+  "type": "Datastore Submission",
+  "url": "/app/api/v1/run-tree/${space('attribute:Task Source Name')}/Datastore%20Submissions%20%3E%20hire-resources/HireResourcePhotoUpload",
+  "attributes": null
+}

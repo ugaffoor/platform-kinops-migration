@@ -1,0 +1,318 @@
+{
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+
+  ],
+  "customHeadContent": null,
+  "description": "Categories for group of Apparel and Services available for POS",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Description]",
+      "parts": [
+        "values[Description]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Icon]",
+      "parts": [
+        "values[Icon]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Label]",
+      "parts": [
+        "values[Label]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status]",
+      "parts": [
+        "values[Status]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Type]",
+      "parts": [
+        "values[Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Type],values[Status]",
+      "parts": [
+        "values[Type]",
+        "values[Status]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "POS Categories",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Status",
+          "label": "Status",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Active",
+              "value": "Active"
+            },
+            {
+              "label": "Inactive",
+              "value": "Inactive"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Type",
+          "label": "Type",
+          "key": "f5",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Apparel",
+              "value": "Apparel"
+            },
+            {
+              "label": "Service",
+              "value": "Service"
+            },
+            {
+              "label": "Package",
+              "value": "Package"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Label",
+          "label": "Label",
+          "key": "f2",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Description",
+          "label": "Description",
+          "key": "f3",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 3
+        },
+        {
+          "type": "field",
+          "name": "Icon",
+          "label": "Icon",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "dropdown",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Events",
+              "value": "events"
+            },
+            {
+              "label": "Private Class",
+              "value": "private_class"
+            },
+            {
+              "label": "Promotion",
+              "value": "promotion"
+            },
+            {
+              "label": "Apparel",
+              "value": "apparel"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Data Admins"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Data Admins"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Data Admins"
+    }
+  ],
+  "slug": "pos-categories",
+  "status": "New",
+  "submissionLabelExpression": "${values('Status')}-${values('Type')}-${values('Label')}"
+}

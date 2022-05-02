@@ -1,0 +1,991 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Allow Reassignment",
+      "values": [
+        "No"
+      ]
+    },
+    {
+      "name": "Custom Submission Workflow",
+      "values": [
+        "Created",
+        "Updated"
+      ]
+    },
+    {
+      "name": "Form Configuration",
+      "values": [
+        "{\"columns\":[{\"name\":\"Customer\",\"label\":\"Customer\",\"type\":\"value\",\"visible\":false},{\"name\":\"Type\",\"label\":\"Type\",\"type\":\"value\",\"visible\":false},{\"name\":\"Request Summary\",\"label\":\"Request Summary\",\"type\":\"value\",\"visible\":false},{\"name\":\"Request Details\",\"label\":\"Request Details\",\"type\":\"value\",\"visible\":false},{\"name\":\"Status\",\"label\":\"Status\",\"type\":\"value\",\"visible\":false},{\"name\":\"Pending Reason\",\"label\":\"Pending Reason\",\"type\":\"value\",\"visible\":false},{\"name\":\"Resolution\",\"label\":\"Resolution\",\"type\":\"value\",\"visible\":false},{\"name\":\"Cancellation Reason\",\"label\":\"Cancellation Reason\",\"type\":\"value\",\"visible\":false},{\"name\":\"Notes Internal\",\"label\":\"Notes Internal\",\"type\":\"value\",\"visible\":false},{\"name\":\"Notes for Customer\",\"label\":\"Notes for Customer\",\"type\":\"value\",\"visible\":false},{\"name\":\"Assigned Individual\",\"label\":\"Assigned Individual\",\"type\":\"value\",\"visible\":false},{\"name\":\"Assigned Individual Display Name\",\"label\":\"Assigned Individual Display Name\",\"type\":\"value\",\"visible\":false},{\"name\":\"Assigned Team\",\"label\":\"Assigned Team\",\"type\":\"value\",\"visible\":false},{\"name\":\"Assigned Team Display Name\",\"label\":\"Assigned Team Display Name\",\"type\":\"value\",\"visible\":false},{\"name\":\"Deferral Token\",\"label\":\"Deferral Token\",\"type\":\"value\",\"visible\":false},{\"name\":\"Discussion Id\",\"label\":\"Discussion Id\",\"type\":\"value\",\"visible\":false},{\"name\":\"Summary\",\"label\":\"Summary\",\"type\":\"value\",\"visible\":false},{\"name\":\"Details\",\"label\":\"Details\",\"type\":\"value\",\"visible\":false},{\"name\":\"Due Date\",\"label\":\"Due Date\",\"type\":\"value\",\"visible\":false},{\"name\":\"Observing Individuals\",\"label\":\"Observing Individuals\",\"type\":\"value\",\"visible\":false},{\"name\":\"Observing Teams\",\"label\":\"Observing Teams\",\"type\":\"value\",\"visible\":false},{\"name\":\"Originating Id\",\"label\":\"Originating Id\",\"type\":\"value\",\"visible\":false},{\"name\":\"Originating System\",\"label\":\"Originating System\",\"type\":\"value\",\"visible\":false},{\"name\":\"Originating Url\",\"label\":\"Originating Url\",\"type\":\"value\",\"visible\":false},{\"name\":\"Requested For\",\"label\":\"Requested For\",\"type\":\"value\",\"visible\":false},{\"name\":\"Scheduled At\",\"label\":\"Scheduled At\",\"type\":\"value\",\"visible\":false},{\"name\":\"Event Date\",\"label\":\"Event Date\",\"type\":\"value\",\"visible\":false},{\"name\":\"Event Time\",\"label\":\"Event Time\",\"type\":\"value\",\"visible\":false},{\"name\":\"Checked In\",\"label\":\"Checked In\",\"type\":\"value\",\"visible\":false},{\"name\":\"Walk In\",\"label\":\"Walk In\",\"type\":\"value\",\"visible\":false},{\"name\":\"Work Started At\",\"label\":\"Work Started At\",\"type\":\"value\",\"visible\":false},{\"name\":\"System Input\",\"label\":\"System Input\",\"type\":\"value\",\"visible\":false},{\"name\":\"handle\",\"label\":\"Handle\",\"type\":\"system\",\"visible\":true},{\"name\":\"label\",\"label\":\"Label\",\"type\":\"system\",\"visible\":true},{\"name\":\"createdAt\",\"label\":\"Created At\",\"type\":\"system\",\"visible\":false},{\"name\":\"createdBy\",\"label\":\"Created By\",\"type\":\"system\",\"visible\":false},{\"name\":\"updatedAt\",\"label\":\"Updated At\",\"type\":\"system\",\"visible\":false},{\"name\":\"updatedBy\",\"label\":\"Updated By\",\"type\":\"system\",\"visible\":false},{\"name\":\"id\",\"label\":\"Id\",\"type\":\"system\",\"visible\":false}]}"
+      ]
+    },
+    {
+      "name": "Owning Team",
+      "values": [
+        "Default"
+      ]
+    },
+    {
+      "name": "Permitted Subtasks",
+      "values": [
+        ""
+      ]
+    },
+    {
+      "name": "Prohibit Subtasks",
+      "values": [
+        "True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Queue Submissions",
+      "name": "Queue Submissions by Requested For",
+      "order": [
+        {
+          "attribute": "Scheduled At",
+          "direction": "desc"
+        }
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Requested For')}",
+          "name": "Requested For"
+        }
+      ],
+      "qualification": "By Requested For",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+
+  ],
+  "customHeadContent": "<style>\n  .modal.show .modal-dialog {\n    transform: translate(0);\n    max-width: 90% !important;\n    max-height: 90% !important;\n    height: 90% !important;\n  }\n  #requests{\n    max-height:620px;\n    overflow-y:auto;\n  }\n  .requests-header {\n    font-size:larger;\n    margin-top:10px;\n  }\n  .appointment {\n    /*margin-top:15px; */\n  }\n  .appointment > div {\n    margin-top:5px;\n  }\n  \n  .appointment .appointment-time-type {\n    font-weight: bold;\n    cursor: pointer;\n  }\n  .appointment .appointment-note, .appointment .appointment-details {\n    display:none;\n  }\n\n</style>\n",
+  "description": "Submissions for this form are automatically created as part of workflow.",
+  "name": "Tech Bar Work Order",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": "values('Status') === 'Complete' || values('Status') === 'Cancelled'",
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Form",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+            "class": "row"
+          },
+          "elements": [
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Left Column",
+              "title": null,
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+                "class": "col-sm-12 col-md-9"
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Customer",
+                  "label": "Customer",
+                  "key": "f49",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": false,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Type",
+                  "label": "Type",
+                  "key": "f54",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": false,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Request Summary",
+                  "label": "Summary",
+                  "key": "f52",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": "values('Work Started At') !== null",
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Request Details",
+                  "label": "Details",
+                  "key": "f53",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": "values('Work Started At') !== null",
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 2
+                },
+                {
+                  "type": "section",
+                  "renderType": null,
+                  "name": "Status Fields",
+                  "title": null,
+                  "visible": true,
+                  "omitWhenHidden": null,
+                  "renderAttributes": {
+                  },
+                  "elements": [
+                    {
+                      "type": "field",
+                      "name": "Status",
+                      "label": "Status",
+                      "key": "f10",
+                      "defaultValue": "Open",
+                      "defaultResourceName": null,
+                      "visible": true,
+                      "enabled": true,
+                      "required": true,
+                      "requiredMessage": "A valid status must be set.",
+                      "omitWhenHidden": null,
+                      "pattern": null,
+                      "constraints": [
+
+                      ],
+                      "events": [
+
+                      ],
+                      "renderAttributes": {
+                      },
+                      "dataType": "string",
+                      "renderType": "radio",
+                      "choicesResourceName": null,
+                      "choicesRunIf": null,
+                      "choices": [
+                        {
+                          "label": "Open",
+                          "value": "Open"
+                        },
+                        {
+                          "label": "Pending",
+                          "value": "Pending"
+                        },
+                        {
+                          "label": "Complete",
+                          "value": "Complete"
+                        },
+                        {
+                          "label": "Cancelled",
+                          "value": "Cancelled"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "field",
+                      "name": "Pending Reason",
+                      "label": "Pending Reason",
+                      "key": "f33",
+                      "defaultValue": null,
+                      "defaultResourceName": null,
+                      "visible": "values('Status') === 'Pending'",
+                      "enabled": true,
+                      "required": "values('Status') === 'Pending'",
+                      "requiredMessage": "Pending Reason is required when status is set to Pending",
+                      "omitWhenHidden": true,
+                      "pattern": null,
+                      "constraints": [
+
+                      ],
+                      "events": [
+
+                      ],
+                      "renderAttributes": {
+                      },
+                      "dataType": "string",
+                      "renderType": "text",
+                      "rows": 1
+                    },
+                    {
+                      "type": "field",
+                      "name": "Resolution",
+                      "label": "Resolution",
+                      "key": "f34",
+                      "defaultValue": null,
+                      "defaultResourceName": null,
+                      "visible": "values('Status') === 'Complete'",
+                      "enabled": "values('Work Started At') !== null",
+                      "required": "values('Status') === 'Complete'",
+                      "requiredMessage": "Resolution is required when status is set to Complete",
+                      "omitWhenHidden": true,
+                      "pattern": null,
+                      "constraints": [
+
+                      ],
+                      "events": [
+
+                      ],
+                      "renderAttributes": {
+                      },
+                      "dataType": "string",
+                      "renderType": "text",
+                      "rows": 1
+                    },
+                    {
+                      "type": "field",
+                      "name": "Cancellation Reason",
+                      "label": "Cancellation Reason",
+                      "key": "f35",
+                      "defaultValue": null,
+                      "defaultResourceName": null,
+                      "visible": "values('Status') === 'Cancelled'",
+                      "enabled": "values('Work Started At') !== null",
+                      "required": "values('Status') === 'Cancelled'",
+                      "requiredMessage": "Cancellation Reason is required when status is set to Cancelled",
+                      "omitWhenHidden": true,
+                      "pattern": null,
+                      "constraints": [
+
+                      ],
+                      "events": [
+
+                      ],
+                      "renderAttributes": {
+                      },
+                      "dataType": "string",
+                      "renderType": "text",
+                      "rows": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "field",
+                  "name": "Notes Internal",
+                  "label": "Notes",
+                  "key": "f55",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": "values('Work Started At') !== null",
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 3
+                },
+                {
+                  "type": "field",
+                  "name": "Notes for Customer",
+                  "label": "Notes (sent to requester upon completion)",
+                  "key": "f47",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": "values('Work Started At') !== null",
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 3
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Right column",
+              "title": null,
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+                "class": "col-sm-12 col-md-3"
+              },
+              "elements": [
+                {
+                  "type": "content",
+                  "renderType": "html",
+                  "name": "Requesters Other Requests",
+                  "text": "<h4>Users Other Requests</h4>\n<div id=\"requests\">\n  <div class=\"\">Retriving list...</div>\n</div>",
+                  "visible": true,
+                  "renderAttributes": {
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Hidden Metadata",
+          "title": "",
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Assigned Individual",
+              "label": "Assigned Individual",
+              "key": "f1",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Assigned Individual Display Name",
+              "label": "Assigned Individual Display Name",
+              "key": "f2",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Assigned Team",
+              "label": "Assigned Team",
+              "key": "f3",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Assigned Team Display Name",
+              "label": "Assigned Team Display Name",
+              "key": "f4",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Deferral Token",
+              "label": "Deferral Token",
+              "key": "f5",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Discussion Id",
+              "label": "Discussion Id",
+              "key": "f6",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Summary",
+              "label": "Summary",
+              "key": "f21",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Details",
+              "label": "Details",
+              "key": "f23",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 2
+            },
+            {
+              "type": "field",
+              "name": "Due Date",
+              "label": "Due Date",
+              "key": "f22",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "datetime"
+            },
+            {
+              "type": "field",
+              "name": "Observing Individuals",
+              "label": "Observing Individuals",
+              "key": "f7",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Observing Teams",
+              "label": "Observing Teams",
+              "key": "f8",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Originating Id",
+              "label": "Originating Id",
+              "key": "f25",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Originating System",
+              "label": "Originating System",
+              "key": "f26",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Originating Url",
+              "label": "Originating Url",
+              "key": "f27",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested For",
+              "label": "Requested For",
+              "key": "f56",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Scheduled At",
+              "label": "Scheduled At",
+              "key": "f48",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "datetime"
+            },
+            {
+              "type": "field",
+              "name": "Event Date",
+              "label": "Event Date",
+              "key": "f57",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Event Time",
+              "label": "Event Time",
+              "key": "f58",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Checked In",
+              "label": "Checked In",
+              "key": "f50",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Walk In",
+              "label": "Walk In",
+              "key": "f51",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Work Started At",
+              "label": "Work Started At",
+              "key": "f59",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "datetime"
+            },
+            {
+              "type": "field",
+              "name": "System Input",
+              "label": "System Input",
+              "key": "f24",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Custom Page Code",
+          "type": "Load",
+          "action": "Custom",
+          "code": "var formSlug = K(\"form\").slug();\n// Confirm bundle.ext exists, or create it\nbundle.ext = bundle.ext || {};\n// Confirm bundle.ext.forms.<form_slug> exists, or create it\nbundle.ext.forms = bundle.ext.forms || {};\nbundle.ext.forms[formSlug] = bundle.ext.forms[formSlug] || {};\n// Create variable to custom appointment\nvar techBarWO = bundle.ext.forms[formSlug];\n\ntechBarWO.getRequestedForSubmissions = function () {\n  K('bridgedResource[Queue Submissions by Requested For]').load({\n    success: function(bridgedData) {\n      // Remove current record from result set\n      if ( bridgedData.length > 0 ) {\n        bridgedData = bridgedData.filter( function(val) { return val['Id']!==K('submission').id() } );\n      }\n      \n      if ( bridgedData.length === 0) {\n        $('#requests').empty();\n        $('#requests').html( '<div class=\"none\"><i>No other requests</i><div>' );\n      } else {\n        var requestsEl = $( '<div class=\"requests\"></div>' ),\n            requestsUpcomingEl = $( '<div class=\"requests-upcoming\"></div>' ),\n            requestsPastEl = $( '<div class=\"requests-past\"></div>' ),\n            timeNow = moment();\n        requestsUpcomingEl.append( '<div class=\"requests-header\">Upcoming Appointments</div>' );\n        requestsPastEl.append( '<div class=\"requests-header\">Previous Appointments</div>' );\n        $.each( bridgedData, function( i, v ){\n          var scheduledAtTime = moment( v['Scheduled At'] ),\n              appointmentEl = $( '<div class=\"card card-body appointment\"></div>' );\n          appointmentEl.append('<div class=\"appointment-time-type\">' + scheduledAtTime.format(\"YYYY-MM-DD\") + ': ' + v['Type'] + '</div>');\n          appointmentEl.append('<div class=\"appointment-summary\">' + v['Request Summary'] + '</div>');\n          appointmentEl.append('<div class=\"appointment-resolution\">' + v['Resolution'] + '</div>');\n          appointmentEl.append('<div class=\"appointment-details\"><i>Details:</i> ' + v['Request Details'] + '</div>');\n          appointmentEl.append('<div class=\"appointment-note\"><i>Internal Notes:</i>' + v['Notes Internal'] + '</div>');\n          appointmentEl.append('<div class=\"appointment-note\"><i>Customer Notes:</i>' + v['Notes for Customer'] + '</div>');\n\n          if (scheduledAtTime <= timeNow || v['Status'] === \"Complete\" || v['Status'] === \"Cancelled\") {\n\t\t\t\t\t\trequestsPastEl.append( appointmentEl );\n          } else {\n            // Future\n            requestsUpcomingEl.append( appointmentEl );\n          }\n\n        });\n        requestsEl.append( requestsUpcomingEl );\n        requestsEl.append( requestsPastEl );\n        $(requestsEl).on( 'click', '.appointment', function() {\n          $(this).find('.appointment-note, .appointment-details').each(function() {\n            $(this).toggle();\n          });\n        })\n        $( '#requests' ).empty();\n        $( '#requests' ).html( requestsEl );\n      }\n    }\n  });\n}\n\ntechBarWO.checkFirstWorkTime = function () {\n  //If Work Started At exists, and is empty, set value\n  //If Work Started At exists, and is NOT empty, no action\n  \n  if ( K('field[Work Started At]') !== null && K('field[Work Started At]').value() == null )  {\n    var now = (new Date).toISOString();\n    K('field[Work Started At]').value( now );\n    var apiPath = bundle.apiLocation() + \"/submissions/\" + K('submission').id();\n    var data = {\n    \t\"values\": {\n      \t\"Work Started At\": now\n      }\n    };\n    $.ajax({\n      url: apiPath,\n      method: \"PUT\",\n      data: JSON.stringify(data),\n      contentType: \"application/json\"\n    }).done(function() {\n    });\n  }\n}\n\n\ntechBarWO.checkFirstWorkTime();\ntechBarWO.getRequestedForSubmissions();\n"
+        }
+      ],
+      "name": "Page One",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+
+  ],
+  "slug": "tech-bar-work-order",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Checked In') === \"Checked In\"  ? \"** Checked In **  \" : \"\"}${values('Walk In') === \"Walk In\"  ? \"** Walk In **  \" : \"\"}${values('Summary')}",
+  "type": "Automated"
+}

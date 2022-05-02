@@ -1,0 +1,1281 @@
+{
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+    {
+      "model": "Email Templates",
+      "name": "Email Templates",
+      "order": [
+        {
+          "attribute": "Category",
+          "direction": "asc"
+        },
+        {
+          "attribute": "Template Name",
+          "direction": "asc"
+        }
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Email Templates",
+      "status": "Active"
+    },
+    {
+      "model": "Program Belts",
+      "name": "Get Belts",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Program')}",
+          "name": "Program"
+        }
+      ],
+      "qualification": "Belts",
+      "status": "Active"
+    },
+    {
+      "model": "Email Templates",
+      "name": "Get Lead Email",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Lead Email')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Email Template",
+      "status": "Active"
+    },
+    {
+      "model": "Email Templates",
+      "name": "Get Lead Email by Name",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Template Name')}",
+          "name": "name"
+        }
+      ],
+      "qualification": "Get Email Template by Name",
+      "status": "Active"
+    },
+    {
+      "model": "Call Scripts",
+      "name": "Get Lead Script",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Lead Call Script')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Script",
+      "status": "Active"
+    },
+    {
+      "model": "Call Scripts",
+      "name": "Get Lead Script by Name",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Template Name')}",
+          "name": "name"
+        }
+      ],
+      "qualification": "Get Script By Name",
+      "status": "Active"
+    },
+    {
+      "model": "SMS Templates",
+      "name": "Get Lead SMS",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Lead SMS')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get SMS Template",
+      "status": "Active"
+    },
+    {
+      "model": "SMS Templates",
+      "name": "Get Lead SMS by Name",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Template Name')}",
+          "name": "name"
+        }
+      ],
+      "qualification": "Get SMS Template by Name",
+      "status": "Active"
+    },
+    {
+      "model": "Email Templates",
+      "name": "Get Member Email",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Member Email')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Email Template",
+      "status": "Active"
+    },
+    {
+      "model": "Email Templates",
+      "name": "Get Member Email by Name",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Template Name')}",
+          "name": "name"
+        }
+      ],
+      "qualification": "Get Email Template by Name",
+      "status": "Active"
+    },
+    {
+      "model": "Call Scripts",
+      "name": "Get Member Script",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Member Call Script')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Script",
+      "status": "Active"
+    },
+    {
+      "model": "Call Scripts",
+      "name": "Get Member Script by Name",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Template Name')}",
+          "name": "name"
+        }
+      ],
+      "qualification": "Get Script By Name",
+      "status": "Active"
+    },
+    {
+      "model": "SMS Templates",
+      "name": "Get Member SMS",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Member SMS')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get SMS Template",
+      "status": "Active"
+    },
+    {
+      "model": "SMS Templates",
+      "name": "Get Member SMS by Name",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Template Name')}",
+          "name": "name"
+        }
+      ],
+      "qualification": "Get SMS Template by Name",
+      "status": "Active"
+    },
+    {
+      "model": "Program Belts",
+      "name": "Get Programs",
+      "order": [
+
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Programs",
+      "status": "Active"
+    },
+    {
+      "model": "Call Scripts",
+      "name": "Lead Call Scripts",
+      "order": [
+        {
+          "attribute": "Script Name",
+          "direction": "asc"
+        }
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Lead Scripts",
+      "status": "Active"
+    },
+    {
+      "model": "Call Scripts",
+      "name": "Member Call Scripts",
+      "order": [
+        {
+          "attribute": "Script Name",
+          "direction": "asc"
+        }
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Member Scripts",
+      "status": "Active"
+    },
+    {
+      "model": "SMS Templates",
+      "name": "SMS Templates",
+      "order": [
+        {
+          "attribute": "Category",
+          "direction": "asc"
+        }
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "SMS Templates",
+      "status": "Active"
+    }
+  ],
+  "customHeadContent": "<style>\n  .preview {\n      padding: 10px;\n      background-color: #f7f7f7;\n      margin-bottom: 40px;\n  }  \n</style>",
+  "description": "Configure Lead and Member Journey triggers",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Action]",
+      "parts": [
+        "values[Action]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Additional Qual]",
+      "parts": [
+        "values[Additional Qual]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Belt]",
+      "parts": [
+        "values[Belt]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Contact Type]",
+      "parts": [
+        "values[Contact Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Lead Call Script]",
+      "parts": [
+        "values[Lead Call Script]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Lead Condition Duration]",
+      "parts": [
+        "values[Lead Condition Duration]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Lead Condition]",
+      "parts": [
+        "values[Lead Condition]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Lead Email]",
+      "parts": [
+        "values[Lead Email]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Lead SMS]",
+      "parts": [
+        "values[Lead SMS]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member Call Script]",
+      "parts": [
+        "values[Member Call Script]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member Condition Duration]",
+      "parts": [
+        "values[Member Condition Duration]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member Condition]",
+      "parts": [
+        "values[Member Condition]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member Email]",
+      "parts": [
+        "values[Member Email]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member SMS]",
+      "parts": [
+        "values[Member SMS]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Program]",
+      "parts": [
+        "values[Program]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Record Type]",
+      "parts": [
+        "values[Record Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status]",
+      "parts": [
+        "values[Status]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status],values[Record Type]",
+      "parts": [
+        "values[Status]",
+        "values[Record Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status],values[Record Type],values[Lead Condition],values[Lead Condition Duration]",
+      "parts": [
+        "values[Status]",
+        "values[Record Type]",
+        "values[Lead Condition]",
+        "values[Lead Condition Duration]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status],values[Record Type],values[Member Condition],values[Member Condition Duration]",
+      "parts": [
+        "values[Status]",
+        "values[Record Type]",
+        "values[Member Condition]",
+        "values[Member Condition Duration]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status],values[Record Type],values[Member Condition],values[Member Condition Duration],values[Program],values[Belt]",
+      "parts": [
+        "values[Status]",
+        "values[Record Type]",
+        "values[Member Condition]",
+        "values[Member Condition Duration]",
+        "values[Program]",
+        "values[Belt]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Template Name]",
+      "parts": [
+        "values[Template Name]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "Journey Triggers",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Status",
+          "label": "Status",
+          "key": "f6",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Active",
+              "value": "Active"
+            },
+            {
+              "label": "Inactive",
+              "value": "Inactive"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Record Type",
+          "label": "Record Type",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Lead",
+              "value": "Lead"
+            },
+            {
+              "label": "Member",
+              "value": "Member"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Action",
+          "label": "Action",
+          "key": "f7",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Alert",
+              "value": "Alert"
+            },
+            {
+              "label": "Automatic",
+              "value": "Automatic"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Contact Type",
+          "label": "Contact Type",
+          "key": "f15",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Call",
+              "value": "Call"
+            },
+            {
+              "label": "SMS",
+              "value": "SMS"
+            },
+            {
+              "label": "Email",
+              "value": "Email"
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Lead Details",
+          "title": null,
+          "visible": "values('Record Type')===\"Lead\"",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Lead Condition",
+              "label": "Lead Condition",
+              "key": "f2",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Record Type')===\"Lead\"",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "On Create",
+                  "value": "On Create"
+                },
+                {
+                  "label": "Intro Class Scheduled",
+                  "value": "Intro Class Scheduled"
+                },
+                {
+                  "label": "Day of Intro",
+                  "value": "Day of Intro"
+                },
+                {
+                  "label": "Intro Attended",
+                  "value": "Intro Attended"
+                },
+                {
+                  "label": "Intro No Show",
+                  "value": "Intro No Show"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Lead Condition Duration",
+              "label": "Lead Condition Duration(days)",
+              "key": "f3",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Record Type')===\"Lead\"",
+              "requiredMessage": "",
+              "omitWhenHidden": null,
+              "pattern": {
+                "regex": "^-?\\d*$",
+                "message": "Please enter a valid integer"
+              },
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Lead Call Script",
+              "label": "Lead Call Script",
+              "key": "f9",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Record Type')===\"Lead\" && values('Contact Type')===\"Call\"",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Load Script",
+                  "type": "Change",
+                  "action": "Custom",
+                  "bridgedResourceName": "Get Lead Script",
+                  "code": "$(K('content[Content View]').element()).html(resource['Script']);\nK('field[Template Name]').value(resource['Script Name']);"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Lead Call Scripts",
+              "choicesRunIf": "",
+              "choices": {
+                "label": "${resources('Lead Call Scripts:Script Name')}",
+                "value": "${resources('Lead Call Scripts:id')}"
+              }
+            },
+            {
+              "type": "field",
+              "name": "Lead SMS",
+              "label": "Lead SMS",
+              "key": "f11",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Record Type')===\"Lead\" && values('Contact Type')===\"SMS\"",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Load SMS",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "debugger;\n$(K('content[Content View]').element()).html(resource['SMS Content']);\nK('field[Template Name]').value(resource['Template Name']);",
+                  "bridgedResourceName": "Get Lead SMS"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "SMS Templates",
+              "choicesRunIf": "",
+              "choices": {
+                "label": "${resources('SMS Templates:Category')} - ${resources('SMS Templates:Template Name')}",
+                "value": "${resources('SMS Templates:id')}"
+              }
+            },
+            {
+              "type": "field",
+              "name": "Lead Email",
+              "label": "Lead Email",
+              "key": "f13",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Record Type')===\"Lead\" && values('Contact Type')===\"Email\"",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Email",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "debugger;\n$(K('content[Content View]').element()).html(resource['Email Content']);\nK('field[Template Name]').value(resource['Template Name']);",
+                  "bridgedResourceName": "Get Lead Email"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Email Templates",
+              "choicesRunIf": "",
+              "choices": {
+                "label": "${resources('Email Templates:Category')} - ${resources('Email Templates:Template Name')}",
+                "value": "${resources('Email Templates:id')}"
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Member Details",
+          "title": null,
+          "visible": "values('Record Type')===\"Member\"",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Member Condition",
+              "label": "Member Condition",
+              "key": "f4",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Record Type')===\"Member\"",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Birthday",
+                  "value": "Birthday"
+                },
+                {
+                  "label": "Cancelled",
+                  "value": "Cancelled"
+                },
+                {
+                  "label": "Child Last Attendance",
+                  "value": "Child Last Attendance"
+                },
+                {
+                  "label": "Converted",
+                  "value": "Converted"
+                },
+                {
+                  "label": "End of Term",
+                  "value": "End of Term"
+                },
+                {
+                  "label": "Last Attendance",
+                  "value": "Last Attendance"
+                },
+                {
+                  "label": "New Belt",
+                  "value": "New Belt"
+                },
+                {
+                  "label": "Payment Failed",
+                  "value": "Payment Failed"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Program",
+              "label": "Program",
+              "key": "f18",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Member Condition')===\"New Belt\"",
+              "enabled": true,
+              "required": "values('Member Condition')===\"New Belt\"",
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Get Programs",
+              "choicesRunIf": null,
+              "choices": {
+                "label": "${resources('Get Programs:Program')}",
+                "value": "${resources('Get Programs:Program')}"
+              }
+            },
+            {
+              "type": "field",
+              "name": "Belt",
+              "label": "Belt",
+              "key": "f17",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Member Condition')===\"New Belt\"",
+              "enabled": true,
+              "required": "values('Member Condition')===\"New Belt\"",
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Get Belts",
+              "choicesRunIf": null,
+              "choices": {
+                "label": "${resources('Get Belts:Belt')}",
+                "value": "${resources('Get Belts:Belt')}"
+              }
+            },
+            {
+              "type": "field",
+              "name": "Member Condition Duration",
+              "label": "Member Condition Duration(days)",
+              "key": "f5",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Record Type')===\"Member\"",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": {
+                "regex": "^-?\\d*$",
+                "message": "Please enter a valid Integer"
+              },
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Member Call Script",
+              "label": "Member Call Script",
+              "key": "f10",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Record Type')===\"Member\" && values('Contact Type')===\"Call\"",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Script",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "$(K('content[Content View]').element()).html(resource['Script']);\nK('field[Template Name]').value(resource['Script Name']);",
+                  "bridgedResourceName": "Get Member Script"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Member Call Scripts",
+              "choicesRunIf": "",
+              "choices": {
+                "label": "${resources('Member Call Scripts:Script Name')}",
+                "value": "${resources('Member Call Scripts:id')}"
+              }
+            },
+            {
+              "type": "field",
+              "name": "Member SMS",
+              "label": "Member SMS",
+              "key": "f12",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Record Type')===\"Member\" && values('Contact Type')===\"SMS\"",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get SMS",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "$(K('content[Content View]').element()).html(resource['SMS Content']);\nK('field[Template Name]').value(resource['Template Name']);",
+                  "bridgedResourceName": "Get Member SMS"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "SMS Templates",
+              "choicesRunIf": "",
+              "choices": {
+                "label": "${resources('SMS Templates:Category')} - ${resources('SMS Templates:Template Name')}",
+                "value": "${resources('SMS Templates:id')}"
+              }
+            },
+            {
+              "type": "field",
+              "name": "Member Email",
+              "label": "Member Email",
+              "key": "f14",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Record Type')===\"Member\" && values('Contact Type')===\"Email\"",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Email",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "debugger;\n$(K('content[Content View]').element()).html(resource['Email Content']);\nK('field[Template Name]').value(resource['Template Name']);",
+                  "bridgedResourceName": "Get Member Email"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Email Templates",
+              "choicesRunIf": "",
+              "choices": {
+                "label": "${resources('Email Templates:Category')} - ${resources('Email Templates:Template Name')}",
+                "value": "${resources('Email Templates:id')}"
+              }
+            }
+          ]
+        },
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "Additional Qual",
+          "text": "<div id=\"additionalHelp\" style=\"display:none\">\n<p>This is an advanced qualification and should be used with care.<br>\nThis allows additional values to be used to filter Members or Leads<br>\nAn example, ['values']['Ranking Program']=='GB1'</p>\n</div>",
+          "visible": true,
+          "renderAttributes": {
+          }
+        },
+        {
+          "type": "field",
+          "name": "Additional Qual",
+          "label": "Additional Qualication <a href=\"javascript:$('#additionalHelp').toggle()\"> (Help)</a>",
+          "key": "f19",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Template Name",
+          "label": "Template Name",
+          "key": "f16",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": false,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Content View",
+          "title": "Preview",
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Content View",
+              "text": null,
+              "visible": true,
+              "renderAttributes": {
+                "class": "preview"
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Member Email Template Preview",
+          "type": "Load",
+          "action": "Custom",
+          "code": "$(K('content[Content View]').element()).html(resource[0]['Email Content']);\nK('field[Template Name]').value(resource[0]['Template Name']);",
+          "runIf": "values('Record Type')===\"Member\" && values('Contact Type')===\"Email\" && values('Template Name')!==null",
+          "bridgedResourceName": "Get Member Email by Name"
+        },
+        {
+          "name": "Load Lead Email Template Preview",
+          "type": "Load",
+          "action": "Custom",
+          "code": "$(K('content[Content View]').element()).html(resource[0]['Email Content']);\nK('field[Template Name]').value(resource[0]['Template Name']);",
+          "runIf": "values('Record Type')===\"Lead\" && values('Contact Type')===\"Email\" && values('Template Name')!==null",
+          "bridgedResourceName": "Get Lead Email by Name"
+        },
+        {
+          "name": "Load Lead Call Template Preview",
+          "type": "Load",
+          "action": "Custom",
+          "code": "$(K('content[Content View]').element()).html(resource[0]['Script']);\nK('field[Template Name]').value(resource[0]['Script Name']);",
+          "runIf": "values('Record Type')===\"Lead\" && values('Contact Type')===\"Call\" && values('Template Name')!==null",
+          "bridgedResourceName": "Get Lead Script by Name"
+        },
+        {
+          "name": "Load Member Call Template Preview",
+          "type": "Load",
+          "action": "Custom",
+          "code": "$(K('content[Content View]').element()).html(resource[0]['Script']);\nK('field[Template Name]').value(resource[0]['Script Name']);",
+          "runIf": "values('Record Type')===\"Member\" && values('Contact Type')===\"Call\" && values('Template Name')!==null",
+          "bridgedResourceName": "Get Member Script by Name"
+        },
+        {
+          "name": "Load Lead SMS Template Preview",
+          "type": "Load",
+          "action": "Custom",
+          "code": "debugger;\n$(K('content[Content View]').element()).html(resource[0]['SMS Content']);\nK('field[Template Name]').value(resource[0]['Template Name']);",
+          "runIf": "values('Record Type')===\"Lead\" && values('Contact Type')===\"SMS\" && values('Template Name')!==null",
+          "bridgedResourceName": "Get Lead SMS by Name"
+        },
+        {
+          "name": "Load Member SMS Template Preview",
+          "type": "Load",
+          "action": "Custom",
+          "code": "$(K('content[Content View]').element()).html(resource[0]['SMS Content']);\nK('field[Template Name]').value(resource[0]['Template Name']);",
+          "runIf": "values('Record Type')===\"Member\" && values('Contact Type')===\"SMS\" && values('Template Name')!==null",
+          "bridgedResourceName": "Get Member SMS by Name"
+        }
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Data Admins"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Data Admins"
+    }
+  ],
+  "slug": "journey-triggers",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Status')} - ${values('Record Type')}  ${values('Action')}  ${values('Contact Type')} - ${values('Lead Condition')}${values('Member Condition')} ${values('Lead Condition Duration')}${values('Member Condition Duration')}-${values('Template Name')}"
+}

@@ -1,0 +1,97 @@
+{
+  "activeMappingName": "Call Scripts",
+  "attributes": [
+    {
+      "name": "id"
+    },
+    {
+      "name": "Script"
+    },
+    {
+      "name": "Script Name"
+    },
+    {
+      "name": "Target"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Target",
+          "structureField": "${fields('values[Target]')}"
+        },
+        {
+          "name": "Script Name",
+          "structureField": "${fields('values[Script Name]')}"
+        },
+        {
+          "name": "Script",
+          "structureField": "${fields('values[Script]')}"
+        },
+        {
+          "name": "id",
+          "structureField": "${fields('id')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Call Scripts",
+      "qualifications": [
+        {
+          "name": "Lead Scripts",
+          "query": "formSlug=call-scripts&limit=1000&index=values[Target]&q=values[Target]=\"Leads\""
+        },
+        {
+          "name": "Member Scripts",
+          "query": "formSlug=call-scripts&limit=1000&index=values[Target]&q=values[Target]=\"Members\""
+        },
+        {
+          "name": "Get Script",
+          "query": "id=${parameters('ID')}"
+        },
+        {
+          "name": "Get Script By Name",
+          "query": "formSlug=call-scripts&limit=1&index=values[Script Name]&q=values[Script Name]=\"${parameters(\"name\")}\""
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "Call Scripts",
+  "qualifications": [
+    {
+      "name": "Get Script",
+      "parameters": [
+        {
+          "name": "ID"
+        }
+      ],
+      "resultType": "Single"
+    },
+    {
+      "name": "Get Script By Name",
+      "parameters": [
+        {
+          "name": "name"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Lead Scripts",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Member Scripts",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

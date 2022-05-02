@@ -1,0 +1,314 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Cancel Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Cloning Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Comment Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Submitted - True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Class Booking",
+      "name": "Class Booking",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Booking ID')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Booked Class",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+
+  ],
+  "customHeadContent": "<style>\n  section[data-element-name='Already Cancelled or Attended'] {\n      margin: 20px;\n      background-color: #e2d0d0;\n      border-radius: 5px;\n      padding: 20px;\n  }  \n</style>\n<script>\n</script>\n",
+  "description": "",
+  "name": "Cancel Class Booking",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Booking ID",
+          "label": "Booking ID",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Class Details",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Status",
+              "label": "Status",
+              "key": "f7",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Member Name",
+              "label": "Member Name",
+              "key": "f5",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Class Date",
+              "label": "Class Date",
+              "key": "f1",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Class Time",
+              "label": "Class Time",
+              "key": "f6",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Program",
+              "label": "Program",
+              "key": "f3",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Title",
+              "label": "Title",
+              "key": "f8",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Already Cancelled or Attended",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Info",
+              "text": "This booking has already been Cancelled or the Class has been Attended.",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Cancel Booking",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Set ID",
+          "type": "Load",
+          "action": "Custom",
+          "code": "function GetURLParameter(sParam){\n  arr=window.location.hash.split(sParam+\"=\");\n  if (arr.length>0){\n    return arr[1];\n  }\n  return null;\n}  \n\nK('field[Booking ID]').value(GetURLParameter(\"id\"));"
+        },
+        {
+          "name": "Set Details",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('bridgedResource[Class Booking]').load({\n  success: function(bridgedData) {\n\t\tK('field[Status]').value(bridgedData['Status']);\n\t\tK('field[Member Name]').value(bridgedData['Member Name']);\n\t\tK('field[Class Date]').value(bridgedData['Class Date']);\n\t\tK('field[Class Time]').value(moment(bridgedData['Class Time'], \"HH:mm\").format(\"LT\"));\n\t\tK('field[Program]').value(bridgedData['Program']);\n\t\tK('field[Title]').value(bridgedData['Title']);\n    \n    if (bridgedData['Status']!==\"Booked\"){\n        K('button[Submit Button]').hide();\n      \tK('section[Already Cancelled or Attended]').show();\n    }\n  }\n});\n"
+        }
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Authenticated Users"
+    }
+  ],
+  "slug": "cancel-class-booking",
+  "status": "Active",
+  "submissionLabelExpression": "",
+  "type": "Service"
+}

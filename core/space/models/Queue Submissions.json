@@ -1,0 +1,97 @@
+{
+  "activeMappingName": "Queue Submissions",
+  "attributes": [
+    {
+      "name": "Id"
+    },
+    {
+      "name": "Notes for Customer"
+    },
+    {
+      "name": "Notes Internal"
+    },
+    {
+      "name": "Request Details"
+    },
+    {
+      "name": "Request Summary"
+    },
+    {
+      "name": "Resolution"
+    },
+    {
+      "name": "Scheduled At"
+    },
+    {
+      "name": "Status"
+    },
+    {
+      "name": "Type"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Notes for Customer",
+          "structureField": "${fields('values[Notes for Customer]')}"
+        },
+        {
+          "name": "Notes Internal",
+          "structureField": "${fields('values[Notes Internal]')}"
+        },
+        {
+          "name": "Request Details",
+          "structureField": "${fields('values[Request Details]')}"
+        },
+        {
+          "name": "Request Summary",
+          "structureField": "${fields('values[Request Summary]')}"
+        },
+        {
+          "name": "Resolution",
+          "structureField": "${fields('values[Resolution]')}"
+        },
+        {
+          "name": "Scheduled At",
+          "structureField": "${fields('values[Scheduled At]')}"
+        },
+        {
+          "name": "Status",
+          "structureField": "${fields('values[Status]')}"
+        },
+        {
+          "name": "Type",
+          "structureField": "${fields('values[Type]')}"
+        },
+        {
+          "name": "Id",
+          "structureField": "${fields('id')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Queue Submissions",
+      "qualifications": [
+        {
+          "name": "By Requested For",
+          "query": "kappSlug=queue&limit=1000&q=values[Requested For]=\"${parameters('Requested For')}\""
+        }
+      ],
+      "structure": "Submissions"
+    }
+  ],
+  "name": "Queue Submissions",
+  "qualifications": [
+    {
+      "name": "By Requested For",
+      "parameters": [
+        {
+          "name": "Requested For"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

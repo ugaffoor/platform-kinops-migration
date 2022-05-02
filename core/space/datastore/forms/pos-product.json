@@ -1,0 +1,987 @@
+{
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+    {
+      "model": "POS Categories",
+      "name": "Categories",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Product Type')}",
+          "name": "Type"
+        }
+      ],
+      "qualification": "Get Categories",
+      "status": "Active"
+    },
+    {
+      "model": "POS Products",
+      "name": "Get Products",
+      "order": [
+
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Get Products",
+      "status": "Active"
+    }
+  ],
+  "customHeadContent": null,
+  "description": "Available product for sale",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Categories]",
+      "parts": [
+        "values[Categories]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Colour]",
+      "parts": [
+        "values[Colour]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Details]",
+      "parts": [
+        "values[Details]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Discount]",
+      "parts": [
+        "values[Discount]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Display Order]",
+      "parts": [
+        "values[Display Order]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Display Type]",
+      "parts": [
+        "values[Display Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Image Type]",
+      "parts": [
+        "values[Image Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Image URL]",
+      "parts": [
+        "values[Image URL]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Limited Edition]",
+      "parts": [
+        "values[Limited Edition]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Name]",
+      "parts": [
+        "values[Name]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Package Products]",
+      "parts": [
+        "values[Package Products]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Price]",
+      "parts": [
+        "values[Price]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Product Type]",
+      "parts": [
+        "values[Product Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[SKU]",
+      "parts": [
+        "values[SKU]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Size Chart URL]",
+      "parts": [
+        "values[Size Chart URL]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Sizes]",
+      "parts": [
+        "values[Sizes]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status]",
+      "parts": [
+        "values[Status]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "POS Product",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Status",
+          "label": "Status",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Active",
+              "value": "Active"
+            },
+            {
+              "label": "Inactive",
+              "value": "Inactive"
+            },
+            {
+              "label": "Delete",
+              "value": "Delete"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Display Order",
+          "label": "Display Order",
+          "key": "f18",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Product Type",
+          "label": "Product Type",
+          "key": "f2",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "dropdown",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Apparel",
+              "value": "Apparel"
+            },
+            {
+              "label": "Service",
+              "value": "Service"
+            },
+            {
+              "label": "Package",
+              "value": "Package"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Display Type",
+          "label": "Display Type",
+          "key": "f11",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Normal",
+              "value": "Normal"
+            },
+            {
+              "label": "New",
+              "value": "New"
+            },
+            {
+              "label": "Sale",
+              "value": "Sale"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Name",
+          "label": "Name",
+          "key": "f3",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Colour",
+          "label": "Colour/Name",
+          "key": "f12",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": "values('Product Type')===\"Apparel\"",
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": true,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Limited Edition",
+          "label": "Limited Edition",
+          "key": "f13",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": "values('Product Type')===\"Apparel\"",
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": true,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "json",
+          "renderType": "checkbox",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Limited Edition",
+              "value": "Limited Edition"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Image Type",
+          "label": "Image Type",
+          "key": "f15",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": "values('Product Type')!==\"Package\"",
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": true,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "File Upload",
+              "value": "File Upload"
+            },
+            {
+              "label": "URL",
+              "value": "URL"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Image",
+          "label": "Image",
+          "key": "f14",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": "values('Image Type')===\"File Upload\" && values('Product Type')!==\"Package\"",
+          "enabled": true,
+          "required": "values('Image Type')===\"File Upload\"",
+          "requiredMessage": null,
+          "omitWhenHidden": true,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+            {
+              "name": "Build URL",
+              "type": "Change",
+              "action": "Custom",
+              "code": "debugger;\nfileJSON=K('field[Image]').value();\nurl=\"/app/datastore/submissions/\"+K('form').submission().id()+\"/files/Image/0/\"+fileJSON[0].name;\nK('field[Image URL]').value(url);"
+            }
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "file",
+          "renderType": "attachment",
+          "allowMultiple": false
+        },
+        {
+          "type": "field",
+          "name": "Image URL",
+          "label": "Image URL",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": "values('Image Type')===\"URL\" && values('Product Type')!==\"Package\"",
+          "enabled": true,
+          "required": "values('Image Type')===\"URL\"",
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "SKU",
+          "label": "SKU",
+          "key": "f9",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": "values('Product Type')===\"Apparel\"",
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Details",
+          "label": "Details",
+          "key": "f5",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": "values('Product Type')===\"Package\"",
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 10
+        },
+        {
+          "type": "field",
+          "name": "Package Products",
+          "label": "Package Products",
+          "key": "f19",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": "values('Product Type')===\"Package\"",
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": true,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "json",
+          "renderType": "checkbox",
+          "choicesResourceName": "Get Products",
+          "choicesRunIf": null,
+          "choices": {
+            "label": "${resources('Get Products:Name')}-${resources('Get Products:Colour')}",
+            "value": "${resources('Get Products:id')}"
+          }
+        },
+        {
+          "type": "field",
+          "name": "Price",
+          "label": "Price",
+          "key": "f6",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Discount",
+          "label": "Discount",
+          "key": "f7",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Sizes",
+          "label": "Sizes",
+          "key": "f16",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": "values('Product Type')===\"Apparel\"",
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": true,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "json",
+          "renderType": "checkbox",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "XXS",
+              "value": "XXS"
+            },
+            {
+              "label": "XS",
+              "value": "XS"
+            },
+            {
+              "label": "S",
+              "value": "S"
+            },
+            {
+              "label": "M",
+              "value": "M"
+            },
+            {
+              "label": "L",
+              "value": "L"
+            },
+            {
+              "label": "XL",
+              "value": "XL"
+            },
+            {
+              "label": "XXL",
+              "value": "XXL"
+            },
+            {
+              "label": "XXXL",
+              "value": "XXXL"
+            },
+            {
+              "label": "2XL",
+              "value": "2XL"
+            },
+            {
+              "label": "3XL",
+              "value": "3XL"
+            },
+            {
+              "label": "4XL",
+              "value": "4XL"
+            },
+            {
+              "label": "YXS",
+              "value": "YXS"
+            },
+            {
+              "label": "YS",
+              "value": "YS"
+            },
+            {
+              "label": "YM",
+              "value": "YM"
+            },
+            {
+              "label": "YL",
+              "value": "YL"
+            },
+            {
+              "label": "YXL",
+              "value": "YXL"
+            },
+            {
+              "label": "M000",
+              "value": "M000"
+            },
+            {
+              "label": "M00",
+              "value": "M00"
+            },
+            {
+              "label": "M0",
+              "value": "M0"
+            },
+            {
+              "label": "M1",
+              "value": "M1"
+            },
+            {
+              "label": "M2",
+              "value": "M2"
+            },
+            {
+              "label": "M3",
+              "value": "M3"
+            },
+            {
+              "label": "A0",
+              "value": "A0"
+            },
+            {
+              "label": "A1",
+              "value": "A1"
+            },
+            {
+              "label": "A2",
+              "value": "A2"
+            },
+            {
+              "label": "A3",
+              "value": "A3"
+            },
+            {
+              "label": "A4",
+              "value": "A4"
+            },
+            {
+              "label": "A5",
+              "value": "A5"
+            },
+            {
+              "label": "F1",
+              "value": "F1"
+            },
+            {
+              "label": "F2",
+              "value": "F2"
+            },
+            {
+              "label": "F3",
+              "value": "F3"
+            },
+            {
+              "label": "F4",
+              "value": "F4"
+            },
+            {
+              "label": "F5",
+              "value": "F5"
+            },
+            {
+              "label": "Y0",
+              "value": "Y0"
+            },
+            {
+              "label": "Y1",
+              "value": "Y1"
+            },
+            {
+              "label": "Y2",
+              "value": "Y2"
+            },
+            {
+              "label": "Y3",
+              "value": "Y3"
+            },
+            {
+              "label": "Y4",
+              "value": "Y4"
+            },
+            {
+              "label": "Y5",
+              "value": "Y5"
+            },
+            {
+              "label": "Y6",
+              "value": "Y6"
+            },
+            {
+              "label": "28",
+              "value": "28"
+            },
+            {
+              "label": "30",
+              "value": "30"
+            },
+            {
+              "label": "32",
+              "value": "32"
+            },
+            {
+              "label": "34",
+              "value": "34"
+            },
+            {
+              "label": "36",
+              "value": "36"
+            },
+            {
+              "label": "38",
+              "value": "38"
+            },
+            {
+              "label": "40",
+              "value": "40"
+            },
+            {
+              "label": "42",
+              "value": "42"
+            },
+            {
+              "label": "44",
+              "value": "44"
+            },
+            {
+              "label": "ALL",
+              "value": "ALL"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Size Chart URL",
+          "label": "Size Chart URL",
+          "key": "f17",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": "values('Product Type')===\"Apparel\"",
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": true,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Categories",
+          "label": "Categories",
+          "key": "f10",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "json",
+          "renderType": "checkbox",
+          "choicesResourceName": "Categories",
+          "choicesRunIf": null,
+          "choices": {
+            "label": "${resources('Categories:Label')}",
+            "value": "${resources('Categories:Label')}"
+          }
+        },
+        {
+          "type": "button",
+          "label": "Apply",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Products",
+          "type": "Load",
+          "action": "Custom",
+          "code": "bundle.config.widgets.selectMultiMenu({\n  element: K(\"form\").find(\"#selectProductsMenu\")[0],\n  options: K('field[Package Products]').options(),\n  onChange: function(option) {\n    debugger;\n    K('field[Package Products]').value(option[0].value);\n/*    setTimeout(function(){\n      $(K(\"form\").find(\"#selectProductsMenu .css-1492t68\")).html(option.label);\n    },100);*/\n  },\n  value: K('field[Package Products]').value(),\n});\n",
+          "runIf": "1===0"
+        }
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Everyone"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Authenticated Users"
+    }
+  ],
+  "slug": "pos-product",
+  "status": "New",
+  "submissionLabelExpression": "${values('Display Order')}:${values('Status')}-${values('Product Type')}-${values('Display Type')}-${values('Name')}-${values('Colour')}-${values('Price')}-${values('Limited Edition')}-${values('Categories')}-${values('Sizes')}-${values('SKU')}-${values('Size Chart URL')}-${values('Image Type')}"
+}

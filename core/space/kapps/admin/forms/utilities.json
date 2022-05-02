@@ -1,0 +1,39 @@
+{
+  "anonymous": false,
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+
+  ],
+  "categorizations": [
+
+  ],
+  "customHeadContent": null,
+  "description": "Console for managing utility forms related to managing the system.",
+  "name": "Utilities",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": "pages/utilities/console.jsp",
+      "elements": [
+
+      ],
+      "events": [
+
+      ],
+      "name": "Utilities",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+
+  ],
+  "slug": "utilities",
+  "status": "Active",
+  "submissionLabelExpression": null,
+  "type": "Console"
+}

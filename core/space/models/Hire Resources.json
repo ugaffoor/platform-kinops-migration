@@ -1,0 +1,114 @@
+{
+  "activeMappingName": "Hire Resources",
+  "attributes": [
+    {
+      "name": "id"
+    },
+    {
+      "name": "Information"
+    },
+    {
+      "name": "Name"
+    },
+    {
+      "name": "Notification Emails"
+    },
+    {
+      "name": "Photo"
+    },
+    {
+      "name": "Photo URL"
+    },
+    {
+      "name": "Resource Type"
+    },
+    {
+      "name": "Resume"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Information",
+          "structureField": "${fields('values[Information]')}"
+        },
+        {
+          "name": "Name",
+          "structureField": "${fields('values[Name]')}"
+        },
+        {
+          "name": "Photo",
+          "structureField": "${fields('values[Photo]')}"
+        },
+        {
+          "name": "Resource Type",
+          "structureField": "${fields('values[Resource Type]')}"
+        },
+        {
+          "name": "Resume",
+          "structureField": "${fields('values[Resume]')}"
+        },
+        {
+          "name": "id",
+          "structureField": "${fields('id')}"
+        },
+        {
+          "name": "Photo URL",
+          "structureField": "${fields('values[Photo URL]')}"
+        },
+        {
+          "name": "Notification Emails",
+          "structureField": "${fields('values[Notification Emails]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Hire Resources",
+      "qualifications": [
+        {
+          "name": "All",
+          "query": "formSlug=hire-resources&limit=1000&index=values[Status]&q=values[Status]=\"Active\""
+        },
+        {
+          "name": "By Resource Type",
+          "query": "formSlug=hire-resources&limit=1000&index=values[Resource Type]&q=values[Resource Type]=\"${parameters('Type')}\""
+        },
+        {
+          "name": "By ID",
+          "query": "id=${parameters('ID')}"
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "Hire Resources",
+  "qualifications": [
+    {
+      "name": "All",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "By ID",
+      "parameters": [
+        {
+          "name": "ID"
+        }
+      ],
+      "resultType": "Single"
+    },
+    {
+      "name": "By Resource Type",
+      "parameters": [
+        {
+          "name": "Type"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

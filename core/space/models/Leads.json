@@ -1,0 +1,147 @@
+{
+  "activeMappingName": "Leads",
+  "attributes": [
+    {
+      "name": "Address"
+    },
+    {
+      "name": "DOB"
+    },
+    {
+      "name": "Email"
+    },
+    {
+      "name": "First Name"
+    },
+    {
+      "name": "Gender"
+    },
+    {
+      "name": "id"
+    },
+    {
+      "name": "Last Name"
+    },
+    {
+      "name": "Phone Number"
+    },
+    {
+      "name": "Postcode"
+    },
+    {
+      "name": "Source Reference 4"
+    },
+    {
+      "name": "State"
+    },
+    {
+      "name": "Status"
+    },
+    {
+      "name": "Suburb"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "First Name",
+          "structureField": "${fields('values[First Name]')}"
+        },
+        {
+          "name": "Address",
+          "structureField": "${fields('values[Address]')}"
+        },
+        {
+          "name": "DOB",
+          "structureField": "${fields('values[DOB]')}"
+        },
+        {
+          "name": "Email",
+          "structureField": "${fields('values[Email]')}"
+        },
+        {
+          "name": "Gender",
+          "structureField": "${fields('values[Gender]')}"
+        },
+        {
+          "name": "Last Name",
+          "structureField": "${fields('values[Last Name]')}"
+        },
+        {
+          "name": "Phone Number",
+          "structureField": "${fields('values[Phone Number]')}"
+        },
+        {
+          "name": "Postcode",
+          "structureField": "${fields('values[Postcode]')}"
+        },
+        {
+          "name": "State",
+          "structureField": "${fields('values[State]')}"
+        },
+        {
+          "name": "Status",
+          "structureField": "${fields('values[Status]')}"
+        },
+        {
+          "name": "Suburb",
+          "structureField": "${fields('values[Suburb]')}"
+        },
+        {
+          "name": "id",
+          "structureField": "${fields('id')}"
+        },
+        {
+          "name": "Source Reference 4",
+          "structureField": "${fields('values[Source Reference 4]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Leads",
+      "qualifications": [
+        {
+          "name": "All",
+          "query": "kappSlug=leads&formSlug=lead&q=values[Lead State]=\"Open\" "
+        },
+        {
+          "name": "Active Leads",
+          "query": "kappSlug=gbmembers&formSlug=lead&q=values[Lead State] = \"Open\""
+        },
+        {
+          "name": "Get Lead",
+          "query": "id=${parameters('ID')}"
+        }
+      ],
+      "structure": "Submissions"
+    }
+  ],
+  "name": "Leads",
+  "qualifications": [
+    {
+      "name": "Active Leads",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "All",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Lead",
+      "parameters": [
+        {
+          "name": "ID"
+        }
+      ],
+      "resultType": "Single"
+    }
+  ],
+  "status": "Active"
+}

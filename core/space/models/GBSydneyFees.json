@@ -1,0 +1,53 @@
+{
+  "activeMappingName": "SydneyFees",
+  "attributes": [
+    {
+      "name": "Fee"
+    },
+    {
+      "name": "Frequency"
+    },
+    {
+      "name": "Program"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Fee",
+          "structureField": "${fields('values[Fee]')}"
+        },
+        {
+          "name": "Frequency",
+          "structureField": "${fields('values[Frequency]')}"
+        },
+        {
+          "name": "Program",
+          "structureField": "${fields('values[Program]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "SydneyFees",
+      "qualifications": [
+        {
+          "name": "All",
+          "query": "formSlug=membership-fees&limit=1000&index=values[Status]&q=values[Status]=\"Active\""
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "GBSydneyFees",
+  "qualifications": [
+    {
+      "name": "All",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

@@ -1,0 +1,135 @@
+{
+  "afterLogoutPath": null,
+  "attributes": [
+    {
+      "name": "Icon",
+      "values": [
+        "fa-user-plus"
+      ]
+    }
+  ],
+  "bundlePath": null,
+  "defaultFormConfirmationPage": null,
+  "defaultFormDisplayPage": null,
+  "defaultSubmissionLabelExpression": null,
+  "displayType": "Display Page",
+  "displayValue": null,
+  "fields": [
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k3",
+      "name": "Assigned Individual"
+    },
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k1",
+      "name": "Assigned Team"
+    },
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k6",
+      "name": "Deferral Token"
+    },
+    {
+      "dataType": "date",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k5",
+      "name": "Due Date"
+    },
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k7",
+      "name": "Requested By"
+    },
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k9",
+      "name": "Requested For"
+    },
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k11",
+      "name": "Status"
+    }
+  ],
+  "formTypes": [
+    {
+      "name": "Approval"
+    },
+    {
+      "name": "Console"
+    },
+    {
+      "name": "Content"
+    },
+    {
+      "name": "Service"
+    },
+    {
+      "name": "Service Description"
+    },
+    {
+      "name": "Subservice"
+    },
+    {
+      "name": "Template"
+    },
+    {
+      "name": "Work Order"
+    }
+  ],
+  "loginPage": null,
+  "name": "Registrations",
+  "resetPasswordPage": null,
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Coaches"
+    },
+    {
+      "endpoint": "Form Creation",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Modification",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Default Form Display",
+      "name": "Coaches"
+    },
+    {
+      "endpoint": "Default Form Modification",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Default Submission Access",
+      "name": "Submitter"
+    },
+    {
+      "endpoint": "Default Submission Modification",
+      "name": "Submitter"
+    },
+    {
+      "endpoint": "Submission Support",
+      "name": "Admins"
+    }
+  ],
+  "slug": "registrations",
+  "webApis": [
+
+  ]
+}

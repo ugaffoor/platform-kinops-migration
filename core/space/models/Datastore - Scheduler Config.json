@@ -1,0 +1,76 @@
+{
+  "activeMappingName": "Datastore - Scheduler Config",
+  "attributes": [
+    {
+      "name": "Duration Multiplier"
+    },
+    {
+      "name": "Event Type"
+    },
+    {
+      "name": "Scheduler Id"
+    },
+    {
+      "name": "Status"
+    },
+    {
+      "name": "Submission Id"
+    },
+    {
+      "name": "Time Interval"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Scheduler Id",
+          "structureField": "${fields('values[Scheduler Id]')}"
+        },
+        {
+          "name": "Event Type",
+          "structureField": "${fields('values[Event Type]')}"
+        },
+        {
+          "name": "Time Interval",
+          "structureField": "${fields('values[Time Interval]')}"
+        },
+        {
+          "name": "Duration Multiplier",
+          "structureField": "${fields('values[Duration Multiplier]')}"
+        },
+        {
+          "name": "Submission Id",
+          "structureField": "${fields('id')}"
+        },
+        {
+          "name": "Status",
+          "structureField": "${fields('values[Status]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Datastore - Scheduler Config",
+      "qualifications": [
+        {
+          "name": "Active by Scheduler Id",
+          "query": "formSlug=scheduler-config&limit=1000&index=values[Status],values[Scheduler Id]&q=values[Status]=\"Active\" AND values[Scheduler Id]=\"${parameters('Scheduler Id')}\""
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "Datastore - Scheduler Config",
+  "qualifications": [
+    {
+      "name": "Active by Scheduler Id",
+      "parameters": [
+        {
+          "name": "Scheduler Id"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

@@ -1,0 +1,529 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Cancel Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Cloning Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Comment Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Submitted - True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Members",
+      "name": "Get Member",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Members')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Member",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Members",
+      "order": [
+
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Get Billing Members",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+    {
+      "category": {
+        "slug": "billing-registration"
+      }
+    }
+  ],
+  "customHeadContent": "",
+  "description": "Paysmart Request to Refund a Member",
+  "name": "Paysmart Member Refund",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Select Member",
+          "title": "Select Member",
+          "visible": "!form('review')",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Members",
+              "label": "Members",
+              "key": "f38",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "A member must be selected",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Member",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "loadingDetails=true;\nK('bridgedResource[Get Member]').load({\n  attributes: ['Member ID', 'First Name', 'Last Name'],\n  values: {'ID' : 'Allen'},\n  success: function(bridgedData) {\n    K('field[Member ID]').value(bridgedData['Member ID']);\n    K('field[Student First Name]').value(bridgedData['First Name']);\n    K('field[Student Last Name]').value(bridgedData['Last Name']);\n    K('field[Billing Customer Id]').value(bridgedData['Billing Customer Id']);\n\n    $.ajax({\n      type: \"post\",\n        url: K('space').attributes(\"Kinetic Billing Server URL\")+\"/billingInfo\",\n        data: JSON.stringify({ \n          customerId: bridgedData['Billing Customer Id'],\n          space: K('space').slug(),\n          billingService: K('space').attributes(\"Billing Company\"),\n        }),\n        headers: {\n          'Accept': 'application/json, text/plain, */*',\n          'Content-Type': 'application/json;charset=UTF-8'\n      \t}\n      })\n      .done(function( data ) {\n        if (data.data===null) {\n  \t      K('field[Date of Refund]').value(\"\");\n          K('field[Billing Period]').value(\"\");\n        } else {\n  \t      K('field[Date of Refund]').value(moment(data.data['nextBillingDate'],'DD-MM-YYYY').format('YYYY-MM-DD'));\n          K('field[Billing Period]').value(data.data['paymentPeriod']);\n\n          bundle.config.widgets.xdsoftDatepickerRemove({\n              element: K(\"form\").find(\"#refunddate\")[0]\n          });          \n          period=7;\n          if (data.data['paymentPeriod']===\"Fortnightly\"){\n            period=14;\n          }\n          allowDates=[];\n          for (i=0;i<20;i++){\n            if (moment(data.data['nextBillingDate'], \"DD-MM-YYYY\").add(period*i,\"days\").isAfter(moment())) {\n  \t\t\t\t\t\t  allowDates[allowDates.length]=moment(data.data['nextBillingDate'], \"DD-MM-YYYY\").add(period*i,\"days\").format(\"DD-MM-YYYY\");\n            }\n  \t\t\t\t}\n          debugger;\n          bundle.config.widgets.xdsoftDatepicker({\n              element: K(\"form\").find(\"#refunddate\")[0],\n              timepicker: false,\n              displayDateFormat: \"DD/MM/YYYY\",\n              options: {\n                allowDates: allowDates,\n                formatDate:\"d-m-Y\",\n                validateOnBlur:false\n              },\n              onSelectDate:function(ct,$i){\n                K('field[Date of Refund]').value(ct.dateFormat('YYYY-MM-DD'));\n              }                \n          });          \n         }\n      });\n    loadingDetails=false;\n    \n    K('section[Member Select Space]').hide();    \n    }\n});\n\n",
+                  "bridgedResourceName": null,
+                  "runIf": "values('Members')!==\"\""
+                },
+                {
+                  "name": "Clear Member Details",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('field[Member ID]').value(\"\");\nK('field[Student First Name]').value(\"\");\nK('field[Student Last Name]').value(\"\");\nK('field[Billing Customer Id]').value(\"\");\n\nK('section[Student Information]').hide();\nK('section[Cancellation Information]').hide();\nK('section[Terms]').hide();\nK('section[List of Documents]').hide();    \n\nK('section[Member Select Space]').show();    \n",
+                  "runIf": "values('Members')===null"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Members",
+              "choicesRunIf": null,
+              "choices": {
+                "label": "${resources('Members:First Name')} ${resources('Members:Last Name')}",
+                "value": "${resources('Members:id')}"
+              }
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Members Select",
+              "text": "<div id=\"selectMemberMenu\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Student Information",
+          "title": "Student Information",
+          "visible": "values('Members')!==null && ((typeof(loadingDetails) !== \"undefined\" && !loadingDetails) || form('review')) ",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Member ID",
+              "label": "Member ID",
+              "key": "f39",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student First Name",
+              "label": "Student's First Name",
+              "key": "f28",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('Student First Name')} ${values('Student Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student Last Name",
+              "label": "Student's Last Name",
+              "key": "f29",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('Student First Name')} ${values('Student Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested For",
+              "label": "Requested For",
+              "key": "f50",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Co-Signer Full Name",
+              "label": "Co-Signer's Full Name",
+              "key": "f30",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Billing Customer Id",
+              "label": "Billing Customer Id",
+              "key": "f47",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Billing Period",
+              "label": "Billing Period",
+              "key": "f48",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Refund Information",
+          "title": "",
+          "visible": "values('Members')!==null && ((typeof(loadingDetails) !== \"undefined\" && !loadingDetails) || form('review')) ",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Refund Date HTML",
+              "text": "<div class=\"form-group required\" linkedField=\"Date of Refund\">  \n  <label class=\"field-label\" for=\"refunddate\">Date of Refund</label>\n  <div id=\"refunddate\"></div>\n</div>",
+              "visible": "!form('review')",
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "Date of Refund",
+              "label": "Date of Refund",
+              "key": "f32",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "form('review')",
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Reason for Refund",
+              "label": "Reason for Refund",
+              "key": "f43",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 5
+            },
+            {
+              "type": "field",
+              "name": "Refund Amount",
+              "label": "Refund Amount",
+              "key": "f49",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "",
+              "omitWhenHidden": null,
+              "pattern": {
+                "regex": "^-?\\d*(.\\d+)?$",
+                "message": "Please enter a valid decimal value"
+              },
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Member Select Space",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Member Select Space",
+              "text": "<div style=\"height:300px\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Members Select",
+          "type": "Load",
+          "action": "Custom",
+          "code": "bundle.config.widgets.selectMenu({\n  element: K(\"form\").find(\"#selectMemberMenu\")[0],\n\toptions: K('field[Members]').options(),\n  onChange: function(option) {\n\t  K('field[Members]').value(option.value);\n    setTimeout(function(){\n\t    $(K(\"form\").find(\"#selectMemberMenu .css-1492t68\")).html(option.label);\n    },100);\n\t},\n  value: K('field[Members]').value(),\n});\n"
+        },
+        {
+          "name": "Handle Errors",
+          "type": "Submit",
+          "action": "Custom",
+          "code": "if (!jQuery.isEmptyObject(K('form').validate())){\n  setTimeout(function(){\n  if ($(\".has-error\").length>0){\n    $(\".has-error\").each(function(i,l) { \n      if ($(l).attr(\"data-element-name\").indexOf(\"Signature\")!==-1) {\n        sigCanElName=$(l).attr(\"data-element-name\").replace(\"Encoded \",\"\");\n        $(K('content['+sigCanElName+']').element()).addClass(\"has-error\");\n      }\n    })  \n    $('.main-container').animate({\n      scrollTop: 0\n    },500);\n  }\n  },100);\n}"
+        },
+        {
+          "name": "Load Review",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('section[Student Information]').show();\nK('section[Cancellation Information]').show();\nK('section[List of Documents]').show();    \nK('section[Terms]').show();\n\nK('section[Member Select Space]').hide();    \n",
+          "runIf": "form('review')"
+        },
+        {
+          "name": "Set Defaults",
+          "type": "Load",
+          "action": "Custom",
+          "code": "if (K('field[Members]').value()===null) {\n\tloadingDetails=true;\n  K('section[Member Select Space]').show();   \n}else {\n\tloadingDetails=false;\n  K('section[Member Select Space]').hide();   \n}"
+        }
+      ],
+      "name": "Instalment Information",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Paysmart Program Managers"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Program Managers"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Program Managers"
+    }
+  ],
+  "slug": "paysmart-member-refund",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Student First Name')} ${values('Student Last Name')}",
+  "type": "Service"
+}

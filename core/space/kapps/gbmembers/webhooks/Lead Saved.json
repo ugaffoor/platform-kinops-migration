@@ -1,0 +1,8 @@
+{
+  "event": "Saved",
+  "filter": "form('name')==\"Lead\"",
+  "name": "Lead Saved",
+  "type": "Submission",
+  "url": "/app/api/v1/run-tree/${space('attribute:Task Source Name')}/Submissions%20%3E%20gbmembers%20%3E%20lead/Saved",
+  "attributes": null
+}

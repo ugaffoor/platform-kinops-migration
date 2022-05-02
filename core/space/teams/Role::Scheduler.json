@@ -1,0 +1,13 @@
+{
+  "attributes": [
+    {
+      "name": "Assignable",
+      "values": [
+        "False"
+      ]
+    }
+  ],
+  "description": null,
+  "name": "Role::Scheduler",
+  "slug": "f75bdea6c00d10bfaafb7afa6ab0ecf2"
+}

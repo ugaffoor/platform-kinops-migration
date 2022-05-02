@@ -1,0 +1,56 @@
+[
+  {
+    "message": "Must be an administrator.",
+    "name": "Admins",
+    "rule": "/* \n * Space admins are allowed access regardless of the the result of security \n * policies.  Returning 'false' denies anyone but a space access. \n */\nfalse",
+    "type": "Space"
+  },
+  {
+    "message": "Must be authenticated.",
+    "name": "Authenticated Users",
+    "rule": "identity('authenticated')",
+    "type": "Space"
+  },
+  {
+    "message": "Only users with the role Data Admin have access to this resource.",
+    "name": "Data Admins",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Data Admins\n  return hasIntersection(identity('teams'), ['Role::Data Admin']);\n})()\n",
+    "type": "Datastore Form"
+  },
+  {
+    "message": "Everyone is allowed access.",
+    "name": "Everyone",
+    "rule": "true",
+    "type": "Space"
+  },
+  {
+    "message": "Program Manager allowed to Create Users via GBMembers",
+    "name": "Program Managers",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  return hasIntersection(identity('teams'), ['Role::Program Managers']);\n})()\n",
+    "type": "User"
+  },
+  {
+    "message": "Program Managers and Coaches",
+    "name": "Program Managers and Coaches",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty\n    obj1 = (obj1 === null || obj1 === undefined) ? [] : obj1;\n    obj2 = (obj2 === null || obj2 === undefined) ? [] : obj2;\n    // If the parameters are not lists, wrap them in lists\n    var list1 = (obj1 instanceof Array) ? obj1 : [obj1];\n    var list2 = (obj2 instanceof Array) ? obj2 : [obj2];\n    // Find the intersection\n    var intersection = list1.filter(function(n) {\n      return list2.indexOf(n) != -1;\n    });\n    // Return whether any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) {\n    return (list instanceof Array) && list.indexOf(value) != -1\n  };\n\n  // Employees or Contractors\n  return (hasIntersection(identity('teams'), ['Role::Program Managers','Role::Coach']));\n})()",
+    "type": "Datastore Submission"
+  },
+  {
+    "message": "You must be a Scheduler Admin to perform this action.",
+    "name": "Scheduler Admins",
+    "rule": "(function() {\n  // Helper method\n  var hasIntersection = function(obj1, obj2) {\n    // Ensure the objects are not empty, and are lists\n    var list1 = (obj1 === null || obj1 === undefined) ? [] : \n    \t(obj1 instanceof Array ? obj1 : [obj1]);\n    var list2 = (obj2 === null || obj2 === undefined) ? [] : \n    \t(obj2 instanceof Array ? obj2 : [obj2]);\n    // Return true if any intersecting values were found\n    return list1.find(function(value) {return hasValue(list2, value)}) !== undefined;\n  };\n  // Helper method\n  var hasValue = function(list, value) { return list.indexOf(value) != -1 };\n\n  // Data Admins\n  return hasIntersection(identity('teams'), ['Role::Scheduler']);\n})()\n",
+    "type": "Space"
+  },
+  {
+    "message": "You must be a Scheduler Admin or Manager to perform this action.",
+    "name": "Scheduler Admins - Scheduler Managers",
+    "rule": "(function() {\n  // Helper methods\n  var validateAsList = function(obj) {\n    return (obj === null || obj === undefined) ? [] : obj instanceof Array ? obj : [obj];\n  }\n  var hasIntersection = function(list1, list2, finder) {\n    var fn = typeof finder === 'function' ? finder : hasValue;\n    return list1.find(function(value) {return fn(list2, value)}) !== undefined;\n  };\n  var hasValue = function(list, value) { return list.indexOf(value) != -1 };\n  var hasStartsWithValue = function(list, value) {\n    return list.find(function(iter) {return value && value.indexOf(iter) === 0}) !== undefined;\n  };\n  \n  // Data\n  var userTeams = validateAsList(identity('teams'));\n\n  // Scheduler Admins\n  return hasIntersection(userTeams, ['Role::Scheduler'])\n  // Scheduler Managers\n  || hasIntersection(userTeams, ['Role::Scheduler::'], hasStartsWithValue);\n})()\n",
+    "type": "Space"
+  },
+  {
+    "message": "You must be a Scheduler Admin, Manager, or Agent, or the Requester to perform this action.",
+    "name": "Scheduler Admins - Scheduler Managers - Observers - Requester",
+    "rule": "(function() {\n  // Helper methods\n  var validateAsList = function(obj) {\n    return (obj === null || obj === undefined) ? [] : obj instanceof Array ? obj : [obj];\n  }\n  var hasIntersection = function(list1, list2, finder) {\n    var fn = typeof finder === 'function' ? finder : hasValue;\n    return list1.find(function(value) {return fn(list2, value)}) !== undefined;\n  };\n  var hasValue = function(list, value) { return list.indexOf(value) != -1 };\n  var hasStartsWithValue = function(list, value) {\n    return list.find(function(iter) {return value && value.indexOf(iter) === 0}) !== undefined;\n  };\n  \n  // Data\n  var me = [identity('username')];\n  var myTeams = validateAsList(identity('teams'));\n  var observingTeams = validateAsList(values('Observing Teams', []));\n  var observingIndividuals = validateAsList(values('Observing Individuals', []));\n  var requestedBy = validateAsList(values('Requested By', []));\n  var requestedFor = validateAsList(values('Requested For', []));\n\n  // Scheduler Admins\n  return hasIntersection(myTeams, ['Role::Scheduler'])\n  // Scheduler Managers\n  || hasIntersection(myTeams, ['Role::Scheduler::'], hasStartsWithValue)\n  // Observers\n  || hasIntersection(observingIndividuals, me)\n  || hasIntersection(observingTeams, myTeams)\n  // Requester\n  || submission('createdBy') == identity('username')\n  || hasIntersection(requestedBy, me)\n  || hasIntersection(requestedFor, me);\n})()\n",
+    "type": "Datastore Submission"
+  }
+]

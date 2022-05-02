@@ -1,0 +1,550 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Icon",
+      "values": [
+        "fa-hourglass-half"
+      ]
+    },
+    {
+      "name": "Owning Team",
+      "values": [
+        "HR"
+      ]
+    },
+    {
+      "name": "Task Assignee Team",
+      "values": [
+        "HR"
+      ]
+    }
+  ],
+  "bridgedResources": [
+
+  ],
+  "categorizations": [
+
+  ],
+  "customHeadContent": null,
+  "description": "Request paid or unpaid time off here",
+  "name": "Leave Request",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Questions",
+          "title": "Questions",
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Beginning Date",
+              "label": "Beginning Date",
+              "key": "f1",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Ending Date",
+              "label": "Ending Date, Estimated if not known",
+              "key": "f2",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Total Time",
+              "label": "Total Time",
+              "key": "f3",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Type of Request",
+              "label": "Type of Request",
+              "key": "f4",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Unpaid",
+                  "value": "Unpaid"
+                },
+                {
+                  "label": "Vacation",
+                  "value": "Vacation"
+                },
+                {
+                  "label": "Sick",
+                  "value": "Sick"
+                },
+                {
+                  "label": "FMLA",
+                  "value": "FMLA"
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "FMLA Section",
+              "title": null,
+              "visible": "values('Type of Request') == \"FMLA\"",
+              "omitWhenHidden": true,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Reason",
+                  "label": "The reason for this FMLA leave request is (select the most appropriate option)",
+                  "key": "f5",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": "values('Type of Request') == \"FMLA\"",
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "radio",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Birth of a son or daughter and to care for the newborn child.",
+                      "value": "Birth of a son or daughter and to care for the newborn child."
+                    },
+                    {
+                      "label": "Placement with the employee of a son or daughter for adoption or foster care.",
+                      "value": "Placement with the employee of a son or daughter for adoption or foster care."
+                    },
+                    {
+                      "label": "To care for the employee's spouse, son, daughter or parent with a serious health condition.",
+                      "value": "To care for the employee's spouse, son, daughter or parent with a serious health condition."
+                    },
+                    {
+                      "label": "A serious health condition that makes the employee unable to perform the functions of the employee's job.",
+                      "value": "A serious health condition that makes the employee unable to perform the functions of the employee's job."
+                    },
+                    {
+                      "label": "A qualifying exigency arising out of the fact that the employee's spouse, son, daughter or parent is a military member on covered active duty (or has been notified of an impending call or order to covered active duty status).",
+                      "value": "A qualifying exigency arising out of the fact that the employee's spouse, son, daughter or parent is a military member on covered active duty (or has been notified of an impending call or order to covered active duty status)."
+                    },
+                    {
+                      "label": "To care for a covered servicemember with a serious injury or illness if the employee is the spouse, son, daughter, parent or next of kin of the covered servicemember.",
+                      "value": "To care for a covered servicemember with a serious injury or illness if the employee is the spouse, son, daughter, parent or next of kin of the covered servicemember."
+                    }
+                  ]
+                },
+                {
+                  "type": "field",
+                  "name": "Time Off",
+                  "label": "Time off work is expected to be (select the most appropriate option)",
+                  "key": "f6",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": "values('Type of Request') == \"FMLA\"",
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "radio",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "For a continuous block of time (several continuous days, weeks or months off work).",
+                      "value": "For a continuous block of time (several continuous days, weeks or months off work)."
+                    },
+                    {
+                      "label": "For a reduced work schedule (change in work schedule needed—fewer hours per day or fewer hours per week).",
+                      "value": "For a reduced work schedule (change in work schedule needed—fewer hours per day or fewer hours per week)."
+                    },
+                    {
+                      "label": "On an intermittent basis (periodic time off that is not usually expected to be the same days or time off from week to week; examples may be time off for flare-ups of a medical condition and/or for ongoing medical treatment/appointments).",
+                      "value": "On an intermittent basis (periodic time off that is not usually expected to be the same days or time off from week to week; examples may be time off for flare-ups of a medical condition and/or for ongoing medical treatment/appointments)."
+                    }
+                  ]
+                },
+                {
+                  "type": "content",
+                  "renderType": "html",
+                  "name": "Additional information",
+                  "text": "<p>Additional information about employee FMLA rights and responsibilities will be provided to you in writing within five business days after receipt of this notice (unless already provided).  </p>\n<p>\nDetermination of eligibility for leave under the FMLA, and/or additional documentation or clarification of documentation, may be required prior to making a final FMLA determination to approve or deny an FMLA leave request. Please contact Human Resources with any questions.</p>",
+                  "visible": true,
+                  "renderAttributes": {
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Footer",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+            "class": "text-right"
+          },
+          "elements": [
+            {
+              "type": "button",
+              "label": "Save",
+              "name": "Save",
+              "visible": true,
+              "enabled": true,
+              "renderType": "save",
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "button",
+              "label": "Submit",
+              "name": "Submit",
+              "visible": true,
+              "enabled": true,
+              "renderType": "submit-page",
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Hidden System Questions Do Not Delete",
+          "title": "Hidden System Questions Do Not Delete",
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Requested For",
+              "label": "Requested For",
+              "key": "f908",
+              "defaultValue": "${identity('username')}",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested For Display Name",
+              "label": "Requested For Display Name",
+              "key": "f909",
+              "defaultValue": "${identity('displayName')}",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested By",
+              "label": "Requested By",
+              "key": "f906",
+              "defaultValue": "${identity('username')}",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested By Display Name",
+              "label": "Requested By Display Name",
+              "key": "f907",
+              "defaultValue": "${identity('displayName')}",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Discussion Id",
+              "label": "Discussion Id",
+              "key": "f902",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Observing Teams",
+              "label": "Observing Teams",
+              "key": "f904",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Observing Individuals",
+              "label": "Observing Individuals",
+              "key": "f905",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Status",
+              "label": "Status",
+              "key": "f901",
+              "defaultValue": "Draft",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        }
+      ],
+      "events": [
+
+      ],
+      "name": "Page 1",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+
+  ],
+  "slug": "leave-request",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Type of Request')}",
+  "type": "Service"
+}

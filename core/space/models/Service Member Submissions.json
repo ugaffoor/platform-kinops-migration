@@ -1,0 +1,134 @@
+{
+  "activeMappingName": "Service Member Submissions",
+  "attributes": [
+    {
+      "name": "id"
+    },
+    {
+      "name": "memberID"
+    },
+    {
+      "name": "Payment Method"
+    },
+    {
+      "name": "Student First Name"
+    },
+    {
+      "name": "Student Last Name"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "id",
+          "structureField": "${fields(\"id\")}"
+        },
+        {
+          "name": "memberID",
+          "structureField": "${fields('values[Members]')}"
+        },
+        {
+          "name": "Student First Name",
+          "structureField": "${fields('values[Student First Name]')}"
+        },
+        {
+          "name": "Student Last Name",
+          "structureField": "${fields('values[Student Last Name]')}"
+        },
+        {
+          "name": "Payment Method",
+          "structureField": "${fields('values[Payment Method]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Service Member Submissions",
+      "qualifications": [
+        {
+          "name": "Get PaySmart Member Registrations",
+          "query": "kappSlug=services&formSlug=paysmart-member-registration&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get PaySmart Member Cancellation",
+          "query": "kappSlug=services&formSlug=member-cancellation&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Payline Member Cancellation",
+          "query": "kappSlug=services&formSlug=payline-member-cancellation&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Payline Member Registrations",
+          "query": "kappSlug=services&formSlug=payline-member-registration&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Bombara Member Cancellation",
+          "query": "kappSlug=services&formSlug=bombara-member-cancellation&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Bombara Member Registrations",
+          "query": "kappSlug=services&formSlug=bombara-member-registration&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        }
+      ],
+      "structure": "Submissions"
+    }
+  ],
+  "name": "Service Member Submissions",
+  "qualifications": [
+    {
+      "name": "Get Bombara Member Cancellation",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Bombara Member Registrations",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Payline Member Cancellation",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Payline Member Registrations",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get PaySmart Member Cancellation",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get PaySmart Member Registrations",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

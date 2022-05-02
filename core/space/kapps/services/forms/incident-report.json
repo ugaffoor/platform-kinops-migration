@@ -1,0 +1,1425 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Cancel Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Cloning Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Comment Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Submitted - True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Leads",
+      "name": "Get Lead",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Leads')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Lead",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Get Member",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Members')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Member",
+      "status": "Active"
+    },
+    {
+      "model": "Leads",
+      "name": "Leads",
+      "order": [
+        {
+          "attribute": "Last Name",
+          "direction": "asc"
+        }
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Active Leads",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Members",
+      "order": [
+
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Get Active and Frozen Members",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+    {
+      "category": {
+        "slug": "incidents"
+      }
+    }
+  ],
+  "customHeadContent": "",
+  "description": "Submit an Incident report for a Lead or Member",
+  "name": "Incident Report",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Lead or Member",
+          "label": "Lead or Member",
+          "key": "f48",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": "!form('review')",
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": true,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+            {
+              "name": "Clear Selections",
+              "type": "Change",
+              "action": "Custom",
+              "code": "K('field[Leads]').value(\"\");\nK('field[Members]').value(\"\");\n\nK('section[Person Information]').hide();\nK('section[Injury Information]').hide();    \nK('section[Treatment]').hide();        \nK('section[Witness 1]').hide();        \nK('section[Witness 2]').hide();        \nK('section[Report Information]').hide();        \nK('section[Signature of Injury Party]').hide();        \nK('section[No Medical Attention Was Desired and or Required]').hide();        \n\nK('section[Menu Space]').show();        \n"
+            }
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Lead",
+              "value": "Lead"
+            },
+            {
+              "label": "Member",
+              "value": "Member"
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Select Member",
+          "title": "Select Member",
+          "visible": "!form('review') && values('Lead or Member')===\"Member\"",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Members",
+              "label": "Members",
+              "key": "f38",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": "values('Lead or Member')==\"Member\"",
+              "requiredMessage": "A member must be selected",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Member",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "loadingDetails=true;\nK('bridgedResource[Get Member]').load({\n  attributes: ['First Name', 'Last Name','Address','City','State','Postcode','Phone Number','Gender'],\n  values: {'ID' : 'Allen'},\n  success: function(bridgedData) {\n    K('field[First Name]').value(bridgedData['First Name']);\n    K('field[Last Name]').value(bridgedData['Last Name']);\n    K('field[Address]').value(bridgedData['Address']);\n    K('field[City]').value(bridgedData['Suburb']);\n    K('field[State]').value(bridgedData['State']);\n    K('field[Postcode]').value(bridgedData['Postcode']);\n    K('field[Phone]').value(bridgedData['Phone Number']);\n    K('field[Date of birth]').value(bridgedData['DOB']);\n    K('field[Gender]').value(bridgedData['Gender']);\n\n    K('section[Person Information]').show();\n    K('section[Injury Information]').show();    \n    K('section[Treatment]').show();        \n    K('section[Witness 1]').show();        \n    K('section[Witness 2]').show();        \n    K('section[Report Information]').show();        \n    K('section[Signature of Injury Party]').show();        \n    K('section[No Medical Attention Was Desired and or Required]').show();        \n    \n    K('section[Menu Space]').hide();    \n    loadingDetails=false;\n  }\n});",
+                  "bridgedResourceName": null,
+                  "runIf": "values('Members')!==null"
+                },
+                {
+                  "name": "Clear Member Details",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('field[First Name]').value(\"\");\nK('field[Last Name]').value(\"\");\nK('field[Address]').value(\"\");\nK('field[City]').value(\"\");\nK('field[State]').value(\"\");\nK('field[Postcode]').value(\"\");\nK('field[Phone]').value(\"\");\nK('field[Gender]').value(\"\");\n\nK('section[Menu Space]').show();    \n",
+                  "runIf": "values('Members')===null"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Members",
+              "choicesRunIf": null,
+              "choices": {
+                "label": "${resources('Members:First Name')} ${resources('Members:Last Name')}",
+                "value": "${resources('Members:id')}"
+              }
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Members Select",
+              "text": "<div id=\"selectMemberMenu\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Select Lead",
+          "title": "Select Lead",
+          "visible": "!form('review') && values('Lead or Member')===\"Lead\"",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Leads",
+              "label": "Leads",
+              "key": "f47",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": "values('Lead or Member')==\"Lead\"",
+              "requiredMessage": "A lead must be selected",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Lead",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "loadingDetails=true;\nK('bridgedResource[Get Lead]').load({\n  attributes: ['First Name', 'Last Name','Address','City','State','Postcode','Phone Number','Gender'],\n  values: {},\n  success: function(bridgedData) {\n    K('field[First Name]').value(bridgedData['First Name']);\n    K('field[Last Name]').value(bridgedData['Last Name']);\n    K('field[Address]').value(bridgedData['Address']);\n    K('field[City]').value(bridgedData['Suburb']);\n    K('field[State]').value(bridgedData['State']);\n    K('field[Postcode]').value(bridgedData['Postcode']);\n    K('field[Phone]').value(bridgedData['Phone Number']);\n    K('field[Date of birth]').value(bridgedData['DOB']);\n    K('field[Gender]').value(bridgedData['Gender']);\n\n    K('section[Person Information]').show();\n    K('section[Injury Information]').show();    \n    K('section[Treatment]').show();        \n    K('section[Witness 1]').show();        \n    K('section[Witness 2]').show();        \n    K('section[Report Information]').show();        \n    K('section[Signature of Injury Party]').show();        \n    K('section[No Medical Attention Was Desired and or Required]').show();        \n    \n    K('section[Menu Space]').hide();    \n    \n    loadingDetails=false;\n  }\n});",
+                  "bridgedResourceName": null,
+                  "runIf": "values('Leads')!==null"
+                },
+                {
+                  "name": "Clear Member Details",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('field[First Name]').value(\"\");\nK('field[Last Name]').value(\"\");\nK('field[Address]').value(\"\");\nK('field[City]').value(\"\");\nK('field[State]').value(\"\");\nK('field[Postcode]').value(\"\");\nK('field[Phone]').value(\"\");\nK('field[Gender]').value(\"\");\n\nK('section[Menu Space]').show();    \n",
+                  "runIf": "values('Leads')===null"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Leads",
+              "choicesRunIf": null,
+              "choices": {
+                "label": "${resources('Leads:Last Name')} ${resources('Leads:First Name')}",
+                "value": "${resources('Leads:id')}"
+              }
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Lead Select",
+              "text": "<div id=\"selectLeadMenu\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Person Information",
+          "title": "Person Information",
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "First Name",
+              "label": "First Name",
+              "key": "f28",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('First Name')} ${values('Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Last Name",
+              "label": "Last Name",
+              "key": "f29",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('First Name')} ${values('Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested For",
+              "label": "Requested For",
+              "key": "f78",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Address",
+              "label": "Address",
+              "key": "f30",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "City",
+              "label": "City",
+              "key": "f49",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "State",
+              "label": "State",
+              "key": "f50",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Postcode",
+              "label": "Postcode",
+              "key": "f51",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Phone",
+              "label": "Phone",
+              "key": "f52",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Date of birth",
+              "label": "Date of birth",
+              "key": "f53",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Invalid date",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('field[Date of birth]').value(\"\")",
+                  "runIf": "K('field[Date of birth]').value()===\"Invalid date\""
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Gender",
+              "label": "Gender",
+              "key": "f54",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "radio",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Male",
+                  "value": "Male"
+                },
+                {
+                  "label": "Female",
+                  "value": "Female"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Parent or Guardian",
+              "label": "Parent or Guardian",
+              "key": "f55",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "moment().diff(moment(K('field[Date of birth]').value(), \"YYYY-MM-DD\"),\"years\")<18",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Injury Information",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Type of Injury",
+              "label": "Type of Injury",
+              "key": "f56",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Description of Injury",
+              "label": "Description of Injury",
+              "key": "f57",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 5
+            },
+            {
+              "type": "field",
+              "name": "Date Time of Injury",
+              "label": "Date/Time of Injury",
+              "key": "f58",
+              "defaultValue": "",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "datetime"
+            },
+            {
+              "type": "field",
+              "name": "Location of Injury",
+              "label": "Location of Injury",
+              "key": "f59",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Treatment",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Was treatment received for this injury",
+              "label": "Was treatment received for this injury?",
+              "key": "f60",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Treatment was Provided",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "if (K('field[Was treatment received for this injury]').value()===\"Treatment was provided\"){\n      K('section[No Medical Attention Was Desired and or Required]').hide();        \n} else {\n      K('section[No Medical Attention Was Desired and or Required]').show();        \n}"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "radio",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "No medical treatment",
+                  "value": "No medical treatment"
+                },
+                {
+                  "label": "Declining treatment at this time",
+                  "value": "Declining treatment at this time"
+                },
+                {
+                  "label": "Treatment was provided",
+                  "value": "Treatment was provided"
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Treatment Details",
+              "title": null,
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "If treatment was provided",
+                  "label": "If treatment was provided, what was given?",
+                  "key": "f61",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "values('Was treatment received for this injury')===\"Treatment was provided\"",
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Treatment provided by",
+                  "label": "Treatment provided by",
+                  "key": "f77",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "values('Was treatment received for this injury')===\"Treatment was provided\"",
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "radio",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Coach",
+                      "value": "Coach"
+                    },
+                    {
+                      "label": "Student",
+                      "value": "Student"
+                    },
+                    {
+                      "label": "Paramedics",
+                      "value": "Paramedics"
+                    },
+                    {
+                      "label": "Physician",
+                      "value": "Physician"
+                    },
+                    {
+                      "label": "Hospital",
+                      "value": "Hospital"
+                    },
+                    {
+                      "label": "Other",
+                      "value": "Other"
+                    }
+                  ]
+                },
+                {
+                  "type": "field",
+                  "name": "Other please specify who provided the treatment",
+                  "label": "If \"Other\", please specify who provided the treatment.",
+                  "key": "f63",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "values('Treatment provided by')===\"Other\"",
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Physicians Name",
+                  "label": "Physician's Name",
+                  "key": "f64",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "values('Treatment provided by')===\"Physician\"",
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Physicians Phone Number",
+                  "label": "Physician's Phone Number",
+                  "key": "f65",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "values('Treatment provided by')===\"Physician\"",
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Hospitals Name",
+                  "label": "Hospital's Name",
+                  "key": "f66",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "values('Treatment provided by')===\"Hospital\"",
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Hospitals Phone Number",
+                  "label": "Hospital's Phone Number",
+                  "key": "f67",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "values('Treatment provided by')===\"Hospital\"",
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Witness 1",
+          "title": "Witness #1",
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Witness Name",
+              "label": "Name",
+              "key": "f68",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Witness Phone",
+              "label": "Phone",
+              "key": "f69",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Witness 2",
+          "title": "Witness #2",
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Witness 2 Name",
+              "label": "Name",
+              "key": "f70",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Witness 2 Phone",
+              "label": "Phone",
+              "key": "f71",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Report Information",
+          "title": "Report Information",
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Name of Person Preparing Report",
+              "label": "Name of Person Preparing Report",
+              "key": "f72",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Date of Report",
+              "label": "Date of Report",
+              "key": "f73",
+              "defaultValue": "",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Signature of Injury Party",
+          "title": "Signature of Injury Party",
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Person Signature",
+              "text": "<label class=\"field-label required\">Person Signature</label><div id=\"person-signature-canvas\"/>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "Encoded Person Signature",
+              "label": "Encoded Person Signature",
+              "key": "f35",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "Gracie Barra Representative Signature is required",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Parent Signature",
+              "text": "<label class=\"field-label\">Parent/Guardian Signature</label><div id=\"parent-signature-canvas\"/>",
+              "visible": "moment().diff(moment(K('field[Date of birth]').value(), \"YYYY-MM-DD\"),\"years\")<18",
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "Encoded Parent Signature",
+              "label": "Encoded Parent Signature",
+              "key": "f74",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "No Medical Attention Was Desired and or Required",
+          "title": "No Medical Attention Was Desired and/or Required",
+          "visible": "values('Was treatment received for this injury')!==null && values('Was treatment received for this injury')!==\"Treatment was provided\"",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Waiver Signature",
+              "text": "<label class=\"field-label required\">Waiver Signature</label><div id=\"waiver-signature-canvas\"/>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "Encoded Waiver Signature",
+              "label": "Encoded Waiver Signature",
+              "key": "f75",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": "values('Was treatment received for this injury')!==\"Treatment was provided\"",
+              "requiredMessage": "Waiver Signature is required",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Waiver Parent Signature",
+              "text": "<label class=\"field-label\">Waiver Parent Signature</label><div id=\"waiver-parent-signature-canvas\"/>",
+              "visible": "moment().diff(moment(K('field[Date of birth]').value(), \"YYYY-MM-DD\"),\"years\")<18",
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "Encoded Waiver Parent Signature",
+              "label": "Encoded Waiver Parent Signature",
+              "key": "f76",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Menu Space",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Menu Space",
+              "text": "<div style=\"height:300px\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Signatures",
+          "type": "Load",
+          "action": "Custom",
+          "code": "bundle.config.widgets.signatureCanvas({\n  element: K(\"form\").find(\"#person-signature-canvas\")[0],\n  initialValue: K(\"field[Encoded Person Signature]\").value(),\n  onChange: function(value) {\n\t  K(\"field[Encoded Person Signature]\").value(value);\n\t},\n  height: 250,\n  width: 500,\n  disable: form('review'),\n  ref: function(el) {\n    window.personSignaturePad = el;\n  },\n});\n\nbundle.config.widgets.signatureCanvas({\n  element: K(\"form\").find(\"#parent-signature-canvas\")[0],\n  initialValue: K(\"field[Encoded Parent Signature]\").value(),\n  onChange: function(value) {\n\t  K(\"field[Encoded Parent Signature]\").value(value);\n\t},\n  height: 250,\n  width: 500,\n  disable: form('review'),\n  ref: function(el) {\n    window.parentSignaturePad = el;\n  },\n});\n\nbundle.config.widgets.signatureCanvas({\n  element: K(\"form\").find(\"#waiver-signature-canvas\")[0],\n  initialValue: K(\"field[Encoded Waiver Signature]\").value(),\n  onChange: function(value) {\n\t  K(\"field[Encoded Waiver Signature]\").value(value);\n\t},\n  height: 250,\n  width: 500,\n  disable: form('review'),\n  ref: function(el) {\n    window.waiverSignaturePad = el;\n  },\n});\n\nbundle.config.widgets.signatureCanvas({\n  element: K(\"form\").find(\"#waiver-parent-signature-canvas\")[0],\n  initialValue: K(\"field[Encoded Waiver Parent Signature]\").value(),\n  onChange: function(value) {\n\t  K(\"field[Encoded Waiver Parent Signature]\").value(value);\n\t},\n  height: 250,\n  width: 500,\n  disable: form('review'),\n  ref: function(el) {\n    window.waiverparentSignaturePad = el;\n  },\n});",
+          "runIf": ""
+        },
+        {
+          "name": "Load Selections",
+          "type": "Load",
+          "action": "Custom",
+          "code": "bundle.config.widgets.selectMenu({\n  element: K(\"form\").find(\"#selectMemberMenu\")[0],\n\toptions: K('field[Members]').options(),\n  onChange: function(option) {\n\t  K('field[Members]').value(option.value);\n    setTimeout(function(){\n\t    $(K(\"form\").find(\"#selectMemberMenu .css-1492t68\")).html(option.label);\n    },100);\n\t},\n  value: K('field[Members]').value(),\n});\n\nbundle.config.widgets.selectMenu({\n  element: K(\"form\").find(\"#selectLeadMenu\")[0],\n\toptions: K('field[Leads]').options(),\n  onChange: function(option) {\n\t  K('field[Leads]').value(option.value);\n    setTimeout(function(){\n\t    $(K(\"form\").find(\"#selectLeadMenu .css-1492t68\")).html(option.label);\n    },100);\n\t},\n  value: K('field[Leads]').value(),\n});\n"
+        },
+        {
+          "name": "Handle Errors",
+          "type": "Submit",
+          "action": "Custom",
+          "code": "if (!jQuery.isEmptyObject(K('form').validate())){\n  setTimeout(function(){\n  if ($(\".has-error\").length>0){\n    $(\".has-error\").each(function(i,l) { \n      if ($(l).attr(\"data-element-name\").indexOf(\"Signature\")!==-1) {\n        sigCanElName=$(l).attr(\"data-element-name\").replace(\"Encoded \",\"\");\n        $(K('content['+sigCanElName+']').element()).addClass(\"has-error\");\n      }\n    })  \n    $('.main-container').animate({\n      scrollTop: 0\n    },500);\n  }\n  },100);\n}"
+        },
+        {
+          "name": "Load Previous set page",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('section[Person Information]').show();\nK('section[Injury Information]').show();    \nK('section[Treatment]').show();        \nK('section[Witness 1]').show();        \nK('section[Witness 2]').show();        \nK('section[Report Information]').show();        \nK('section[Signature of Injury Party]').show();        \nK('section[No Medical Attention Was Desired and or Required]').show();        \n\nK('section[Menu Space]').hide();    \n",
+          "runIf": "values('Members')!==null || values('Leads')!==null"
+        },
+        {
+          "name": "Set Defaults",
+          "type": "Load",
+          "action": "Custom",
+          "code": "if (K('field[Members]').value()===null && K('field[Leads]').value()===null) {\n\tloadingDetails=true;\n  K('section[Menu Space]').show();   \n}else {\n\tloadingDetails=false;\n  K('section[Menu Space]').hide();   \n}\nK('field[Date Time of Injury]').value(moment().format(\"YYYY-MM-DD\"));\nK('field[Date of Report]').value(moment().format(\"YYYY-MM-DD\"));",
+          "runIf": "!form('review')"
+        },
+        {
+          "name": "Review",
+          "type": "Load",
+          "action": "Custom",
+          "code": "if (K('field[Was treatment received for this injury]').value()===\"Treatment was provided\"){\n      K('section[No Medical Attention Was Desired and or Required]').hide();        \n} else {\n      K('section[No Medical Attention Was Desired and or Required]').show();        \n}",
+          "runIf": "form('review')"
+        }
+      ],
+      "name": "Instalment Information",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Program Managers and Coaches"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Authenticated Users"
+    }
+  ],
+  "slug": "incident-report",
+  "status": "Active",
+  "submissionLabelExpression": "${values('First Name')} ${values('Last Name')}",
+  "type": "Service"
+}

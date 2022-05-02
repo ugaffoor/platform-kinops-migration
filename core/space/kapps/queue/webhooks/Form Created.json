@@ -1,0 +1,8 @@
+{
+  "event": "Created",
+  "filter": "space('attribute:Shared Workflow Engine').toLowerCase() === 'true' ? false : true",
+  "name": "Form Created",
+  "type": "Form",
+  "url": "/app/api/v1/run-tree/${space('attribute:Task Source Name')}/Forms/Workflow%20Router",
+  "attributes": null
+}

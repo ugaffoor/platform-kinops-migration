@@ -1,0 +1,55 @@
+{
+  "activeMappingName": "POS Categories",
+  "attributes": [
+    {
+      "name": "Label"
+    },
+    {
+      "name": "Status"
+    },
+    {
+      "name": "Type"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Status",
+          "structureField": "${fields('values[Status]')}"
+        },
+        {
+          "name": "Type",
+          "structureField": "${fields('values[Type]')}"
+        },
+        {
+          "name": "Label",
+          "structureField": "${fields('values[Label]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "POS Categories",
+      "qualifications": [
+        {
+          "name": "Get Categories",
+          "query": "formSlug=pos-categories&limit=1000&index=values[Type],values[Status]&q=values[Type]=\"${parameters('Type')}\" AND values[Status]=\"Active\""
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "POS Categories",
+  "qualifications": [
+    {
+      "name": "Get Categories",
+      "parameters": [
+        {
+          "name": "Type"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

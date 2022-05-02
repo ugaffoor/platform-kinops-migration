@@ -1,0 +1,413 @@
+{
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+
+  ],
+  "customHeadContent": null,
+  "description": "",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Class Date]",
+      "parts": [
+        "values[Class Date]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Class Date],values[Class Time],values[Program],values[Status]",
+      "parts": [
+        "values[Class Date]",
+        "values[Class Time]",
+        "values[Program]",
+        "values[Status]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Class Date],values[Program]",
+      "parts": [
+        "values[Class Date]",
+        "values[Program]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Class Date],values[Status]",
+      "parts": [
+        "values[Class Date]",
+        "values[Status]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Class Time]",
+      "parts": [
+        "values[Class Time]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member GUID]",
+      "parts": [
+        "values[Member GUID]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member ID]",
+      "parts": [
+        "values[Member ID]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member ID],values[Status],values[Class Date]",
+      "parts": [
+        "values[Member ID]",
+        "values[Status]",
+        "values[Class Date]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member Name]",
+      "parts": [
+        "values[Member Name]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Program]",
+      "parts": [
+        "values[Program]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status]",
+      "parts": [
+        "values[Status]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Title]",
+      "parts": [
+        "values[Title]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "Class Booking",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Status",
+          "label": null,
+          "key": "f5",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Booked",
+              "value": "Booked"
+            },
+            {
+              "label": "Cancelled",
+              "value": "Cancelled"
+            },
+            {
+              "label": "Attended",
+              "value": "Attended"
+            },
+            {
+              "label": "No Show",
+              "value": "No Show"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Program",
+          "label": "Program",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Title",
+          "label": "Title",
+          "key": "f9",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Class Date",
+          "label": "Class Date",
+          "key": "f6",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "date"
+        },
+        {
+          "type": "field",
+          "name": "Class Time",
+          "label": "Class Time",
+          "key": "f7",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "time"
+        },
+        {
+          "type": "field",
+          "name": "Member ID",
+          "label": "Member ID",
+          "key": "f3",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Member GUID",
+          "label": "Member GUID",
+          "key": "f8",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Member Name",
+          "label": "Member Name",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Authenticated Users"
+    }
+  ],
+  "slug": "class-booking",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Class Date')}-${values('Class Time')}-${values('Member Name')}-${values('Status')}-${values('Program')}-${values('Title')}"
+}

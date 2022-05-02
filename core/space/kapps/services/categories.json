@@ -1,0 +1,51 @@
+[
+  {
+    "attributes": [
+
+    ],
+    "name": "Billing Registration",
+    "slug": "billing-registration"
+  },
+  {
+    "attributes": [
+
+    ],
+    "name": "Bombara Billing",
+    "slug": "bombara-billing"
+  },
+  {
+    "attributes": [
+
+    ],
+    "name": "Class Bookings",
+    "slug": "class-bookings"
+  },
+  {
+    "attributes": [
+
+    ],
+    "name": "Incidents",
+    "slug": "incidents"
+  },
+  {
+    "attributes": [
+
+    ],
+    "name": "Oceania",
+    "slug": "oceania"
+  },
+  {
+    "attributes": [
+
+    ],
+    "name": "Payline Billing",
+    "slug": "payline-billing"
+  },
+  {
+    "attributes": [
+
+    ],
+    "name": "Registrations",
+    "slug": "registrations"
+  }
+]

@@ -1,0 +1,570 @@
+{
+  "anonymous": false,
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+    {
+      "model": "Hire Resources",
+      "name": "Get Hire Resource",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Person to Hire')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "By ID",
+      "status": "Active"
+    },
+    {
+      "model": "Hire Resources",
+      "name": "Hire Resources",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Resource Type')}",
+          "name": "Type"
+        }
+      ],
+      "qualification": "By Resource Type",
+      "status": "Active"
+    },
+    {
+      "model": "Person",
+      "name": "Person",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${identity('username')}",
+          "name": "Username"
+        }
+      ],
+      "qualification": "By Username Single",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+    {
+      "category": {
+        "slug": "incidents"
+      }
+    },
+    {
+      "category": {
+        "slug": "oceania"
+      }
+    }
+  ],
+  "customHeadContent": null,
+  "description": "Request for Hiring a resource, such as Instructor or Program Director.",
+  "name": "Hire Resources",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Requester Details",
+          "title": null,
+          "visible": "form('review')",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "School Name",
+              "label": "School Name",
+              "key": "f9",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "School Email",
+              "label": "School Email",
+              "key": "f12",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "User Name",
+              "label": "User Name",
+              "key": "f10",
+              "defaultValue": "${resources('Person:Display Name')}",
+              "defaultResourceName": "Person",
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "User Email",
+              "label": "User Email",
+              "key": "f11",
+              "defaultValue": "${resources('Person:Email')}",
+              "defaultResourceName": "Person",
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Notification Emails",
+              "label": "Notification Emails",
+              "key": "f14",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Resource Type",
+          "label": "Resource Type",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Instructor",
+              "value": "Instructor"
+            },
+            {
+              "label": "Program Director",
+              "value": "Program Director"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Person to Hire",
+          "label": "Person to Hire",
+          "key": "f2",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+            {
+              "name": "Get Hire Resource",
+              "type": "Change",
+              "action": "Custom",
+              "code": "K('bridgedResource[Get Hire Resource]').load({\n  attributes: ['Information', 'Photo','Resume'],\n  values: {},\n  success: function(bridgedData) {\n\t\t$(\"#nameValue\").html(bridgedData['Name']);\n\t\t$(\"#informationValue\").html(bridgedData['Information']);\n\t\t$(\"#resumeValue\").html(bridgedData['Resume']);\n    $(\"#photoValue\").attr(\"src\",bridgedData['Photo URL']);\n    \n    \n    K('field[Person to Hire Name]').value(bridgedData['Name']);\n    K('field[Information]').value(bridgedData['Information']);\n    K('field[Photo]').value(bridgedData['Photo URL']);\n    K('field[Resume]').value(bridgedData['Resume']);    \n    K('field[Notification Emails]').value(bridgedData['Notification Emails']);    \n  }\n});",
+              "mappings": [
+                {
+                  "field": "Photo",
+                  "value": "${resources('Get Hire Resource:Photo')}",
+                  "visible": false
+                },
+                {
+                  "field": "Resume",
+                  "value": "${resources('Get Hire Resource:Resume')}",
+                  "visible": false
+                },
+                {
+                  "field": "Information",
+                  "value": "${resources('Get Hire Resource:Information')}",
+                  "visible": false
+                }
+              ],
+              "bridgedResourceName": "Get Hire Resource",
+              "runIf": "values('Person to Hire')!==null"
+            }
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "dropdown",
+          "choicesResourceName": "Hire Resources",
+          "choicesRunIf": null,
+          "choices": {
+            "label": "${resources('Hire Resources:Name')}",
+            "value": "${resources('Hire Resources:id')}"
+          }
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Information",
+          "title": null,
+          "visible": "values('Person to Hire')!==null",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Resource Information",
+              "text": "<span>\n  <label>Information</label>\n  <div class=\"htmlData\" id=\"informationValue\"></div>\n  <br>\n  <label>Photo</label>\n  <img class=\"photoImg\" id=\"photoValue\"></img>\n  <br>\n  <label>Resume</label>\n  <div class=\"htmlData\" id=\"resumeValue\"></div>\n</span>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Review Resource Details",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Person to Hire Name",
+              "label": "Person to Hire Name",
+              "key": "f13",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Information",
+              "label": "Information",
+              "key": "f6",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Photo",
+              "label": "Photo",
+              "key": "f7",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Resume",
+              "label": "Resume",
+              "key": "f8",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Request Details",
+          "title": "Request Details",
+          "visible": "values('Person to Hire')!==null",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Start Date",
+              "label": "Start Date",
+              "key": "f3",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "End Date",
+              "label": "End Date",
+              "key": "f4",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Details of Request",
+              "label": "Details of Request",
+              "key": "f5",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 5
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Review mode",
+          "type": "Load",
+          "action": "Custom",
+          "code": "$(\"#informationValue\").html(K('field[Information]').value());\n$(\"#photoValue\").attr(\"src\",K('field[Photo]').value());\n$(\"#resumeValue\").html(K('field[Resume]').value());\n",
+          "runIf": "form('review')"
+        },
+        {
+          "name": "Init Page",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('field[School Name]').value(K('space').attributes('School Name'));\nK('field[School Email]').value(K('space').attributes('School Email'));",
+          "runIf": "!form('review')"
+        }
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Paysmart Program Managers"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Paysmart Program Managers"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Paysmart Program Managers"
+    }
+  ],
+  "slug": "hire-resources",
+  "status": "Active",
+  "submissionLabelExpression": null,
+  "type": "Service"
+}

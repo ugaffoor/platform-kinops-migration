@@ -1,0 +1,8 @@
+{
+  "event": "Saved",
+  "filter": "form('slug')===\"pos-product\"",
+  "name": "POS Product",
+  "type": "Datastore Submission",
+  "url": "/app/api/v1/run-tree/Kinetic%20Request%20CE/Datastore%20Submissions%20%3E%20pos-product/Saved",
+  "attributes": null
+}

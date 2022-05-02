@@ -1,0 +1,148 @@
+{
+  "activeMappingName": "Class Booking",
+  "attributes": [
+    {
+      "name": "Class Date"
+    },
+    {
+      "name": "Class Time"
+    },
+    {
+      "name": "id"
+    },
+    {
+      "name": "Member GUID"
+    },
+    {
+      "name": "Member ID"
+    },
+    {
+      "name": "Member Name"
+    },
+    {
+      "name": "Program"
+    },
+    {
+      "name": "Status"
+    },
+    {
+      "name": "Title"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Status",
+          "structureField": "${fields('values[Status]')}"
+        },
+        {
+          "name": "Program",
+          "structureField": "${fields('values[Program]')}"
+        },
+        {
+          "name": "Class Date",
+          "structureField": "${fields('values[Class Date]')}"
+        },
+        {
+          "name": "Class Time",
+          "structureField": "${fields('values[Class Time]')}"
+        },
+        {
+          "name": "Member ID",
+          "structureField": "${fields('values[Member ID]')}"
+        },
+        {
+          "name": "Member GUID",
+          "structureField": "${fields('values[Member GUID]')}"
+        },
+        {
+          "name": "Member Name",
+          "structureField": "${fields('values[Member Name]')}"
+        },
+        {
+          "name": "id",
+          "structureField": "${fields('id')}"
+        },
+        {
+          "name": "Title",
+          "structureField": "${fields('values[Title]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Class Booking",
+      "qualifications": [
+        {
+          "name": "Day Bookings",
+          "query": "formSlug=class-booking&limit=1000&index=values[Class Date],values[Status]&q=values[Class Date]=\"${parameters('Class Date')}\" AND values[Status]=\"Booked\""
+        },
+        {
+          "name": "Class Bookings",
+          "query": "formSlug=class-booking&limit=1000&index=values[Class Date],values[Class Time],values[Program],values[Status]&q=values[Class Date]=\"${parameters('Class Date')}\" AND values[Class Time]=\"${parameters('Class Time')}\" AND values[Program]=\"${parameters('Program')}\" AND values[Status]=\"${parameters('Status')}\""
+        },
+        {
+          "name": "Booked Class",
+          "query": "id=${parameters('ID')}"
+        },
+        {
+          "name": "My Bookings",
+          "query": "formSlug=class-booking&limit=1000&index=values[Member ID],values[Status],values[Class Date]&q=values[Member ID]=\"${parameters('Member ID')}\" AND values[Status]=\"Booked\" AND values[Class Date]>=\"${parameters('Class Date')}\""
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "Class Booking",
+  "qualifications": [
+    {
+      "name": "Booked Class",
+      "parameters": [
+        {
+          "name": "ID"
+        }
+      ],
+      "resultType": "Single"
+    },
+    {
+      "name": "Class Bookings",
+      "parameters": [
+        {
+          "name": "Class Date"
+        },
+        {
+          "name": "Class Time"
+        },
+        {
+          "name": "Program"
+        },
+        {
+          "name": "Status"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Day Bookings",
+      "parameters": [
+        {
+          "name": "Class Date"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "My Bookings",
+      "parameters": [
+        {
+          "name": "Class Date"
+        },
+        {
+          "name": "Member ID"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

@@ -1,0 +1,424 @@
+{
+  "attributes": [
+    {
+      "name": "Datastore Configuration",
+      "values": [
+        "{\"columns\":[{\"name\":\"Scheduler Id\",\"label\":\"Scheduler Id\",\"type\":\"value\",\"visible\":false},{\"name\":\"Event Type\",\"label\":\"Event Type\",\"type\":\"value\",\"visible\":true},{\"name\":\"Date\",\"label\":\"Date\",\"type\":\"value\",\"visible\":true},{\"name\":\"Time\",\"label\":\"Time\",\"type\":\"value\",\"visible\":true},{\"name\":\"Duration\",\"label\":\"Duration\",\"type\":\"value\",\"visible\":true},{\"name\":\"Request Id\",\"label\":\"Request Id\",\"type\":\"value\",\"visible\":false},{\"name\":\"handle\",\"label\":\"Handle\",\"type\":\"system\",\"visible\":false},{\"name\":\"label\",\"label\":\"Label\",\"type\":\"system\",\"visible\":false},{\"name\":\"createdAt\",\"label\":\"Created At\",\"type\":\"system\",\"visible\":false},{\"name\":\"createdBy\",\"label\":\"Created By\",\"type\":\"system\",\"visible\":false},{\"name\":\"updatedAt\",\"label\":\"Updated At\",\"type\":\"system\",\"visible\":false},{\"name\":\"updatedBy\",\"label\":\"Updated By\",\"type\":\"system\",\"visible\":false},{\"name\":\"id\",\"label\":\"Id\",\"type\":\"system\",\"visible\":false}],\"defaultSearchIndex\":null}"
+      ]
+    },
+    {
+      "name": "Datastore Hidden",
+      "values": [
+        "True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+
+  ],
+  "customHeadContent": null,
+  "description": "",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Date]",
+      "parts": [
+        "values[Date]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Duration]",
+      "parts": [
+        "values[Duration]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Event Type]",
+      "parts": [
+        "values[Event Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Observing Individuals]",
+      "parts": [
+        "values[Observing Individuals]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Observing Teams]",
+      "parts": [
+        "values[Observing Teams]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Request Id]",
+      "parts": [
+        "values[Request Id]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Scheduler Id]",
+      "parts": [
+        "values[Scheduler Id]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Scheduler Id],values[Date],values[Time]",
+      "parts": [
+        "values[Scheduler Id]",
+        "values[Date]",
+        "values[Time]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Time]",
+      "parts": [
+        "values[Time]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Timestamp]",
+      "parts": [
+        "values[Timestamp]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "Scheduled Event",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Scheduler Id",
+          "label": "Scheduler Id",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Event Type",
+          "label": "Event Type",
+          "key": "f3",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Date",
+          "label": "Date",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "date"
+        },
+        {
+          "type": "field",
+          "name": "Time",
+          "label": "Time",
+          "key": "f5",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "time"
+        },
+        {
+          "type": "field",
+          "name": "Duration",
+          "label": "Duration",
+          "key": "f6",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Timestamp",
+          "label": "Timestamp",
+          "key": "f7",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "datetime"
+        },
+        {
+          "type": "field",
+          "name": "Request Id",
+          "label": "Request Id",
+          "key": "f2",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Hidden System Fields Do Not Delete",
+          "title": "Hidden System Fields Do Not Delete",
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Observing Teams",
+              "label": "Observing Teams",
+              "key": "f8",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Observing Individuals",
+              "label": "Observing Individuals",
+              "key": "f9",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            }
+          ]
+        }
+      ],
+      "events": [
+
+      ],
+      "name": "Scheduled Event",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Modification",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Scheduler Admins - Scheduler Managers - Observers - Requester"
+    }
+  ],
+  "slug": "scheduled-event",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Event Type')} ${values('Date')} ${values('Time')} ${values('Duration')} "
+}

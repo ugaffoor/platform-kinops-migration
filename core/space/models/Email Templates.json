@@ -1,0 +1,86 @@
+{
+  "activeMappingName": "Email Templates",
+  "attributes": [
+    {
+      "name": "Category"
+    },
+    {
+      "name": "Email Content"
+    },
+    {
+      "name": "id"
+    },
+    {
+      "name": "Template Name"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Category",
+          "structureField": "${fields('values[Category]')}"
+        },
+        {
+          "name": "Template Name",
+          "structureField": "${fields('values[Template Name]')}"
+        },
+        {
+          "name": "Email Content",
+          "structureField": "${fields('values[Email Content]')}"
+        },
+        {
+          "name": "id",
+          "structureField": "${fields('id')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Email Templates",
+      "qualifications": [
+        {
+          "name": "Email Templates",
+          "query": "formSlug=email-templates&limit=1000"
+        },
+        {
+          "name": "Get Email Template",
+          "query": "id=${parameters('ID')}"
+        },
+        {
+          "name": "Get Email Template by Name",
+          "query": "formSlug=email-templates&limit=1&index=values[Template Name]&q=values[Template Name]=\"${parameters(\"name\")}\""
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "Email Templates",
+  "qualifications": [
+    {
+      "name": "Email Templates",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Email Template",
+      "parameters": [
+        {
+          "name": "ID"
+        }
+      ],
+      "resultType": "Single"
+    },
+    {
+      "name": "Get Email Template by Name",
+      "parameters": [
+        {
+          "name": "name"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

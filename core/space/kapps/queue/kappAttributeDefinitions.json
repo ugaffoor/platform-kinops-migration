@@ -1,0 +1,57 @@
+[
+  {
+    "allowsMultiple": false,
+    "description": "The name of the package that this Kapp should use for display",
+    "name": "Bundle Package"
+  },
+  {
+    "allowsMultiple": true,
+    "description": "If the Kapp has custom workflow that should be executed when a form is Created, Updated, Deleted...etc)",
+    "name": "Custom Form Workflow"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Description of the Kapp",
+    "name": "Description"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "The Discussion Id related to this kapp",
+    "name": "Discussion Id"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "Discussion Server Url"
+  },
+  {
+    "allowsMultiple": true,
+    "description": "Defines which workflow type should be executed for each type of action. All values should be prefixed with an action (Created, Deleted, Updated) Workflow types are (Standard, True, False, or a custom process name) Example (Created - False | Deleted - True | Updated - My Custom Process)",
+    "name": "Form Workflow"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "Icon"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Notification template used when a submission has been completed.",
+    "name": "Notification Template Name - Complete"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Notification to send when tasks are created",
+    "name": "Notification Template Name - Create"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Team that owns and manages services in this kapp (overridden by form attributes)",
+    "name": "Owning Team"
+  },
+  {
+    "allowsMultiple": true,
+    "description": "Defines which workflow type should be executed for each type of action. All values should be prefixed with an action (Submitted, Created, Updated, Deleted) Workflow types are (Standard, True, False, or a custom process name) This attribute can be overridden by a form's attribute Example (Submitted - False | Submitted - True | Submitted - My Custom Process)",
+    "name": "Submission Workflow"
+  }
+]

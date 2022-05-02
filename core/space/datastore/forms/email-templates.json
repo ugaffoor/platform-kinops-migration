@@ -1,0 +1,297 @@
+{
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+
+  ],
+  "customHeadContent": "<style>\n.copyTags {\n    display: flex;\n}\n.copyTags.copyItem {\n    margin-right: 10px;\n    display: flex;\n}\n.copyTags.copyItem i.fa.fa-clipboard {\n    padding: 4px;\n}  \n#emailFooter {\n    visibility: hidden;\n}\n#copyValue {\n    float: right;\n    width: 10px;\n    height: 10px;\n    border: 0;\n}  \n</style>\n<script>\n  function copyMemberID() {\n    copyText=$(\"#copyValue\");\n    copyText.val(\"member('ID')\");\n  \tcopyText.select();\n    document.execCommand(\"copy\");\n  }\n  function copyFirstName() {\n    copyText=$(\"#copyValue\");\n    copyText.val(\"member('First Name')\");\n  \tcopyText.select();\n    document.execCommand(\"copy\");\n  }\n  function copyLastName() {\n    copyText=$(\"#copyValue\");\n    copyText.val(\"member('Last Name')\");\n  \tcopyText.select();\n    document.execCommand(\"copy\");\n  }\n  function copyEmailFooter() {\n    copyText=$(\"#copyValue\");\n    copyText.val($('#emailFooter').val());\n  \tcopyText.select();\n    document.execCommand(\"copy\");\n  }\n  function copyOptOut() {\n    copyText=$(\"#copyValue\");\n    copyText.val(\"<a href=\\\"${kappAttributes('Kinetic Email Server URL')}/opt-out?space=${spaceSlug}&id=member('ID')\\\">Opt-Out</a>\");\n  \tcopyText.select();\n    document.execCommand(\"copy\");\n  }\n</script>",
+  "description": "Maintain Email templates to quickly respond via emails.",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Category]",
+      "parts": [
+        "values[Category]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Category],values[Template Name]",
+      "parts": [
+        "values[Category]",
+        "values[Template Name]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Email Content]",
+      "parts": [
+        "values[Email Content]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Email JSON]",
+      "parts": [
+        "values[Email JSON]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Subject]",
+      "parts": [
+        "values[Subject]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Template Name]",
+      "parts": [
+        "values[Template Name]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "Email Templates",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Template Name",
+          "label": "Template Name",
+          "key": "f2",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Category",
+          "label": "Category",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Subject",
+          "label": "Subject",
+          "key": "f5",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "Copy Tags",
+          "text": "<div class=\"copyTags\">\n  <div class=\"copyItem\">\n    <div class=\"copySample\">member('ID')</div>\n    <i class=\"fa fa-clipboard\" aria-hidden=\"true\" onclick=\"copyMemberID()\"\n       placeholder=\"Copy tag to allow a Lead or Members unique ID to be applied\"\n    ></i>\n  </div>\n  <div class=\"copyItem\">\n    <div class=\"copySample\">member('First Name')</div>\n    <i class=\"fa fa-clipboard\" aria-hidden=\"true\" onclick=\"copyFirstName()\"\n\t\t\tplaceholder=\"Copy tag to allow a Lead or Members First Name to be applied\"\n       ></i>\n  </div>\n  <div class=\"copyItem\">\n    <div class=\"copySample\"> member('Last Name')</div>\n    <i class=\"fa fa-clipboard\" aria-hidden=\"true\" onclick=\"copyLastName()\"\n\t\t\tplaceholder=\"Copy tag to allow a Lead or Members Last Name to be applied\"       \n    ></i>\n  </div>\n  <div class=\"copyItem\">\n    <div class=\"copySample\"> Email Footer (HTML only)</div>\n    <i class=\"fa fa-clipboard\" aria-hidden=\"true\" onclick=\"copyEmailFooter()\"\n\t\t\tplaceholder=\"Copy tag to allow configured Email Footer to be applied\"       \n    ></i>\n  </div>\n  <div class=\"copyItem\">\n    <div class=\"copySample\"> Opt-Out (HTML only)</div>\n    <i class=\"fa fa-clipboard\" aria-hidden=\"true\" onclick=\"copyOptOut()\"\n\t\t\tplaceholder=\"Copy tag to allow Opt-Out URL to be applied\"       \n    ></i>\n  </div>\n\t<input id=\"emailFooter\" name=\"emailFooter\" class=\"emailFooter\"/>\n\t<input id=\"copyValue\" name=\"copyValue\" class=\"copyField\"/>\n</div>\n",
+          "visible": true,
+          "renderAttributes": {
+          }
+        },
+        {
+          "type": "field",
+          "name": "Email Content",
+          "label": "Email Content",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": "",
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 20
+        },
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "Email Editor",
+          "text": "<div id=\"email_editor\" class=\"ql-editor\"></div>",
+          "visible": true,
+          "renderAttributes": {
+          }
+        },
+        {
+          "type": "field",
+          "name": "Email JSON",
+          "label": "Email JSON",
+          "key": "f3",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Show Review",
+          "type": "Load",
+          "action": "Custom",
+          "code": "$(\"#email_editor\").html(K('field[Email Content]').value());\nK('field[Email Content]').hide();",
+          "runIf": "form('review')"
+        }
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Data Admins"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Data Admins"
+    }
+  ],
+  "slug": "email-templates",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Category')} - ${values('Template Name')}"
+}

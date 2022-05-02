@@ -1,0 +1,73 @@
+{
+  "activeMappingName": "Program Belts",
+  "attributes": [
+    {
+      "name": "Belt"
+    },
+    {
+      "name": "Belt Order"
+    },
+    {
+      "name": "Program"
+    },
+    {
+      "name": "Program Order"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Program Order",
+          "structureField": "${fields('values[Program Order]')}"
+        },
+        {
+          "name": "Program",
+          "structureField": "${fields('values[Program]')}"
+        },
+        {
+          "name": "Belt Order",
+          "structureField": "${fields('values[Belt Order]')}"
+        },
+        {
+          "name": "Belt",
+          "structureField": "${fields('values[Belt]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Program Belts",
+      "qualifications": [
+        {
+          "name": "Programs",
+          "query": "formSlug=program-belts&limit=1000&index=values[Status]&q=values[Status]=\"Active\""
+        },
+        {
+          "name": "Belts",
+          "query": "formSlug=program-belts&limit=1000&index=values[Status],values[Program]&q=values[Status]=\"Active\"  AND values[Program]=\"${parameters('Program')}\""
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "Program Belts",
+  "qualifications": [
+    {
+      "name": "Belts",
+      "parameters": [
+        {
+          "name": "Program"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Programs",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

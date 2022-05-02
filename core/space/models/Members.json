@@ -1,0 +1,301 @@
+{
+  "activeMappingName": "Members",
+  "attributes": [
+    {
+      "name": "Address"
+    },
+    {
+      "name": "Admin Fee"
+    },
+    {
+      "name": "Billing Customer Id"
+    },
+    {
+      "name": "Billing Customer Reference"
+    },
+    {
+      "name": "Billing User"
+    },
+    {
+      "name": "Covid19 Waiver"
+    },
+    {
+      "name": "Date Joined"
+    },
+    {
+      "name": "DOB"
+    },
+    {
+      "name": "Email"
+    },
+    {
+      "name": "Emergency Contact Name"
+    },
+    {
+      "name": "Emergency Contact Phone"
+    },
+    {
+      "name": "Emergency Contact Relationship"
+    },
+    {
+      "name": "First Name"
+    },
+    {
+      "name": "Gender"
+    },
+    {
+      "name": "id"
+    },
+    {
+      "name": "Last Name"
+    },
+    {
+      "name": "Last Promotion"
+    },
+    {
+      "name": "Max Weekly Classes"
+    },
+    {
+      "name": "Medical Allergies"
+    },
+    {
+      "name": "Member ID"
+    },
+    {
+      "name": "Member Type"
+    },
+    {
+      "name": "Membership Cost"
+    },
+    {
+      "name": "Next Schedule Promotion"
+    },
+    {
+      "name": "Phone Number"
+    },
+    {
+      "name": "Postcode"
+    },
+    {
+      "name": "Program"
+    },
+    {
+      "name": "Ranking Belt"
+    },
+    {
+      "name": "Ranking Program"
+    },
+    {
+      "name": "State"
+    },
+    {
+      "name": "Suburb"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "First Name",
+          "structureField": "${fields('values[First Name]')}"
+        },
+        {
+          "name": "Address",
+          "structureField": "${fields('values[Address]')}"
+        },
+        {
+          "name": "Date Joined",
+          "structureField": "${fields('values[Date Joined]')}"
+        },
+        {
+          "name": "DOB",
+          "structureField": "${fields('values[DOB]')}"
+        },
+        {
+          "name": "Email",
+          "structureField": "${fields('values[Email]')}"
+        },
+        {
+          "name": "Emergency Contact Name",
+          "structureField": "${fields('values[Emergency Contact Name]')}"
+        },
+        {
+          "name": "Emergency Contact Phone",
+          "structureField": "${fields('values[Emergency Contact Phone]')}"
+        },
+        {
+          "name": "Emergency Contact Relationship",
+          "structureField": "${fields('values[Emergency Contact Relationship]')}"
+        },
+        {
+          "name": "Gender",
+          "structureField": "${fields('values[Gender]')}"
+        },
+        {
+          "name": "Last Name",
+          "structureField": "${fields('values[Last Name]')}"
+        },
+        {
+          "name": "Last Promotion",
+          "structureField": "${fields('values[Last Promotion]')}"
+        },
+        {
+          "name": "Medical Allergies",
+          "structureField": "${fields('values[Medical Allergies]')}"
+        },
+        {
+          "name": "Member Type",
+          "structureField": "${fields('values[Member Type]')}"
+        },
+        {
+          "name": "Membership Cost",
+          "structureField": "${fields('values[Membership Cost]')}"
+        },
+        {
+          "name": "Next Schedule Promotion",
+          "structureField": "${fields('values[Next Schedule Promotion]')}"
+        },
+        {
+          "name": "Phone Number",
+          "structureField": "${fields('values[Phone Number]')}"
+        },
+        {
+          "name": "Postcode",
+          "structureField": "${fields('values[Postcode]')}"
+        },
+        {
+          "name": "Ranking Belt",
+          "structureField": "${fields('values[Ranking Belt]')}"
+        },
+        {
+          "name": "Ranking Program",
+          "structureField": "${fields('values[Ranking Program]')}"
+        },
+        {
+          "name": "State",
+          "structureField": "${fields('values[State]')}"
+        },
+        {
+          "name": "Suburb",
+          "structureField": "${fields('values[Suburb]')}"
+        },
+        {
+          "name": "id",
+          "structureField": "${fields('id')}"
+        },
+        {
+          "name": "Member ID",
+          "structureField": "${fields('values[Member ID]')}"
+        },
+        {
+          "name": "Billing Customer Id",
+          "structureField": "${fields('values[Billing Customer Id]')}"
+        },
+        {
+          "name": "Billing Customer Reference",
+          "structureField": "${fields('values[Billing Customer Reference]')}"
+        },
+        {
+          "name": "Covid19 Waiver",
+          "structureField": "${fields('values[Covid19 Waiver]')}"
+        },
+        {
+          "name": "Billing User",
+          "structureField": "${fields('values[Billing User]')}"
+        },
+        {
+          "name": "Program",
+          "structureField": "${fields('values[Ranking Program]')}"
+        },
+        {
+          "name": "Max Weekly Classes",
+          "structureField": "${fields('values[Max Weekly Classes]')}"
+        },
+        {
+          "name": "Admin Fee",
+          "structureField": "${fields('values[Admin Fee]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Members",
+      "qualifications": [
+        {
+          "name": "Active Members",
+          "query": "kappSlug=gbmembers&formSlug=member&q=values[Status]=\"Active\""
+        },
+        {
+          "name": "Get Member",
+          "query": "id=${parameters('ID')}"
+        },
+        {
+          "name": "Get Billing Members",
+          "query": "kappSlug=gbmembers&formSlug=member&q=values[Billing User]=\"YES\" AND values[Status]=\"Active\""
+        },
+        {
+          "name": "Get Frozen Members",
+          "query": "kappSlug=gbmembers&formSlug=member&q=values[Status]=\"Frozen\" OR values[Status]=\"Pending Freeze\""
+        },
+        {
+          "name": "Get Member by Username",
+          "query": "kappSlug=gbmembers&formSlug=member&q=values[Member ID]=\"${parameters(\"username\")}\""
+        },
+        {
+          "name": "Get Active and Frozen Members",
+          "query": "kappSlug=gbmembers&formSlug=member&q=values[Status]=\"Active\" OR  values[Status]=\"Frozen\" OR values[Status]=\"Pending Freeze\" OR values[Status]=\"Pending Cancellation\""
+        }
+      ],
+      "structure": "Submissions"
+    }
+  ],
+  "name": "Members",
+  "qualifications": [
+    {
+      "name": "Active Members",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Active and Frozen Members",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Billing Members",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Frozen Members",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Member",
+      "parameters": [
+        {
+          "name": "ID"
+        }
+      ],
+      "resultType": "Single"
+    },
+    {
+      "name": "Get Member by Username",
+      "parameters": [
+        {
+          "name": "username"
+        }
+      ],
+      "resultType": "Single"
+    }
+  ],
+  "status": "Active"
+}

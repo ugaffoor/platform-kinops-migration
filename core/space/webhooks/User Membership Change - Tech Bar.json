@@ -1,0 +1,8 @@
+{
+  "event": "Membership Change",
+  "filter": "",
+  "name": "User Membership Change - Tech Bar",
+  "type": "User",
+  "url": "/app/api/v1/run-tree/${space('attribute:Task Source Name')}/Users/Scheduler%20User%20Membership%20Change",
+  "attributes": null
+}

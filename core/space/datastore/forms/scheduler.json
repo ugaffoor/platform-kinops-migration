@@ -1,0 +1,783 @@
+{
+  "attributes": [
+    {
+      "name": "Datastore Configuration",
+      "values": [
+        "{\"columns\":[{\"name\":\"Id\",\"label\":\"Id\",\"type\":\"value\",\"visible\":false},{\"name\":\"Name\",\"label\":\"Name\",\"type\":\"value\",\"visible\":false},{\"name\":\"Status\",\"label\":\"Status\",\"type\":\"value\",\"visible\":false},{\"name\":\"Description\",\"label\":\"Description\",\"type\":\"value\",\"visible\":false},{\"name\":\"Location\",\"label\":\"Location\",\"type\":\"value\",\"visible\":false},{\"name\":\"Type\",\"label\":\"Type\",\"type\":\"value\",\"visible\":false},{\"name\":\"Time Interval\",\"label\":\"Time Interval\",\"type\":\"value\",\"visible\":false},{\"name\":\"Reservation Timeout\",\"label\":\"Reservation Timeout\",\"type\":\"value\",\"visible\":false},{\"name\":\"handle\",\"label\":\"Handle\",\"type\":\"system\",\"visible\":true},{\"name\":\"label\",\"label\":\"Label\",\"type\":\"system\",\"visible\":true},{\"name\":\"createdAt\",\"label\":\"Created At\",\"type\":\"system\",\"visible\":false},{\"name\":\"createdBy\",\"label\":\"Created By\",\"type\":\"system\",\"visible\":false},{\"name\":\"updatedAt\",\"label\":\"Updated At\",\"type\":\"system\",\"visible\":false},{\"name\":\"updatedBy\",\"label\":\"Updated By\",\"type\":\"system\",\"visible\":false},{\"name\":\"id\",\"label\":\"Id\",\"type\":\"system\",\"visible\":false}],\"defaultSearchIndex\":null}"
+      ]
+    },
+    {
+      "name": "Datastore Hidden",
+      "values": [
+        "True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+
+  ],
+  "customHeadContent": null,
+  "description": "",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Description]",
+      "parts": [
+        "values[Description]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Details]",
+      "parts": [
+        "values[Details]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Id]",
+      "parts": [
+        "values[Id]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Latitude]",
+      "parts": [
+        "values[Latitude]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Location]",
+      "parts": [
+        "values[Location]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Longitude]",
+      "parts": [
+        "values[Longitude]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Name]:UNIQUE",
+      "parts": [
+        "values[Name]"
+      ],
+      "unique": true
+    },
+    {
+      "name": "values[Reservation Timeout]",
+      "parts": [
+        "values[Reservation Timeout]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Scheduling Range End Date]",
+      "parts": [
+        "values[Scheduling Range End Date]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Scheduling Range Start Date]",
+      "parts": [
+        "values[Scheduling Range Start Date]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Scheduling Window]",
+      "parts": [
+        "values[Scheduling Window]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status]",
+      "parts": [
+        "values[Status]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status],values[Type]",
+      "parts": [
+        "values[Status]",
+        "values[Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status],values[Type],values[Name]",
+      "parts": [
+        "values[Status]",
+        "values[Type]",
+        "values[Name]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Time Interval]",
+      "parts": [
+        "values[Time Interval]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Timezone]",
+      "parts": [
+        "values[Timezone]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Type]",
+      "parts": [
+        "values[Type]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Type],values[Name]",
+      "parts": [
+        "values[Type]",
+        "values[Name]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "Scheduler",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Id",
+          "label": "Id",
+          "key": "f8",
+          "defaultValue": "",
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Name",
+          "label": "Name",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Status",
+          "label": "Status",
+          "key": "f5",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Active",
+              "value": "Active"
+            },
+            {
+              "label": "Inactive",
+              "value": "Inactive"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Description",
+          "label": "Description",
+          "key": "f3",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Details",
+          "label": "Details",
+          "key": "f14",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 3
+        },
+        {
+          "type": "field",
+          "name": "Timezone",
+          "label": "Timezone",
+          "key": "f10",
+          "defaultValue": "",
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": false,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "dropdown",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Location",
+          "label": "Location",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 3
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Coordinates",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+            "class": "row",
+            "style": "margin-top: -1rem; margin-bottom: -1rem;"
+          },
+          "elements": [
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Left Column",
+              "title": null,
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+                "class": "col-md-6"
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Latitude",
+                  "label": "Latitude",
+                  "key": "f15",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": "values('Longitude') != null",
+                  "requiredMessage": "Latitude is required if Longitude is provided.",
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Right Column",
+              "title": null,
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+                "class": "col-md-6"
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Longitude",
+                  "label": "Longitude",
+                  "key": "f16",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": "values('Latitude') != null",
+                  "requiredMessage": "Longitude is required if Latitude is provided.",
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "Coordinates Help Text",
+          "text": "<div>\n  Providing the latitude and longitude will allow users to find the nearest locations.\n</div>",
+          "visible": true,
+          "renderAttributes": {
+            "style": "margin: -0.75rem 0 1rem; font-size: 90%; font-style: italic;"
+          }
+        },
+        {
+          "type": "field",
+          "name": "Type",
+          "label": "Type",
+          "key": "f6",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Time Interval",
+          "label": "Time Interval",
+          "key": "f7",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": {
+            "regex": "^\\d*(\\d0|5)$",
+            "message": "Time Interval must be multiple of 5."
+          },
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "Time Interval Help Text",
+          "text": "<div>\n  Time Interval must be a numeric value in minutes which defines the interval at which events can be scheduled. Event durations will need to be a multiple of the time interval.\n</div>",
+          "visible": true,
+          "renderAttributes": {
+            "style": "margin: -0.75rem 0 1rem; font-size: 90%; font-style: italic;"
+          }
+        },
+        {
+          "type": "field",
+          "name": "Reservation Timeout",
+          "label": "Reservation Timeout",
+          "key": "f9",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": {
+            "regex": "^\\d+$",
+            "message": "Reservation Timeout must be an integer."
+          },
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "Reservation Timeout Help Text",
+          "text": "<div>\n  Reservation Timeout must be a numeric value in minutes which defines how long a time slot will be held for a user after they select it. They will have to complete the request to reserve the slot.\n</div>",
+          "visible": true,
+          "renderAttributes": {
+            "style": "margin: -0.75rem 0 1rem; font-size: 90%; font-style: italic;"
+          }
+        },
+        {
+          "type": "button",
+          "label": "Show Advanced Settings",
+          "name": "Show Advanced Settings",
+          "visible": true,
+          "enabled": true,
+          "renderType": "custom",
+          "renderAttributes": {
+            "class": "btn-dark"
+          },
+          "events": [
+            {
+              "name": "Show Advanced Settings",
+              "type": "Click",
+              "action": "Custom",
+              "code": "K('button[Show Advanced Settings]').hide();\nK('section[Advanced Settings]').show();"
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Advanced Settings",
+          "title": "Advanced Settings",
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Scheduling Window",
+              "label": "Scheduling Window",
+              "key": "f11",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": {
+                "regex": "^\\d+$",
+                "message": "Scheduling Window must be an integer."
+              },
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Scheduling Window Help Text",
+              "text": "<div>\n  Scheduling Window must be a numeric value in days which defines how many days in advance an event can be scheduled. Leave this field empty to make the window unlimited.\n</div>",
+              "visible": true,
+              "renderAttributes": {
+                "style": "margin: -0.75rem 0 1rem; font-size: 90%; font-style: italic;"
+              }
+            },
+            {
+              "type": "field",
+              "name": "Scheduling Range Start Date",
+              "label": "Scheduling Range Start Date",
+              "key": "f12",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Scheduling Range Start Date Help Text",
+              "text": "<div>\n  Scheduling Range Start Date is the first date for which events may be scheduled. \n</div>",
+              "visible": true,
+              "renderAttributes": {
+                "style": "margin: -0.75rem 0 1rem; font-size: 90%; font-style: italic;"
+              }
+            },
+            {
+              "type": "field",
+              "name": "Scheduling Range End Date",
+              "label": "Scheduling Range End Date",
+              "key": "f13",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Scheduling Range End Date Help Text",
+              "text": "<div>\n  Scheduling Range End Date is the last date for which events may be scheduled. \n</div>",
+              "visible": true,
+              "renderAttributes": {
+                "style": "margin: -0.75rem 0 1rem; font-size: 90%; font-style: italic;"
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Save",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Timezones",
+          "type": "Load",
+          "action": "Custom",
+          "code": "var currentTimezone = K('submission').value('Timezone') && K('submission').value('Timezone').replace(/\\\\\\//, '/');\nif (currentTimezone) {\n  K('field[Timezone]').options([{ label: currentTimezone, value: currentTimezone }]);\n  K('field[Timezone]').value(currentTimezone);\n}\nK.api('get', bundle.apiLocation() + '/meta/timezones', {\n\tsuccess: function(data) {\n    K('field[Timezone]').options(\n    \tdata.timezones.filter(function(tz) {\n      \treturn moment.tz.zone(tz.id);\n      }).map(function(tz) {\n      \treturn {\n        \tlabel: tz.id + ' (' + tz.name + ')',\n          value: tz.id\n        };\n      })\n    );\n    K('field[Timezone]').enable();\n    if (currentTimezone) {\n      K('field[Timezone]').value(currentTimezone);\n    }\n  },\n  error: function() {\n  \tbundle.helpers.alert({\n    \telement: K('field[Timezone]').element(),\n      anchor: K('field[Timezone]').wrapper(),\n      message: 'Timezones could not be loaded.'\n    });\n  },\n});"
+        }
+      ],
+      "name": "Scheduler",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Scheduler Admins - Scheduler Managers"
+    },
+    {
+      "endpoint": "Modification",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Scheduler Admins - Scheduler Managers"
+    }
+  ],
+  "slug": "scheduler",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Name')}"
+}

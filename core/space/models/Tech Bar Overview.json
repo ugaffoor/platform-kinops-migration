@@ -1,0 +1,60 @@
+{
+  "activeMappingName": "Tech Bar Overview",
+  "attributes": [
+    {
+      "name": "Status"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Status",
+          "structureField": "${fields('values[Status]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Tech Bar Overview",
+      "qualifications": [
+        {
+          "name": "Appointments Overview",
+          "query": "kappSlug=tech-bar&formSlug=appointment&limit=1000&q=values[Scheduler Id]=\"${parameters('Scheduler Id')}\" AND values[Event Date]=\"${parameters('Event Date')}\" AND values[Status]=\"Checked In\""
+        },
+        {
+          "name": "Walk-ins Overview",
+          "query": "kappSlug=tech-bar&formSlug=walk-in&limit=1000&q=values[Scheduler Id]=\"${parameters('Scheduler Id')}\" AND values[Date]=\"${parameters('Event Date')}\" AND values[Status]=\"Checked In\""
+        }
+      ],
+      "structure": "Submissions"
+    }
+  ],
+  "name": "Tech Bar Overview",
+  "qualifications": [
+    {
+      "name": "Appointments Overview",
+      "parameters": [
+        {
+          "name": "Event Date"
+        },
+        {
+          "name": "Scheduler Id"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Walk-ins Overview",
+      "parameters": [
+        {
+          "name": "Event Date"
+        },
+        {
+          "name": "Scheduler Id"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

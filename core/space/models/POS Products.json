@@ -1,0 +1,115 @@
+{
+  "activeMappingName": "POS Products",
+  "attributes": [
+    {
+      "name": "Colour"
+    },
+    {
+      "name": "Discount"
+    },
+    {
+      "name": "Display Type"
+    },
+    {
+      "name": "id"
+    },
+    {
+      "name": "Image URL"
+    },
+    {
+      "name": "Name"
+    },
+    {
+      "name": "Price"
+    },
+    {
+      "name": "Product Type"
+    },
+    {
+      "name": "Sizes"
+    },
+    {
+      "name": "SKU"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Product Type",
+          "structureField": "${fields('values[Product Type]')}"
+        },
+        {
+          "name": "Display Type",
+          "structureField": "${fields('values[Display Type]')}"
+        },
+        {
+          "name": "Name",
+          "structureField": "${fields('values[Name]')}"
+        },
+        {
+          "name": "Image URL",
+          "structureField": "${fields('values[Image URL]')}"
+        },
+        {
+          "name": "SKU",
+          "structureField": "${fields('values[SKU]')}"
+        },
+        {
+          "name": "Price",
+          "structureField": "${fields('values[Price]')}"
+        },
+        {
+          "name": "Discount",
+          "structureField": "${fields('values[Discount]')}"
+        },
+        {
+          "name": "id",
+          "structureField": "${fields('id')}"
+        },
+        {
+          "name": "Colour",
+          "structureField": "${fields('values[Colour]')}"
+        },
+        {
+          "name": "Sizes",
+          "structureField": "${fields('values[Sizes]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "POS Products",
+      "qualifications": [
+        {
+          "name": "Get Products",
+          "query": "formSlug=pos-product&limit=1000&index=values[Status]&q=values[Status]=\"Active\""
+        },
+        {
+          "name": "Get Product",
+          "query": "id=${parameters('ID')}"
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "POS Products",
+  "qualifications": [
+    {
+      "name": "Get Product",
+      "parameters": [
+        {
+          "name": "ID"
+        }
+      ],
+      "resultType": "Single"
+    },
+    {
+      "name": "Get Products",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}

@@ -1,0 +1,1099 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Cancel Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Cloning Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Comment Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Submitted - True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Leads",
+      "name": "Get Lead",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Leads')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Lead",
+      "status": "Active"
+    },
+    {
+      "model": "Leads",
+      "name": "Leads",
+      "order": [
+        {
+          "attribute": "Last Name",
+          "direction": "asc"
+        }
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Active Leads",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+    {
+      "category": {
+        "slug": "registrations"
+      }
+    }
+  ],
+  "customHeadContent": "<style>\n  .brochureImage{\n  \tbackground-image: url(https://s3-ap-southeast-2.amazonaws.com/gbfms-files/registration/Jiu_JitsuKids.png);\n  \theight: 988px;\n    max-width: 640px;\t\t\n    background-size: contain;\n  }  \n  \n#equipe {\n    display: block;\n    background: url(https://s3-ap-southeast-2.amazonaws.com/gbfms-files/registration/boy.png) no-repeat;\n    background-size: contain;\n    height: 200px;\n  \tbackground-color: white;\n}  \n.emf-section-text {\n    font-family: Questrial;\n    color: rgb(96, 96, 96);\n    background-image: none;\n    font-size: 14px;\n}\n.emf-section-text {\n    clear: both;\n    font-size: 13px;\n    padding: 2px 0;\n}\n.programs {\n    font-family: \"Days One\";\n    font-size: 16px;\n    padding: 12px 0 0 320px;\n    display: block;\n}  \n#emf-li-16 .emf-field-grid, #emf-li-16 tr {\n    border: none;\n    border-top: 2px solid #000;\n}\n\n.emf-field-grid {\n    border-collapse: collapse;\n    margin: 0 0 .9em;\n    background: white;\n    width: 100%;\n    border: 1px solid #DEDEDE;\n    border-bottom: none;\n    clear: both;\n}\n#emf-li-16 .emf-field-grid, #emf-li-16 tr {\n    border: none;\n    border-top: 2px solid #000;\n}\n\n.emf-banding-head {\n    background-color: transparent;\n}\n.emf-banding-odd {\n    background-color: #fff;\n}\n.emf-field-grid th {\n    text-align: left;\n    font-weight: 700;\n}\n\n.emf-field-grid th, .emf-field-grid td {\n    border-bottom: 1px solid #DEDEDE;\n    padding: 8px;\n}\n#emf-container .emf-field-grid td {\n    border-left: 2px solid #000;\n    padding: 10px 0;\n    font-size: 18px;\n}\n\n#emf-container .emf-field-grid td {\n}\n#emf-form td {\n    padding: 2px;\n}\n.emf-field-grid td {\n    border-left: 1px solid #CCC;\n    text-align: center;\n    vertical-align: middle;\n}\n.emf-field-grid th, .emf-field-grid td {\n    border-bottom: 1px solid #DEDEDE;\n    padding: 8px;\n}\n#emf-li-16 input {\n    border: none;\n    padding: 0 5px;\n    height: 40px;\n    background-color: transparent;\n    outline: none;\n}\n#emf-form input, #emf-form select, #emf-form textarea {\n    max-width: 100%;\n}\n#curr {\n    display: block;\n    height: 250px;\n    background: url(https://s3-ap-southeast-2.amazonaws.com/gbfms-files/registration/level-age.png) no-repeat left;\n    background-size: contain;\n}  \n#emf-li-42 {\n    background: url(https://s3-ap-southeast-2.amazonaws.com/gbfms-files/registration/belt-system.png) no-repeat;\n    background-size: contain;\n    height: 550px;\n}\n  \n.emf-li-field .emf-div-field-section {\n    padding-left: 115px !important;\n}\n</style>",
+  "description": "Kids Registration",
+  "name": "Testing Menus",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Information",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Brochure Image",
+              "text": "<div class=\"brochureImageDiv\"></div>",
+              "visible": true,
+              "renderAttributes": {
+                "class": "brochureImage"
+              }
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Brochure Info",
+              "text": "<div class=\"emf-div-field-section\">\n  <div class=\"emf-section-separator\"></div>\n\t<h3 id=\"element_0\" name=\"element_0\">Features</h3>\n  <div class=\"emf-section-text\">We are proud of our Gracie Barra school our program director is happy to show you around. <br>\n\t\t<br>\n\t\t<span id=\"equipe\">\n  \t<span class=\"programs\">Office/Front Desk</span>\n  \t<span class=\"programs\">Pro Shop</span>\n  \t<span class=\"programs\">Training Area</span>\n  \t<span class=\"programs\">Changing Room</span>\n  \t<span class=\"programs\">Restrooms</span>\n  \t</span>\n  </div>\n</div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Select Lead",
+          "title": "Select Lead",
+          "visible": "!form('review')",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Leads",
+              "label": "Leads",
+              "key": "f47",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "A lead must be selected",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Lead",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('bridgedResource[Get Lead]').load({\n  attributes: ['First Name', 'Last Name','Address','City','State','Postcode','Phone Number','Gender'],\n  values: {},\n  success: function(bridgedData) {\n    K('field[First Name]').value(bridgedData['First Name']);\n    K('field[Last Name]').value(bridgedData['Last Name']);\n    K('field[Address]').value(bridgedData['Address']);\n    K('field[City]').value(bridgedData['Suburb']);\n    K('field[State]').value(bridgedData['State']);\n    K('field[Postcode]').value(bridgedData['Postcode']);\n    K('field[Email]').value(bridgedData['Email']);\n    K('field[Phone]').value(bridgedData['Phone Number']);\n    K('field[Date of birth]').value(bridgedData['DOB']);\n\n    K('section[Person Information]').show();\n    K('section[Report Information]').show();    \n    K('section[Health Information]').show();        \n    K('section[Personal Jiu Jitsu Objectives]').show();        \n    K('section[Signature]').show();        \n    K('section[Path to Excellence]').show();        \n    \n    K('section[Menu Space]').hide();    \n  }\n});",
+                  "bridgedResourceName": null,
+                  "runIf": "values('Leads')!==null"
+                },
+                {
+                  "name": "Clear Member Details",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('field[First Name]').value(\"\");\nK('field[Last Name]').value(\"\");\nK('field[Address]').value(\"\");\nK('field[City]').value(\"\");\nK('field[State]').value(\"\");\nK('field[Postcode]').value(\"\");\nK('field[Email]').value(\"\");\nK('field[Phone]').value(\"\");\n\nK('section[Menu Space]').show();    \n",
+                  "runIf": "values('Leads')===null"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Lead Select",
+              "text": "<div id=\"selectLeadMenu\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Person Information",
+          "title": "Person Information",
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "First Name",
+              "label": "First Name",
+              "key": "f28",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Last Name",
+              "label": "Last Name",
+              "key": "f29",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Gender",
+              "label": "Gender",
+              "key": "f88",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "radio",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Male",
+                  "value": "Male"
+                },
+                {
+                  "label": "Female",
+                  "value": "Female"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Address",
+              "label": "Address",
+              "key": "f30",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "City",
+              "label": "City",
+              "key": "f49",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "State",
+              "label": "State",
+              "key": "f50",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Postcode",
+              "label": "Postcode",
+              "key": "f51",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Email",
+              "label": "Email",
+              "key": "f89",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Phone",
+              "label": "Phone",
+              "key": "f52",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Date of birth",
+              "label": "Date of birth",
+              "key": "f53",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Parent or Guardian",
+              "label": "Parent or Guardian",
+              "key": "f55",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Report Information",
+          "title": "Report Information",
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "How many days a week would you like to train",
+              "label": "How many days a week would you like to train?",
+              "key": "f72",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Time During Week",
+              "text": "<h3 id=\"element_24\" name=\"element_24\">Open 7 Days a Week*</h3>\n<div class=\"emf-section-text\">* What days are you free to train with us?</div>\n<table class=\"emf-field-grid\" my_statement_order_type=\"\" my_choice_order_type=\"\">\n\t<thead>\n\t\t<tr class=\"emf-banding-head\"><th my_order_property=\"first\"></th>\n      <td width=\"11%\">M</td>\n      <td width=\"11%\">T</td>\n      <td width=\"11%\">W</td>\n      <td width=\"11%\">Th</td>\n      <td width=\"11%\">F</td>\n      <td width=\"11%\">S</td>\n      <td width=\"11%\">S</td>\n\t  </tr>\n  </thead>\n<tbody>\n<tr class=\"emf-banding-odd\">\n<th>Time</th><td>\n<input id=\"wdMon\" name=\"wdMon\" onChange=\"K('field[MondayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdTue\" name=\"wdTue\" onChange=\"K('field[TuesdayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdWed\" name=\"wdWed\" onChange=\"K('field[WednesdayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdThur\" name=\"wdThur\" onChange=\"K('field[ThursdayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdFrid\" name=\"wdFrid\" onChange=\"K('field[FridayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdSat\" name=\"wdSat\" onChange=\"K('field[SaturdayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdSun\" name=\"wdSun\" onChange=\"K('field[SundayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n</tr>\n</tbody>\n</table>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "MondayTime",
+              "label": "MondayTime",
+              "key": "f81",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "TuesdayTime",
+              "label": "TuesdayTime",
+              "key": "f82",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "WednesdayTime",
+              "label": "WednesdayTime",
+              "key": "f83",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "ThursdayTime",
+              "label": "ThursdayTime",
+              "key": "f84",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "FridayTime",
+              "label": "FridayTime",
+              "key": "f85",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "SaturdayTime",
+              "label": "SaturdayTime",
+              "key": "f86",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "SundayTime",
+              "label": "SundayTime",
+              "key": "f87",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Health Information",
+          "title": "Health Information",
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Any medical conditions we need to be aware of",
+              "label": "Any medical conditions we need to be aware of ?",
+              "key": "f75",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "radio",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Yes",
+                  "value": "Yes"
+                },
+                {
+                  "label": "No",
+                  "value": "No"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "If yes How can we help",
+              "label": "If yes, How can we help?",
+              "key": "f76",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Any medical conditions we need to be aware of')===\"Yes\"",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Personal Jiu Jitsu Objectives",
+          "title": "Personal Jiu Jitsu Objectives",
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Do you have any previous martial arts experience",
+              "label": "Do you have any previous martial arts experience?",
+              "key": "f77",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Do you participate in any current sport or activity",
+              "label": "Do you participate in any current sport or activity?",
+              "key": "f78",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "How long since you have been involved in any sports activity",
+              "label": "How long since you have been involved in any sports activity?",
+              "key": "f79",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "What are the three main benefits you expect to get out of your Brazilian Jiu Jitsu training",
+              "label": "What are the three main benefits you expect to get out of your Brazilian Jiu Jitsu training?",
+              "key": "f80",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "excercise",
+                  "value": "excercise"
+                },
+                {
+                  "label": "discipline",
+                  "value": "discipline"
+                },
+                {
+                  "label": "self defense",
+                  "value": "self defense"
+                },
+                {
+                  "label": "reduce stress",
+                  "value": "reduce stress"
+                },
+                {
+                  "label": "respect",
+                  "value": "respect"
+                },
+                {
+                  "label": "self confidence",
+                  "value": "self confidence"
+                },
+                {
+                  "label": "concentration",
+                  "value": "concentration"
+                },
+                {
+                  "label": "coordination",
+                  "value": "coordination"
+                },
+                {
+                  "label": "balance",
+                  "value": "balance"
+                },
+                {
+                  "label": "character development",
+                  "value": "character development"
+                },
+                {
+                  "label": "focus",
+                  "value": "focus"
+                },
+                {
+                  "label": "fun",
+                  "value": "fun"
+                },
+                {
+                  "label": "competition",
+                  "value": "competition"
+                },
+                {
+                  "label": "Art of Jiu Jitsu",
+                  "value": "Art of Jiu Jitsu"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Signature",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Person Signature",
+              "text": "<span>\n<i>I hereby acknowledge and understand that Brazilian Jiu Jitsu is a physical activity and learning self-defense skills involves some physical contact. GB Oceania Association Pty Ltd, Gracie Barra Sydney Academy Pty Ltd and or its staff and student are not to be hold liable or responsible for any risks and/or injuries as a result of training Brazilian Jiu-Jitsu. \n</i>\n</span>\n<label class=\"field-label required\">Person Signature</label><div id=\"person-signature-canvas\"/>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "Encoded Person Signature",
+              "label": "Encoded Person Signature",
+              "key": "f74",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "Signature required",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Path to Excellence",
+          "title": "Path to Excellence",
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Path to Excellence HTML",
+              "text": "<div class=\"emf-section-text\">\n  •Why is it important for you to achieve your black belt?<br>\n\t•Reasonable investment? What is that worth to you?\n</div>\n<div class=\"emf-div-field-section\">\n  <div class=\"emf-section-separator\"></div>\n\t<h3 id=\"element_36\" name=\"element_36\"></h3>\n  <div class=\"emf-section-text\">\n    <span id=\"curr\"><br>\n\t\t<br>\n\t\t</span><br>\n\t\t<br>\n\t</div>\n</div>\n\n<div id=\"emf-li-42\" class=\"emf-li-field emf-field-section_break\">\n\t<div class=\"emf-div-field-section\">\n    <div class=\"emf-section-separator\"></div>\n\t\t<h3 id=\"element_42\" name=\"element_42\"></h3>\n    <div class=\"emf-section-text\"><br>\n\t\t\t<br>\n\t\t</div>\n  </div>\n\t<div class=\"emf-clear\"></div>\n</div>\n\n<h3 id=\"element_38\" name=\"element_38\">The hardest part about becoming a GB Black Belt is getting started</h3>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Menu Space",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Menu Space",
+              "text": "<div style=\"height:300px\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Signatures",
+          "type": "Load",
+          "action": "Custom",
+          "code": "bundle.config.widgets.signatureCanvas({\n  element: K(\"form\").find(\"#person-signature-canvas\")[0],\n  initialValue: K(\"field[Encoded Person Signature]\").value(),\n  onChange: function(value) {\n\t  K(\"field[Encoded Person Signature]\").value(value);\n\t},\n  height: 250,\n  width: 500,\n  disable: form('review'),\n  ref: function(el) {\n    window.personSignaturePad = el;\n  },\n});\n",
+          "runIf": ""
+        },
+        {
+          "name": "Load Selections",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('bridgedResource[Leads]').load({\n  attributes: ['First Name', 'Last Name','id'],\n  values: {},\n  success: function(bridgedData) {\n    var options=[{'value':'NEW_LEAD','label':'New Lead'}];\n    $.each( bridgedData, function( key, value ) {\n\t    console.log(value['id']+\"-\"+value['First Name']+\" \"+value['Last Name']);\n\t\t\toptions[options.length]={'label':value['First Name']+\" \"+value['Last Name'], 'value':value['id']};\n\t\t});\n\t\tK('field[Leads]').options(options);\n    bundle.config.widgets.selectMenu({\n      element: K(\"form\").find(\"#selectLeadMenu\")[0],\n      options: K('field[Leads]').options(),\n      onChange: function(option) {\n        K('field[Leads]').value(option.value);\n        setTimeout(function(){\n          $(K(\"form\").find(\"#selectLeadMenu .css-1492t68\")).html(option.label);\n        },100);\n      },\n      value: K('field[Leads]').value(),\n    });\n  }\n});\n"
+        },
+        {
+          "name": "Handle Errors",
+          "type": "Submit",
+          "action": "Custom",
+          "code": "if (!jQuery.isEmptyObject(K('form').validate())){\n  setTimeout(function(){\n  if ($(\".has-error\").length>0){\n    $(\".has-error\").each(function(i,l) { \n      if ($(l).attr(\"data-element-name\").indexOf(\"Signature\")!==-1) {\n        sigCanElName=$(l).attr(\"data-element-name\").replace(\"Encoded \",\"\");\n        $(K('content['+sigCanElName+']').element()).addClass(\"has-error\");\n      }\n    })  \n    $('.main-container').animate({\n      scrollTop: 0\n    },500);\n  }\n  },100);\n}"
+        },
+        {
+          "name": "Load Previous set page",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('section[Person Information]').show();\nK('section[Report Information]').show();    \nK('section[Health Information]').show();        \nK('section[Personal Jiu Jitsu Objectives]').show();        \nK('section[Signature]').show();        \nK('section[Path to Excellence]').show();        \n\nK('section[Menu Space]').hide();    \n\n$(\"#wdMon\").val(K('field[MondayTime]').value());\n$(\"#wdTue\").val(K('field[TuesdayTime]').value());\n$(\"#wdWed\").val(K('field[WednesdayTime]').value());\n$(\"#wdThur\").val(K('field[ThursdayTime]').value());\n$(\"#wdFrid\").val(K('field[FridayTime]').value());\n$(\"#wdSat\").val(K('field[SaturdayTime]').value());\n$(\"#wdSun\").val(K('field[SundayTime]').value());\n",
+          "runIf": "values('Leads')!==null && !form('review')"
+        },
+        {
+          "name": "Set Defaults",
+          "type": "Load",
+          "action": "Custom",
+          "code": "if (K('field[Leads]').value()===null) {\n  K('section[Menu Space]').show();   \n}else {\n  K('section[Menu Space]').hide();   \n}\n",
+          "runIf": "!form('review')"
+        },
+        {
+          "name": "Set Review",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('section[Person Information]').show();\nK('section[Report Information]').show();    \nK('section[Health Information]').show();        \nK('section[Personal Jiu Jitsu Objectives]').show();        \nK('section[Signature]').show();        \nK('section[Path to Excellence]').show();     \n\nK('section[Menu Space]').hide();    \n$(\"#wdMon\").val(K('field[MondayTime]').value());\n$(\"#wdMon\").attr('readonly', true);\n$(\"#wdTue\").val(K('field[TuesdayTime]').value());\n$(\"#wdTue\").attr('readonly', true);\n$(\"#wdWed\").val(K('field[WednesdayTime]').value());\n$(\"#wdWed\").attr('readonly', true);\n$(\"#wdThur\").val(K('field[ThursdayTime]').value());\n$(\"#wdThur\").attr('readonly', true);\n$(\"#wdFrid\").val(K('field[FridayTime]').value());\n$(\"#wdFrid\").attr('readonly', true);\n$(\"#wdSat\").val(K('field[SaturdayTime]').value());\n$(\"#wdSat\").attr('readonly', true);\n$(\"#wdSun\").val(K('field[SundayTime]').value());\n$(\"#wdSun\").attr('readonly', true);\n",
+          "runIf": "form('review')"
+        }
+      ],
+      "name": "Registration Information",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Authenticated Users"
+    }
+  ],
+  "slug": "testing-menus",
+  "status": "Active",
+  "submissionLabelExpression": "${values('First Name')} ${values('Last Name')}",
+  "type": "Service"
+}

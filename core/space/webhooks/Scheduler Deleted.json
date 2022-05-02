@@ -1,0 +1,8 @@
+{
+  "event": "Deleted",
+  "filter": "form('slug') === \"scheduler\"",
+  "name": "Scheduler Deleted",
+  "type": "Datastore Submission",
+  "url": "/app/api/v1/run-tree/Kinetic%20Request%20CE/Datastore%20Submissions%20%3E%20scheduler/Deleted",
+  "attributes": null
+}

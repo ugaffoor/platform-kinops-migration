@@ -1,0 +1,413 @@
+{
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+    {
+      "model": "POS Products",
+      "name": "Get Product By ID",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Product ID')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Product",
+      "status": "Active"
+    },
+    {
+      "model": "POS Products",
+      "name": "Get Products",
+      "order": [
+
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Get Products",
+      "status": "Active"
+    }
+  ],
+  "customHeadContent": null,
+  "description": "Stock quantity and sizes",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Colour]",
+      "parts": [
+        "values[Colour]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Product ID]",
+      "parts": [
+        "values[Product ID]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Product ID],values[Colour],values[Size]:UNIQUE",
+      "parts": [
+        "values[Product ID]",
+        "values[Colour]",
+        "values[Size]"
+      ],
+      "unique": true
+    },
+    {
+      "name": "values[Product ID],values[Size]",
+      "parts": [
+        "values[Product ID]",
+        "values[Size]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Product Name]",
+      "parts": [
+        "values[Product Name]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Quantity]",
+      "parts": [
+        "values[Quantity]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[SKU]",
+      "parts": [
+        "values[SKU]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Size Options]",
+      "parts": [
+        "values[Size Options]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Size]",
+      "parts": [
+        "values[Size]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "POS Stock",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Product ID",
+          "label": "Product ID",
+          "key": "f6",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+            {
+              "name": "Get Product Name",
+              "type": "Change",
+              "action": "Set Fields",
+              "mappings": [
+                {
+                  "field": "Product Name",
+                  "value": "${resources('Get Product By ID:Name')}",
+                  "visible": true
+                },
+                {
+                  "field": "SKU",
+                  "value": "${resources('Get Product By ID:SKU')}",
+                  "visible": true
+                },
+                {
+                  "field": "Colour",
+                  "value": "${resources('Get Product By ID:Colour')}",
+                  "visible": true
+                },
+                {
+                  "field": "Size Options",
+                  "value": "${resources('Get Product By ID:Sizes')}",
+                  "visible": true
+                }
+              ],
+              "bridgedResourceName": "Get Product By ID"
+            }
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "dropdown",
+          "choicesResourceName": "Get Products",
+          "choicesRunIf": null,
+          "choices": {
+            "label": "${resources('Get Products:Name')}-${resources('Get Products:Colour')}",
+            "value": "${resources('Get Products:id')}"
+          }
+        },
+        {
+          "type": "field",
+          "name": "Product Name",
+          "label": "Product Name",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Colour",
+          "label": "Colour",
+          "key": "f7",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "SKU",
+          "label": "SKU",
+          "key": "f2",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Size Options",
+          "label": "Size Options",
+          "key": "f8",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+            {
+              "name": "Load sizes",
+              "type": "Change",
+              "action": "Custom",
+              "code": "var sizeOptions=JSON.parse(K('field[Size Options]').value());\nvar options=[];\nsizeOptions.forEach((size, i) => {\n  options[options.length]={'label': size, 'value': size};\n});\n\nK('field[Size]').options(options);\n"
+            }
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Size",
+          "label": "Size",
+          "key": "f5",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "dropdown",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Quantity",
+          "label": "Quantity",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Data Admins"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Data Admins"
+    }
+  ],
+  "slug": "pos-stock",
+  "status": "New",
+  "submissionLabelExpression": "${values('Product Name')}-${values('Colour')}-${values('SKU')}-${values('Size')}-${values('Quantity')}"
+}

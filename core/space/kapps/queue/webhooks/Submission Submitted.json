@@ -1,0 +1,8 @@
+{
+  "event": "Submitted",
+  "filter": "",
+  "name": "Submission Submitted",
+  "type": "Submission",
+  "url": "/app/api/v1/run-tree/${space('attribute:Task Source Name')}/Submissions/Workflow%20Router",
+  "attributes": null
+}

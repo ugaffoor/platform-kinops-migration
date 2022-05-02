@@ -1,0 +1,1026 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Cancel Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Cloning Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Comment Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Submitted - True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Members",
+      "name": "Get Member",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Members')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Member",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Get Member by Username",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${identity('username')}",
+          "name": "username"
+        }
+      ],
+      "qualification": "Get Member by Username",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Members",
+      "order": [
+        {
+          "attribute": "Last Name",
+          "direction": "asc"
+        },
+        {
+          "attribute": "First Name",
+          "direction": "asc"
+        }
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Get Billing Members",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+    {
+      "category": {
+        "slug": "billing-registration"
+      }
+    }
+  ],
+  "customHeadContent": "<style>\n  .hidden{\n   display:none; \n  }\n</style>\n<script>\n\n</script>\n<script>\nfunction completeTableChange(){\n  K('field[Family Member]').value(\"\");\n  K('field[Programs]').value(\"\");\n  K('field[tableMemberID]').value(\"\");\n  K('field[tableMemberName]').value(\"\");\n  K('field[tableProgram]').value(\"\");\n  K('field[tableFee]').value(\"\");\n  \n  // Sort table\n  viewerConfig.response.sort(function(a, b){return b.cost - a.cost});\n  // Let calculate the discounts\n  viewerConfig.response.forEach(function(item, index){\n    if (index===0){\n      item.discount=\"0%\";\n      item.fee=((new Number(item.cost))).toFixed(2);\n    } else if(index===1){\n      item.discount=\"10%\";\n      item.fee=((new Number(item.cost))*0.9).toFixed(2);\n    } else if(index===2){\n      item.discount=\"20%\";\n      item.fee=((new Number(item.cost))*0.8).toFixed(2);\n    } else if(index>=3){\n      item.discount=\"30%\";\n      item.fee=((new Number(item.cost))*0.7).toFixed(2);\n    }      \n  });\n  \n  // Set payment value\n  var total=0;\n  viewerConfig.response.forEach(function(item, index){\n\t\ttotal=total+(new Number((new Number(item.fee)).toFixed(2)));\n  });\n  K('field[I promise to pay equal FREQUENCY instalments of]').value(total);\n\n  global.viewerConfig.renderer.type($('#memberTableDiv'),global.viewerConfig);\n\n  $('#member-table tbody tr').on( 'click', function () {\n    if ( $(this).hasClass('selected') ) {\n      $(this).removeClass('selected');\n    }\n    else {\n      $('#member-table').DataTable().$('tr.selected').removeClass('selected');\n      $(this).addClass('selected');\n    }\n  } );  \n  \n}  \n  \nfunction memberProgramAdded(memberID, feeProgram) {\n  found=false;\n\n  viewerConfig.response.forEach(function(item){\n      if (item.id===memberID && item.feeProgram===feeProgram) {\n        found=true;\n      }\n  });  \n  return found;\n}\n</script>",
+  "description": "Change Member payment type, such as Credit Card or Bank Details",
+  "name": "Paysmart Change Payment Type",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Emailed Message",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Emailed Member Info",
+              "text": "<h1>Paysmart Change Payment Type<h1>\n  <p>Change Member payment type, such as Credit Card or Bank Details</p>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Thank You",
+          "title": "Thank You",
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Info",
+              "text": "Your Payment Details have been recieved and updated.",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Not Billing Member",
+          "title": "",
+          "visible": "values('Billing User')!==\"YES\" && !K(\"identity\").teams.includes(\"Role::Program Managers\")",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Error",
+              "text": "You are not a valid PaySmart account user.",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Select Member",
+          "title": "Select Member",
+          "visible": "!form('review')",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Members",
+              "label": "Members",
+              "key": "f38",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "A member must be selected",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Members",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('bridgedResource[Get Member]').load({\n  attributes: ['Member ID', 'First Name', 'Last Name'],\n  values: {'ID' : 'Allen'},\n  success: function(bridgedData) {\n    K('field[Member ID]').value(bridgedData['Member ID']);\n    K('field[Student First Name]').value(bridgedData['First Name']);\n    K('field[Student Last Name]').value(bridgedData['Last Name']);\n    K('field[Billing Customer Id]').value(bridgedData['Billing Customer Id']);\n    K('field[DOB]').value(bridgedData['DOB']);\n    K('section[Student Information]').show();\n  }\n});",
+                  "bridgedResourceName": null,
+                  "runIf": "values('Members')!==\"\""
+                },
+                {
+                  "name": "Clear Member Details",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('field[Member ID]').value(\"\");\nK('field[Student First Name]').value(\"\");\nK('field[Student Last Name]').value(\"\");\nK('field[DOB]').value(\"\");\nK('field[Billing Customer Id]').value(\"\");\nK('section[Student Information]').hide();\n\nK('section[Member Select Space]').show();    \n",
+                  "runIf": "values('Members')===null"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Members Select",
+              "text": "<div id=\"selectMemberMenu\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Student Information",
+          "title": "Student Information",
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Member ID",
+              "label": "Member ID",
+              "key": "f39",
+              "defaultValue": "",
+              "defaultResourceName": "",
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Member GUID",
+              "label": "Member GUID",
+              "key": "f48",
+              "defaultValue": "${resources('Get Member by Username:id')}",
+              "defaultResourceName": "Get Member by Username",
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Billing User",
+              "label": "Billing User",
+              "key": "f49",
+              "defaultValue": "${resources('Get Member by Username:Billing User')}",
+              "defaultResourceName": "Get Member by Username",
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student First Name",
+              "label": "Student's First Name",
+              "key": "f28",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('Student First Name')} ${values('Student Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student Last Name",
+              "label": "Student's Last Name",
+              "key": "f29",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('Student First Name')} ${values('Student Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested For",
+              "label": "Requested For",
+              "key": "f50",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "DOB",
+              "label": "DOB",
+              "key": "f47",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Billing Customer Id",
+              "label": "Billing Customer Id",
+              "key": "f45",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Payment Details",
+          "title": "Payment Details",
+          "visible": "values('Members')!==null",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+            "class": "services-paysmart-billing-details"
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Payment Method",
+              "label": "Payment Method",
+              "key": "f22",
+              "defaultValue": "",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Credit Card",
+                  "value": "CREDITCARD"
+                },
+                {
+                  "label": "Bank Account",
+                  "value": "BANKACCOUNT"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Credit Card Details",
+          "title": "Credit Card Details",
+          "visible": "values('Payment Method') === 'CREDITCARD'",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+            "class": "services-paysmart-billing-details"
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Name On Card",
+              "label": "Name On Card",
+              "key": "f14",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Payment Method') === 'Credit Card'",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": {
+                "regex": "^(?=.{1,50}$)[a-zA-Z0-9]+(?:['-_.\\s][a-zA-Z0-9]+)*$",
+                "message": "Name on card should be between 1 to 32 characters long and should contain valid characters"
+              },
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Credit Card Number",
+              "label": "Credit Card Number",
+              "key": "f15",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Payment Method') === 'Credit Card'",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": {
+                "regex": "^(?:4[0-9]{12}(?:[0-9]{3})?|(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\\d{3})\\d{11}|^...[0-9][0-9][0-9][0-9])$",
+                "message": "Credit card number should be a valid CC number"
+              },
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Credit Card Expiry Month",
+              "label": "Credit Card Expiry Month",
+              "key": "f16",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Payment Method') === 'Credit Card'",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "01",
+                  "value": "01"
+                },
+                {
+                  "label": "02",
+                  "value": "02"
+                },
+                {
+                  "label": "03",
+                  "value": "03"
+                },
+                {
+                  "label": "04",
+                  "value": "04"
+                },
+                {
+                  "label": "05",
+                  "value": "05"
+                },
+                {
+                  "label": "06",
+                  "value": "06"
+                },
+                {
+                  "label": "07",
+                  "value": "07"
+                },
+                {
+                  "label": "08",
+                  "value": "08"
+                },
+                {
+                  "label": "09",
+                  "value": "09"
+                },
+                {
+                  "label": "10",
+                  "value": "10"
+                },
+                {
+                  "label": "11",
+                  "value": "11"
+                },
+                {
+                  "label": "12",
+                  "value": "12"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Credit Card Expiry Year",
+              "label": "Credit Card Expiry Year",
+              "key": "f17",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Payment Method') === 'Credit Card'",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "2020",
+                  "value": "2020"
+                },
+                {
+                  "label": "2021",
+                  "value": "2021"
+                },
+                {
+                  "label": "2022",
+                  "value": "2022"
+                },
+                {
+                  "label": "2023",
+                  "value": "2023"
+                },
+                {
+                  "label": "2024",
+                  "value": "2024"
+                },
+                {
+                  "label": "2025",
+                  "value": "2025"
+                },
+                {
+                  "label": "2026",
+                  "value": "2026"
+                },
+                {
+                  "label": "2027",
+                  "value": "2027"
+                },
+                {
+                  "label": "2028",
+                  "value": "2028"
+                },
+                {
+                  "label": "2029",
+                  "value": "2029"
+                },
+                {
+                  "label": "2030",
+                  "value": "2030"
+                },
+                {
+                  "label": "2031",
+                  "value": "2031"
+                },
+                {
+                  "label": "2032",
+                  "value": "2032"
+                },
+                {
+                  "label": "2033",
+                  "value": "2033"
+                },
+                {
+                  "label": "2034",
+                  "value": "2034"
+                },
+                {
+                  "label": "2035",
+                  "value": "2035"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Credit Card Type",
+              "label": "Credit Card Type",
+              "key": "f18",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Payment Method') === 'Credit Card'",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Visa",
+                  "value": "Visa"
+                },
+                {
+                  "label": "MasterCard",
+                  "value": "MasterCard"
+                },
+                {
+                  "label": "American Express",
+                  "value": "American Express"
+                },
+                {
+                  "label": "Diners Club",
+                  "value": "Diners Club"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Bank Account Details",
+          "title": "Bank Account Details",
+          "visible": "values('Payment Method') === 'BANKACCOUNT'",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+            "class": "services-paysmart-billing-details"
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Account Name",
+              "label": "Account Name",
+              "key": "f23",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Payment Method') === 'Bank Account'",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": {
+                "regex": "^(?=.{1,32}$)[a-zA-Z0-9]+(?:['-_.\\s][a-zA-Z0-9]+)*$",
+                "message": "Account name should be between 1 to 32 characters long and should contain valid characters"
+              },
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Account Number",
+              "label": "Account Number",
+              "key": "f24",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Payment Method') === 'Bank Account'",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": {
+                "regex": "^([0-9]){6,9}$",
+                "message": "Account number must be 6 to 9 digit number"
+              },
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "BSB",
+              "label": "BSB",
+              "key": "f25",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": "values('Payment Method') === 'Bank Account'",
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": {
+                "regex": "^([0-9]){6}$",
+                "message": "BSB must be 6 digit number"
+              },
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Signature",
+          "title": null,
+          "visible": "values('Members')!==null",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Payment Type Signature",
+              "text": "<label class=\"field-label required\">Payment Change Signature</label>\n<div id=\"payment-signature-canvas\"/>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "Encoded Payment Signature",
+              "label": "Encoded Payment Signature",
+              "key": "f44",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "Payment Change Signature is required",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Member Select Space",
+          "title": null,
+          "visible": "values('Members')===null",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Member Select Space",
+              "text": "<div style=\"height:300px\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": "values('Billing User')==\"YES\" || K(\"identity\").teams.includes(\"Role::Program Managers\")",
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Signatures",
+          "type": "Load",
+          "action": "Custom",
+          "code": "bundle.config.widgets.signatureCanvas({\n  element: K(\"form\").find(\"#payment-signature-canvas\")[0],\n  initialValue: K(\"field[Encoded Payment Signature]\").value(),\n  onChange: function(value) {\n\t  K(\"field[Encoded Payment Signature]\").value(value);\n\t},\n  height: 250,\n  width: 500,\n  disable: form('review'),\n  ref: function(el) {\n    window.representativeSignaturePad = el;\n  },\n});\n",
+          "runIf": ""
+        },
+        {
+          "name": "Load Members Select",
+          "type": "Load",
+          "action": "Custom",
+          "code": "  function GetURLParameter(sParam){\n    arr=window.location.hash.split(sParam+\"=\");\n    if (arr.length>0){\n      return arr[1];\n    }\n    return null;\n  }  \ndebugger;\nK('bridgedResource[Members]').load({\n  attributes: ['First Name', 'Last Name','id'],\n  values: {},\n  success: function(bridgedData) {\n    var options=[];\n    $.each( bridgedData, function( key, value ) {\n\t    console.log(value['id']+\"-\"+value['First Name']+\" \"+value['Last Name']);\n\t\t\toptions[options.length]={'label':value['First Name']+\" \"+value['Last Name'], 'value':value['id']};\n\t\t});\n    var label=null;\n debugger;   \n\t\tK('field[Members]').options(options);\n    if ((GetURLParameter(\"id\")!==null && GetURLParameter(\"id\")!==undefined) || !K(\"identity\").teams.includes(\"Role::Program Managers\")) {\n      if (GetURLParameter(\"id\")!==null && GetURLParameter(\"id\")!==undefined) {\n    \t\tK('field[Members]').value(GetURLParameter(\"id\"));\n      }else{\n    \t\tK('field[Members]').value(K('field[Member GUID]').value());\n      }\n      $(K('field[Members]').options()).each(function(index) {\n       if (K('field[Members]').options()[index].value===GetURLParameter(\"id\") || K('field[Members]').options()[index].value===K('field[Member GUID]').value()) {\n        label=K('field[Members]').options()[index].label;\n        }\n      });      \n    }\n    bundle.config.widgets.selectMenu({\n      element: K(\"form\").find(\"#selectMemberMenu\")[0],\n      options: K('field[Members]').options(),\n      onChange: function(option) {\n        K('field[Members]').value(option.value);\n        setTimeout(function(){\n          $(K(\"form\").find(\"#selectMemberMenu .css-1492t68\")).html(option.label);\n        },100);\n      },\n      value: K('field[Members]').value(),\n    });\n    if (label!==null){\n    \t$(K(\"form\").find(\"#selectMemberMenu div\")[3]).html(label);\n    }\n    if (!K('identity').authenticated) {\n      $(K(\"form\").find(\"#selectMemberMenu\")).hide();\n    }\n  }\n});\n\n\nif ($(\".package-layout--services\").length===0) {\n\t$(\"body\").css(\"height\",\"auto\");\n}\nif (GetURLParameter(\"id\")!==undefined) {\n\tK('section[Emailed Message]').show();  \n}\nif (!K(\"identity\").teams.includes(\"Role::Program Managers\")) {\n\tK('section[Select Member]').hide();\n}"
+        },
+        {
+          "name": "Handle Errors",
+          "type": "Submit",
+          "action": "Custom",
+          "code": "if (!jQuery.isEmptyObject(K('form').validate())){\n  setTimeout(function(){\n  if ($(\".has-error\").length>0){\n    $(\".has-error\").each(function(i,l) { \n      if ($(l).attr(\"data-element-name\").indexOf(\"Signature\")!==-1) {\n        sigCanElName=$(l).attr(\"data-element-name\").replace(\"Encoded \",\"\");\n        $(K('content['+sigCanElName+']').element()).addClass(\"has-error\");\n      }\n    })  \n    $('.main-container').animate({\n      scrollTop: 0\n    },500);\n  }\n  },100);\n}"
+        },
+        {
+          "name": "Load Previous set page",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('section[Student Information]').show();\nK('section[Payment Details]').show();\n\nK('section[Member Select Space]').hide();    \n",
+          "runIf": "values('Members')!==null"
+        },
+        {
+          "name": "Clear Styles",
+          "type": "Submit",
+          "action": "Custom",
+          "code": "if ($(\".package-layout--services\").length===0) {\n\t$(\"body\").css(\"height\",\"100%\");\n}"
+        },
+        {
+          "name": "Review",
+          "type": "Load",
+          "action": "Custom",
+          "code": "",
+          "runIf": "form('review')"
+        }
+      ],
+      "name": "Instalment Information",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "PaySmart Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "PaySmart Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Program Managers"
+    }
+  ],
+  "slug": "paysmart-change-payment-type",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Student First Name')} ${values('Student Last Name')} Payment Type : ${values('Payment Method')}",
+  "type": "Service"
+}

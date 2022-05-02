@@ -1,0 +1,177 @@
+{
+  "anonymous": false,
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+
+  ],
+  "categorizations": [
+
+  ],
+  "customHeadContent": "<style>\n  .empty-message {\n    display: none !important;\n  }\n</style>",
+  "description": "",
+  "name": "Member Photo",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "originatingID",
+          "label": "originatingID",
+          "key": "f2",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Photo",
+          "label": "",
+          "key": "f1",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "file",
+          "renderType": "attachment",
+          "allowMultiple": false
+        },
+        {
+          "type": "field",
+          "name": "Photo Image",
+          "label": "Photo Image",
+          "key": "f3",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Filename",
+          "label": "Filename",
+          "key": "f4",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "CameraFeed",
+          "text": "<div id=\"CameraFeedDiv\"></div>\n",
+          "visible": true,
+          "renderAttributes": {
+          }
+        },
+        {
+          "type": "button",
+          "label": "Apply",
+          "name": "Submit Button",
+          "visible": false,
+          "enabled": "values('Photo').length!==0 || values('Photo Image')!==null",
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Camera Feed",
+          "type": "Load",
+          "action": "Custom",
+          "code": "bundle.config.widgets2.cameraFeed({\n  element: K(\"form\").find(\"#CameraFeedDiv\")[0],\n  height: 250,\n  width: 500,\n  ref: function(el) {\n    window.cameraFeedEl = el;\n  },\n});"
+        }
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Program Managers"
+    },
+    {
+      "endpoint": "Modification",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Everyone"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Authenticated Users"
+    }
+  ],
+  "slug": "member-photo",
+  "status": "New",
+  "submissionLabelExpression": null,
+  "type": "Content"
+}

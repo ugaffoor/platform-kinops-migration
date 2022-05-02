@@ -1,0 +1,453 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Cancel Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Cloning Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Comment Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Submitted - True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Members",
+      "name": "Get Member",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Members')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Member",
+      "status": "Active"
+    },
+    {
+      "model": "Terms and Conditions",
+      "name": "Get Waiver",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "Gracie Barra Waiver",
+          "name": "Type"
+        }
+      ],
+      "qualification": "Paysmart Member Registration",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Members",
+      "order": [
+
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Get Active and Frozen Members",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+    {
+      "category": {
+        "slug": "registrations"
+      }
+    }
+  ],
+  "customHeadContent": "<style>\n.waiverButtons {\n    margin: 20px;\n}\n.waiverButtons button {\n\t\tbackground-color: #4d5059;\n    color: white;\n  \tborder-radius: 5px;\n}  \n</style>\n<script>\n  function agreeTerms() {\n    K('field[Agreement]').value(\"Agreed\");\n    K('form').submitPage();\n  }\n  function noAgreeTerms() {\n    K('field[Agreement]').value(\"NOT Agreed\");\n    K('form').submitPage();\n  }\n</script>",
+  "description": "Capture a Members agreement for the GB Waiver.",
+  "name": "Member Waiver Agreement",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Select Member",
+          "title": "Select Member",
+          "visible": "!form('review')",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Members",
+              "label": "Members",
+              "key": "f38",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "A member must be selected",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Member",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('bridgedResource[Get Member]').load({\n  attributes: ['Member ID', 'First Name', 'Last Name'],\n  values: {'ID' : 'Allen'},\n  success: function(bridgedData) {\n    K('field[Member ID]').value(bridgedData['Member ID']);\n    K('field[Student First Name]').value(bridgedData['First Name']);\n    K('field[Student Last Name]').value(bridgedData['Last Name']);\n\n    K('section[Waiver Section]').show();\n    K('section[Member Select Space]').hide();    \n    }\n});\n\n",
+                  "bridgedResourceName": null,
+                  "runIf": "values('Members')!==\"\""
+                },
+                {
+                  "name": "Clear Member Details",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('field[Member ID]').value(\"\");\nK('field[Student First Name]').value(\"\");\nK('field[Student Last Name]').value(\"\");\n\nK('section[Waiver Section]').hide();\nK('section[Member Select Space]').show();    \n",
+                  "runIf": "values('Members')===null"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+
+              ]
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Members Select",
+              "text": "<div id=\"selectMemberMenu\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Student Information",
+          "title": "Student Information",
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Member ID",
+              "label": "Member ID",
+              "key": "f39",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student First Name",
+              "label": "Student's First Name",
+              "key": "f28",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('Student First Name')} ${values('Student Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student Last Name",
+              "label": "Student's Last Name",
+              "key": "f29",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('Student First Name')} ${values('Student Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested For",
+              "label": "Requested For",
+              "key": "f42",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Waiver Section",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Waiver Information Text",
+              "label": "Waiver Information Text",
+              "key": "f41",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "WaiverWaiver Information",
+              "text": "<span id=\"waiverInformation\"/>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Waiver Buttons",
+              "text": "<div class=\"waiverButtons\">\n  <button class=\"agree\" onclick=\"agreeTerms()\">\n    I Acknowledge and Accept the terms\n  </button>\n  <button class=\"notagree\" onclick=\"noAgreeTerms()\">\n    I DO NOT Acknowledge and Accept the terms\n  </button>\n</div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Agreement",
+          "label": "Agreement",
+          "key": "f40",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Member Select Space",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Member Select Space",
+              "text": "<div style=\"height:300px\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "I Agree",
+          "name": "Submit Button",
+          "visible": false,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Members Select",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('bridgedResource[Members]').load({\n  attributes: ['Member ID', 'First Name', 'Last Name', 'Covid19 Waiver'],\n  success: function(bridgedData) {\n debugger;\n    var options=[];\n    $.each( bridgedData, function( key, value ) {\n      if (value['Covid19 Waiver']===null || value['Covid19 Waiver']===\"\" || value['Covid19 Waiver']===\"NOT Agreed\") {\n\t      options[options.length]={'label':value['First Name']+\" \"+value['Last Name'],'value':value['id']};\n      }\n    });\n\t\tK('field[Members]').options(options);\n    bundle.config.widgets.selectMenu({\n      element: K(\"form\").find(\"#selectMemberMenu\")[0],\n      options: options,\n      onChange: function(option) {\n        K('field[Members]').value(option.value);\n        setTimeout(function(){\n          $(K(\"form\").find(\"#selectMemberMenu .css-1492t68\")).html(option.label);\n        },100);\n      },\n      value: K('field[Members]').value(),\n    });  \n  }\n});\n",
+          "runIf": "!form('review')"
+        },
+        {
+          "name": "Load Review",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('section[Waiver Section]').show();\nK('section[Member Select Space]').hide();    \n\n$(\".agree\").prop('disabled', true)\n$(\".notagree\").prop('disabled', true)\n\nif (K('field[Agreement]').value()===\"Agreed\") {\n  $(\".notagree\").hide();\n} else {\n  $(\".agree\").hide();\n}\n",
+          "runIf": "form('review')"
+        },
+        {
+          "name": "Load Waiver",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('bridgedResource[Get Waiver]').load({\n  success: function(bridgedData) {\n    debugger;\n    $(\"#waiverInformation\").html(bridgedData[0][\"Terms Information\"]);\n    $(\"#legalName\").text(K('space').attributes('School Legal Name'));\n    K('field[Waiver Information Text]').value($(\"#waiverInformation\").html());\n  }\n});",
+          "runIf": "K('field[Waiver Information Text]').value()===null"
+        },
+        {
+          "name": "Display Waiver",
+          "type": "Load",
+          "action": "Custom",
+          "code": "$(\"#waiverInformation\").html(K('field[Waiver Information Text]').value());",
+          "runIf": "K('field[Waiver Information Text]').value()!==null"
+        }
+      ],
+      "name": "Instalment Information",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Program Managers"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Program Managers"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Program Managers"
+    }
+  ],
+  "slug": "member-waiver-agreement",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Student First Name')} ${values('Student Last Name')}",
+  "type": "Service"
+}

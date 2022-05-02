@@ -1,0 +1,27 @@
+[
+  {
+    "allowsMultiple": false,
+    "description": "User's Department.  Updates through a request from the user profile screen.",
+    "name": "Department"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "If the user is added through the invite process, this attribute stores who invited the user.",
+    "name": "Invited By"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "User's manager.  Updates through a request from the user profile screen.",
+    "name": "Manager"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "User's organization. Updates through a request from the user profile screen.",
+    "name": "Organization"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "User's Site. Updates through a request from the user profile screen.",
+    "name": "Site"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "event": "Created",
+  "filter": "form('name')==\"Member PhotoXXX\"",
+  "name": "Member Photo Upload Not Used",
+  "type": "Submission",
+  "url": "/app/api/v1/run-tree/${space('attribute:Task Source Name')}/${space('attribute:Task Server Space Slug')}/MemberPhotoUpload",
+  "attributes": null
+}

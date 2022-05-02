@@ -1,0 +1,236 @@
+{
+  "attributes": [
+    {
+      "name": "Datastore Hidden",
+      "values": [
+        "True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+
+  ],
+  "customHeadContent": null,
+  "description": "",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Allow Walk-Ins]",
+      "parts": [
+        "values[Allow Walk-Ins]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Feedback Identification]",
+      "parts": [
+        "values[Feedback Identification]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Scheduler Id]:UNIQUE",
+      "parts": [
+        "values[Scheduler Id]"
+      ],
+      "unique": true
+    }
+  ],
+  "name": "Tech Bar Settings",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "field",
+          "name": "Scheduler Id",
+          "label": "Scheduler Id",
+          "key": "f2",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": false,
+          "enabled": false,
+          "required": true,
+          "requiredMessage": null,
+          "omitWhenHidden": false,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Allow Walk-Ins",
+          "label": "Allow Walk-Ins?",
+          "key": "f1",
+          "defaultValue": "Yes",
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Yes",
+              "value": "Yes"
+            },
+            {
+              "label": "No",
+              "value": "No"
+            }
+          ]
+        },
+        {
+          "type": "field",
+          "name": "Feedback Identification",
+          "label": "Feedback Identification",
+          "key": "f3",
+          "defaultValue": "Optional",
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "radio",
+          "choicesResourceName": null,
+          "choicesRunIf": null,
+          "choices": [
+            {
+              "label": "Required",
+              "value": "Required"
+            },
+            {
+              "label": "Optional",
+              "value": "Optional"
+            },
+            {
+              "label": "Hidden",
+              "value": "Hidden"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Save",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": true,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+
+      ],
+      "name": "Tech Bar Settings",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Scheduler Admins - Scheduler Managers"
+    },
+    {
+      "endpoint": "Modification",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Scheduler Admins - Scheduler Managers"
+    }
+  ],
+  "slug": "tech-bar-settings",
+  "status": "Active",
+  "submissionLabelExpression": null
+}

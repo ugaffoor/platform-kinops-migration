@@ -1,0 +1,300 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Cancel Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Cloning Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Comment Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Submitted - True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Members",
+      "name": "Load Member",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Username')}",
+          "name": "username"
+        }
+      ],
+      "qualification": "Get Member by Username",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+    {
+      "category": {
+        "slug": "class-bookings"
+      }
+    }
+  ],
+  "customHeadContent": "<style>\n  \n.waiverButtons {\n    margin: 20px;\n}\n.waiverButtons button {\n\t\tbackground-color: #4d5059;\n    color: white;\n  \tborder-radius: 5px;\n}\n.previewSection h1 {\n    float: left;\n}  \n@media (min-width: 750px) {\n\t.howitworks {\n    width: 50% !important;\n  }\n}\n.howitworks {\n    width: 100%;\n    float: left;\n    clear: left;\n}\n@media (min-width: 750px) {\n\t.reviewdetails {\n    width: 50% !important;\n  }\n}\n.reviewdetails {\n    width: 100%;\n    float: left;\n}\n.howitworks p {\n    margin: 0;\n\t \tline-height: 1.5rem !important; \n}  \n.reviewdetails table {\n    background-color: #e5e4e4;\n    border-radius: 5px;\n}  \n/* Tables\n================================== */\n.Rtable {\n  display: flex;\n  flex-wrap: wrap;\n  margin: 2px 2px 2px 2px;\n  padding: 2px;\n}\n.Rtable-cell {\n  box-sizing: border-box;\n  flex-grow: 1;\n  width: 100%;  // Default to full width\n  padding: 0.8em 1.2em;\n  overflow: hidden; // Or flex might break\n  list-style: none;\n  border: solid @bw white;\n  background: fade(slategrey,20%);\n  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }\n}\n\n/* Table column sizing\n================================== */\n.Rtable--7cols > .Rtable-cell { \n  width: 14.2%; \n}  \n\t.dayButtons a {\t\n  \tcolor:#ffffff !important;\n  }\n  .dayButton {\n  \tbox-shadow:inset 0px 1px 3px 0px #a6adac;\n  \tbackground:linear-gradient(to bottom, #6e6e6e 5%, #686a70 100%);\n  \tbackground-color:#6e6e6e;\n  \tborder-radius:5px;\n  \tborder:1px solid #4d5059;\n  \tdisplay:inline-block;\n  \tcursor:pointer;\n  \tcolor:#ffffff;\n  \tfont-family:Arial;\n  \tfont-size:15px;\n  \tfont-weight:bold;\n  \ttext-decoration:none;\n  \ttext-shadow:0px -1px 0px #505756;\n\t\twidth: 100%;    \n  }\n  .dayButton:hover {\n  \tbackground:linear-gradient(to bottom, #686a70 5%, #6e6e6e 100%);\n  \tbackground-color:#686a70;\n  }\n  .dayButton:active, .dayButton.active {\n      position: relative;\n      background: linear-gradient(to bottom, #aeafb4 5%, #ece9e9 100%);\n      background-color: #adafb2;\n  }\n  .hide {\n    display: none;\n    \n  }\n  #dayClasses {\n      max-width: 400px;\n      margin: auto;\n  }  \n  #dayClasses .classDiv {\n    border-style: solid;\n    border-radius: 5px;\n    border-color: #e3e0e0;\n    padding: 10px;\n    margin-bottom: 2px;\n  }  \n  #dayClasses .GB2, #dayClasses .GB3 { \n\t\tcolor: white;     \n  }\n  .classDiv .dates {\n    float: left;\n  }\n  .classDiv .remaining {\n    padding: 2px;\n    background-color: white;\n    float: right;\n    border-radius: 4px;\n  }\n  .classDiv .programDiv {\n      clear: left;\n  }  \n  .classDiv .titleDiv {\n    clear: left;\n  }\n  .classDiv .lastline {\n    clear: left;\n    height: 26px;\n  }\n  .classDiv .lastline .studentsDiv {\n    float: left;\n  }\n  .classDiv .lastline .booknow {\n    float: right;\n    box-shadow: inset 0px 1px 3px 0px #a6adac;\n    background: linear-gradient(to bottom, #6e6e6e 5%, #686a70 100%);\n    background-color: #6e6e6e;\n    border-radius: 5px;\n    border: 1px solid #4d5059;\n    color: white;\n  }\n  .booknow:hover {\n    box-shadow: inset 0px 1px 3px 0px #a6adac !important;\n    background: linear-gradient(to bottom, #d4d2d2 5%, #a7a8a9 100%) !important;\n    background-color: #9f9d9d !important;\n    border: 1px solid #cacbcc !important;\n  }\n  .GB2 .remaining, .GB3 .remaining {\n    color: black;\n  }  \n  .spinner {\n    border: 16px solid #f3f3f3; /* Light grey */\n    border-top: 16px solid #3498db; /* Blue */\n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    animation: spin 2s linear infinite;\n    margin: auto;\n  }\n\n  @keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n  }\n\n  .anotherClass, #completeBooking button {\n    box-shadow: inset 0px 1px 3px 0px #a6adac;\n    background: linear-gradient(to bottom, #6e6e6e 5%, #686a70 100%);\n    background-color: #6e6e6e;\n    border-radius: 5px;\n    border: 1px solid #4d5059;\n    color: white;  \n    line-height: unset;\n  }\n  .anotherClass:hover, #completeBooking button:hover {\n    box-shadow: inset 0px 1px 3px 0px #a6adac !important;\n    background: linear-gradient(to bottom, #d4d2d2 5%, #a7a8a9 100%) !important;\n    background-color: #9f9d9d !important;\n    border: 1px solid #cacbcc !important;\n  }\n  #cancellationClassLink {\n      color: blue;\n  }  \n</style>\n",
+  "description": "",
+  "name": "Test Class",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "Loading",
+          "text": "<div id=\"initialise\" class=\"spinner\"></div>\n",
+          "visible": true,
+          "renderAttributes": {
+          }
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Hidden Fields",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Username",
+              "label": "Username",
+              "key": "f12",
+              "defaultValue": "${identity('username')}",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Today",
+              "label": "Today",
+              "key": "f11",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Member ID",
+              "label": "Member ID",
+              "key": "f7",
+              "defaultValue": "",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Member GUID",
+              "label": "Member GUID",
+              "key": "f8",
+              "defaultValue": "",
+              "defaultResourceName": "",
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Member Name",
+              "label": "Member Name",
+              "key": "f9",
+              "defaultValue": "",
+              "defaultResourceName": "",
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Max Students",
+              "label": "Max Students",
+              "key": "f6",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Class Booking ID",
+              "label": "Class Booking ID",
+              "key": "f10",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Complete Booking",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": false,
+          "renderType": "submit-page",
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+        {
+          "name": "Initialise",
+          "type": "Load",
+          "action": "Custom",
+          "code": "\n$(\"#completeBooking\").append($(K('button[Submit Button]').element()).detach());",
+          "runIf": "!form('review')"
+        },
+        {
+          "name": "Load Form",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K(\"field[Today]\").value(moment().format(\"YYYY-MM-DD\"));\nK('bridgedResource[Load Member]').load({\n  \t//attributes: ['Member ID', 'id', 'First Name','Last Name'],\n    success: function(data) {\n      K('field[Member ID]').value(data['Member ID']);\n      K('field[Member GUID]').value(data['id']);\n      K('field[Member Name]').value(data['First Name']+' '+data['Last Name']);\n      $(\"#initialise\").hide();\n\n    }\n});\n",
+          "bridgedResourceName": "Load Member"
+        }
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Admins"
+    }
+  ],
+  "slug": "test-class",
+  "status": "Active",
+  "submissionLabelExpression": "",
+  "type": "Service"
+}

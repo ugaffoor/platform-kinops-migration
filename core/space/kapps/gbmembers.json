@@ -1,0 +1,210 @@
+{
+  "afterLogoutPath": null,
+  "attributes": [
+    {
+      "name": "Billing Company",
+      "values": [
+        "PaySmart"
+      ]
+    },
+    {
+      "name": "Billing eDDR Templates",
+      "values": [
+        "[{\"name\":\"TestWeekly\",\"url\":\"https://express-testweekly.ffapaysmart.com.au//WebLink/WeblinkDDRNew.aspx?ID=8A26E15E4F1EC9EB\"}]"
+      ]
+    },
+    {
+      "name": "Icon",
+      "values": [
+        "svg-gb-icon"
+      ]
+    },
+    {
+      "name": "Ignore Lead Status Values",
+      "values": [
+        "Not Interested"
+      ]
+    },
+    {
+      "name": "Ignore Member Status Values",
+      "values": [
+        "Inactive"
+      ]
+    },
+    {
+      "name": "Kinetic Billing Server URL",
+      "values": [
+        "https://services.gbmembers.net/billingservice"
+      ]
+    },
+    {
+      "name": "Kinetic Email Server URL",
+      "values": [
+        "https://gbbilling.com.au:8443/mail-handler"
+      ]
+    },
+    {
+      "name": "Kinetic Messaging Server URL",
+      "values": [
+        "https://gbbilling.com.au:8443/gbmembers-messaging"
+      ]
+    },
+    {
+      "name": "Lead Source Values",
+      "values": [
+        "Brochure,Facebook,Facebook Ad,Family,Google+,Google Ad,Instagram,Instagram Ad,Internal Referral,Leaflet,Linkedin,Magazine,Newspaper,Phone Call,Poster,Signage,Television,Twitter,Website,Word of Mouth,Walk-In,Other Advertising"
+      ]
+    },
+    {
+      "name": "Lead Status Values",
+      "values": [
+        "Inquiry,Pending Intro 1,Pending Intro 2,Not Interested"
+      ]
+    },
+    {
+      "name": "Member Status Values",
+      "values": [
+        "Active,Inactive,Pending Freeze,Pending Cancellation,Frozen"
+      ]
+    },
+    {
+      "name": "SMS Enabled",
+      "values": [
+        "true"
+      ]
+    }
+  ],
+  "bundlePath": null,
+  "defaultFormConfirmationPage": null,
+  "defaultFormDisplayPage": null,
+  "defaultSubmissionLabelExpression": "${form('name')}",
+  "displayType": "Display Page",
+  "displayValue": null,
+  "fields": [
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k3",
+      "name": "Assigned Individual"
+    },
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k1",
+      "name": "Assigned Team"
+    },
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k6",
+      "name": "Deferral Token"
+    },
+    {
+      "dataType": "date",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k5",
+      "name": "Due Date"
+    },
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k7",
+      "name": "Requested By"
+    },
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k9",
+      "name": "Requested For"
+    },
+    {
+      "dataType": "string",
+      "defaultResourceName": null,
+      "defaultValue": null,
+      "key": "k11",
+      "name": "Status"
+    }
+  ],
+  "formTypes": [
+    {
+      "name": "Approval"
+    },
+    {
+      "name": "Console"
+    },
+    {
+      "name": "Content"
+    },
+    {
+      "name": "Service"
+    },
+    {
+      "name": "Service Description"
+    },
+    {
+      "name": "Subservice"
+    },
+    {
+      "name": "Template"
+    },
+    {
+      "name": "Work Order"
+    }
+  ],
+  "loginPage": null,
+  "name": "GB Members",
+  "resetPasswordPage": null,
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Program Managers"
+    },
+    {
+      "endpoint": "Form Creation",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Modification",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Default Form Display",
+      "name": "Program Managers"
+    },
+    {
+      "endpoint": "Default Form Modification",
+      "name": "Admins"
+    },
+    {
+      "endpoint": "Default Submission Access",
+      "name": "Submitter"
+    },
+    {
+      "endpoint": "Default Submission Modification",
+      "name": "Submitter"
+    },
+    {
+      "endpoint": "Submission Support",
+      "name": "Admins"
+    }
+  ],
+  "slug": "gbmembers",
+  "webApis": [
+    {
+      "method": "POST",
+      "securityPolicies": [
+        {
+          "endpoint": "Execution",
+          "name": "Authenticated Users"
+        }
+      ],
+      "slug": "billing-transaction"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "activeMappingName": "Class Schedule",
+  "attributes": [
+    {
+      "name": "Allowed Programs"
+    },
+    {
+      "name": "Cancellation Cutoff"
+    },
+    {
+      "name": "Coaches"
+    },
+    {
+      "name": "Colour"
+    },
+    {
+      "name": "End"
+    },
+    {
+      "name": "Max Students"
+    },
+    {
+      "name": "Program"
+    },
+    {
+      "name": "Start"
+    },
+    {
+      "name": "Text Colour"
+    },
+    {
+      "name": "Title"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Program",
+          "structureField": "${fields('values[Program]')}"
+        },
+        {
+          "name": "Title",
+          "structureField": "${fields('values[Title]')}"
+        },
+        {
+          "name": "Start",
+          "structureField": "${fields('values[Start]')}"
+        },
+        {
+          "name": "End",
+          "structureField": "${fields('values[End]')}"
+        },
+        {
+          "name": "Max Students",
+          "structureField": "${fields('values[Max Students]')}"
+        },
+        {
+          "name": "Colour",
+          "structureField": "${fields('values[Colour]')}"
+        },
+        {
+          "name": "Text Colour",
+          "structureField": "${fields('values[Text Colour]')}"
+        },
+        {
+          "name": "Allowed Programs",
+          "structureField": "${fields('values[Allowed Programs]')}"
+        },
+        {
+          "name": "Cancellation Cutoff",
+          "structureField": "${fields('values[Cancellation Cutoff]')}"
+        },
+        {
+          "name": "Coaches",
+          "structureField": "${fields('values[Coaches]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Class Schedule",
+      "qualifications": [
+        {
+          "name": "Class Schedules",
+          "query": "formSlug=class-schedule"
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "Class Schedule",
+  "qualifications": [
+    {
+      "name": "Class Schedules",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}
