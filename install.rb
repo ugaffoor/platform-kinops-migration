@@ -589,6 +589,20 @@ if (vars["data"]["requesting_user"])
     "profileAttributesMap" => { "Guided Tour" => ["Welcome Tour", "Services", "Queue"] },
   })
 end
+# create requesting user that was specified
+if (vars["data"]["integration-user2"])
+  space_sdk.add_user({
+    "username" => vars["data"]["integration-user2"]["username"],
+    "email" => vars["data"]["integration-user2"]["email"],
+    "displayName" => vars["data"]["integration-user2"]["displayName"],
+##    "password" => KineticSdk::Utils::Random.simple(16),
+    "password" => vars["data"]["integration-user2"]["password"],
+    "enabled" => true,
+    "spaceAdmin" => true,
+    "memberships" => [],
+    "profileAttributesMap" => {},
+  })
+end
 
 # temporarily disable webooks while provisioning requesting user / teams
 space_sdk.find_webhooks_on_space.content["webhooks"].each do |webhook|

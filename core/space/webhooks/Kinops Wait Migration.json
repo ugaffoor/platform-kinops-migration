@@ -1,0 +1,8 @@
+{
+  "event": "Created",
+  "filter": "form('slug')===\"kinops-wait-migration\"",
+  "name": "Kinops Wait Migration",
+  "type": "Datastore Submission",
+  "url": "/app/api/v1/run-tree/${space('attribute:Task Source Name')}/Datastore%20Submissions%20%3E%20kinops-wait-migration/Created",
+  "attributes": null
+}
