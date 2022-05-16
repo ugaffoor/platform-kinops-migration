@@ -197,18 +197,6 @@
       ]
     },
     {
-      "name": "POS Sales Tax",
-      "values": [
-        "0.016"
-      ]
-    },
-    {
-      "name": "POS Sales Tax Label",
-      "values": [
-        "Surcharge"
-      ]
-    },
-    {
       "name": "POS Sales Total Label",
       "values": [
         "Total (GST Included)"
