@@ -86,12 +86,6 @@
       ]
     },
     {
-      "name": "Covid Check Required",
-      "values": [
-        "TRUE"
-      ]
-    },
-    {
       "name": "Currency",
       "values": [
         "AUD"
